@@ -1,0 +1,212 @@
+@font-face {
+  font-family: 'Termina';
+  src: url('../public/fonts/TerminaW00-Demi.woff2') format('woff2'),
+      url('../public/fonts/TerminaW00-Demi.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Termina Bold';
+  src: url('../public/fonts/TerminaW05-Bold.woff2') format('woff2'),
+      url('../public/fonts/TerminaW05-Bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+$font-primary: 'Roboto';
+$font-primary-alt: 'Roboto Mono';
+$font-secondary: 'Termina Bold';
+$font-secondary-alt: 'Termina';
+
+$color-primary: #8EFE1C;
+$color-secondary: #7F1CFE;
+$color-grey: #1D2225;
+$color-border: #535353;
+
+.primaryColor {
+  color: $color-primary;
+}
+
+//MIXINS
+@mixin mobile() {
+  @media (min-width: 325px) {
+    @content;
+  }
+}
+
+@mixin phablet() {
+  @media (min-width: 576px) {
+    @content;
+  }
+}
+
+@mixin tablet() {
+    @media (min-width: 768px) {
+      @content;
+    }
+}
+
+@mixin largeTablet() {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin desktop() {
+    @media (min-width: 1200px) {
+      @content;
+    }
+}
+
+@mixin desktop-xl() {
+  @media (min-width: 1440px) {
+    @content;
+  }
+}
+
+@mixin desktop-xxl() {
+  @media (min-width: 1600px) {
+    @content;
+  }
+}
+
+@mixin desktop-xxxl() {
+  @media (min-width: 1920px) {
+    @content;
+  }
+}
+
+.button {
+  background-color: $color-primary;
+  color: black;
+  padding: 10px 40px;
+  font-family: $font-primary-alt;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  min-height: 50px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  &:after{
+    content: '';
+    position: absolute;
+    background: black;
+    transform: rotate(-45deg);
+    right: -50px;
+    top:25px;
+    width: 50px;
+    height: 100px;
+    z-index: 1;
+
+}
+  &:hover {
+    background-color: $color-secondary;
+    color: white;
+  }
+}
+
+.buttonSecondary {
+  background-color: black;
+  color: $color-primary;
+  padding: 10px 20px;
+  font-family: $font-primary-alt;
+  cursor: pointer;
+  outline: none;
+  border: solid 2px $color-primary;
+  min-height: 50px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  &:hover {
+    background-color: $color-primary;
+    color: black;
+  }
+}
+
+.buttonAlt {
+  background-color: #131617;
+  color: #5E5E5E;
+  padding: 10px 20px;
+  font-family: $font-primary-alt;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  min-height: 50px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 350px;
+  &:after{
+    content: '';
+    position: absolute;
+    background: black;
+    border-top: solid 2px #131617;
+    transform: rotate(-45deg);
+    right: -50px;
+    top:25px;
+    width: 50px;
+    height: 100px;
+    z-index: 1;
+
+}
+  &:hover {
+    background-color: $color-secondary;
+    color: white;
+  }
+}
+
+.altTextGreen {
+  font-family: $font-primary-alt;
+  color: $color-primary;
+  margin-bottom: 40px;
+}
+
+.altTextGrey {
+  font-family: $font-primary-alt;
+  color: #8A8A8A;
+}
+
+.altText {
+  font-family: $font-primary-alt;
+}
+
+.subtitle {
+  font-family: $font-secondary;
+  text-transform: uppercase;
+  margin: 0;
+  margin-bottom: 50px;
+  text-align: center;
+  font-size: 24px;
+  line-height: 32px;
+  @include tablet{
+    margin-bottom: 100px;
+    font-size: 26px;
+  }
+  @include desktop {
+    font-size: 38px;
+    line-height: 42px;
+  }
+}
+
+.subtitleAlt {
+  font-family: $font-primary-alt;
+  font-size: 18px;
+  text-align: start;
+}
+
+%container {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0 30px;
+  @include desktop {
+      padding: 0 100px;
+  }
+  @include desktop-xxxl {
+    padding: 0 175px;
+  }
+}

@@ -1,0 +1,314 @@
+@import "main";
+
+html * {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-primary;
+  background-color: black;
+  color: white;
+  font-size: 18px;
+  line-height: 30px;
+}
+
+ul,
+ol {
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  margin: 20px 0;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-secondary;
+  text-transform: uppercase;
+  margin: 0;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 50px;
+  letter-spacing: -2px;
+  @include desktop {
+    text-align: start;
+  }
+}
+
+h2 {
+  font-size: 26px;
+  line-height: 60px;
+  margin-bottom: 50px;
+  @include tablet {
+    fonst-size: 44px;
+  }
+  @include desktop {
+    font-size: 50px;
+    margin-bottom: 100px;
+  }
+}
+
+h3 {
+  font-size: 30px;
+  line-height: 46px;
+}
+
+h4 {
+  font-size: 20px;
+  line-height: 24px;
+  margin-bottom: 20px;
+}
+
+h5 {
+  font-size: 18px;
+  line-height: 30px;
+  text-align: start;
+}
+
+input[type="email"],
+input[type="text"] {
+  border: solid 2px white;
+  background-color: transparent;
+  width: 100%;
+  padding: 10px 15px;
+  color: white;
+  min-height: 50px;
+  &::placeholder {
+    color: white;
+  }
+  &:focus {
+    outline: none;
+    border: solid 2px $color-primary;
+  }
+}
+
+input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  font: inherit;
+  color: white;
+  width: 1.15em;
+  height: 1.15em;
+  border: 1px solid white;
+  transform: translateY(-0.075em);
+  display: grid;
+  place-content: center;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  background-color: white;
+  border: none;
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+.popup-content {
+  background: url("../public/images/player-dropdown.png");
+  border: none;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-top: 20px;
+  background-color: black !important;
+}
+
+.popup-arrow {
+  display: none;
+}
+
+.animated {
+  z-index: 3;
+}
+
+.fadeIn1 {
+  article {
+    transition: all 2s;
+    @include tablet {
+      opacity: 1;
+      top: -320px;
+    }
+    @include desktop {
+      top: -100px;
+    }
+    @include desktop-xl {
+      top: -20px;
+    }
+  }
+}
+
+.fadeIn2 {
+  article {
+    transition: all 2s;
+    @include desktop {
+      opacity: 1;
+      top: -60px;
+    }
+  }
+}
+.fadeIn3 {
+  article {
+    transition: all 2s;
+    transition-delay: 1s;
+    @include tablet {
+      opacity: 1;
+      bottom: -300px;
+    }
+    @include desktop {
+      bottom: -120px;
+    }
+  }
+}
+.fadeIn4 {
+  article {
+    transition: all 2s;
+    transition-delay: 1s;
+    @include tablet {
+      opacity: 1;
+      bottom: -150px;
+    }
+    @include desktop {
+      // bottom: 50px;
+    }
+    @include desktop-xl {
+      // bottom: 150px;
+    }
+  }
+}
+
+.spinner {
+  width: 100vw;
+  height: 40vw;
+  background-color: black;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spin-icon {
+  -webkit-animation: spin 3s linear infinite;
+  -moz-animation: spin 3s linear infinite;
+  animation: spin 3s linear infinite;
+  font-size: 40px;
+  @-moz-keyframes spin {
+    100% {
+      -moz-transform: rotate(360deg);
+    }
+  }
+  @-webkit-keyframes spin {
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+  @keyframes spin {
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.coinbase-wrapper {
+  &.coinbase-show-iframe {
+    div {
+      button {
+        top: 0%;
+      }
+      .coinbase-commerce-iframe {
+        display: block;
+      }
+    }
+  }
+
+  div {
+    position: relative;
+    height: 100%;
+    width: 100%;
+
+    button {
+      background-color: $color-primary;
+      border: none;
+      height: 50px;
+      width: 250px;
+
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      position: absolute;
+
+      &:hover {
+        background-color: $color-secondary;
+      }
+    }
+  }
+}
+
+// .coinbase-commerce-iframe {
+//   display: none;
+//   height: 80%;
+//   width: 600px;
+//   margin: 0 auto;
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+// }
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 0.5s ease-out, transform 0.25s ease-out;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+  transform: scale(0.7);
+}
+
+.wallet-adapter-button {
+  display: none !important;
+  width: 160px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  @include desktop {
+    display: flex !important;
+  }
+}
+
+.coinbase-commerce-iframe-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translateZ(1000000000000000000000000000000000px)
+}

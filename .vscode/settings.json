@@ -1,0 +1,11 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}",
+        ".env",
+        ".env.example",
+        ".next{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/ddcf4ef2-90ac-45a8-ab3f-67dbaeaf3ab4/resourceGroups/core-mfcwebsite-prod/providers/Microsoft.Web/sites/mfc-website-prod/slots/staging",
+    "appService.deploySubpath": "."
+}

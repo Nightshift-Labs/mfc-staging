@@ -1,0 +1,268 @@
+@import "../main";
+
+.roadmapCard {
+    // border: solid 2px $color-grey;
+    position: relative;
+    // display: flex;
+    flex-direction: column;
+    // max-width: 353px;
+    @include tablet {
+        width: calc(50% - 25px);
+    }
+    @include desktop-xl {
+        width: calc(33.33% - 70px);
+        max-width: 438px;
+        &:last-child {
+            width:100%;
+        }
+    }
+    .downBlock {
+        position: absolute;
+        bottom: -23px;
+        right: 20px;
+    }
+    p {
+        margin: 0;
+    }
+    .card {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex:1;
+        min-height: 371px;
+        max-height: 371px;
+        position: relative;
+        top: 1px;
+       
+        @include desktop-xxl {
+            min-height: 461px;
+            max-height: 461px;
+        }
+    }
+    .numBack {
+        position: absolute;
+        left:-1px;
+        top:-1px;
+    }
+    .num {
+        position: absolute;
+        color: $color-primary;
+        padding: 20px;
+        font-family: $font-secondary-alt;
+        font-size: 24px;
+        z-index: 9;
+    }
+    .title {
+        margin: 0 0 16px 0;
+        text-align: start;
+        font-family: $font-secondary-alt;
+    }
+    .date {
+        position: absolute;
+        text-transform: uppercase;
+        color: $color-primary;
+        background-color: $color-grey;
+        font-family: $font-primary-alt;
+        padding: 8px;
+        top: -24px;
+        left: 20px;
+    }
+    .headline {
+        font-size: 68px;
+        font-family: $font-secondary-alt;
+    }
+  
+    .content {
+        background-color: $color-grey;
+        position: relative;
+        padding: 35px;
+        flex:1;
+        min-height: 355px;
+        @include tablet {
+          min-height: 405px;
+        }
+        @include desktop {
+          min-height: 355px;
+        }
+        @include desktop-xl {
+          min-height: 455px;
+        }
+    }
+}
+
+.roadmapCardFeatured {
+    position: relative;
+    overflow: hidden;
+    @include desktop {
+        margin-top: 50px;
+    }
+    .border {
+        border: solid 2px $color-primary;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        @include tablet {
+            width: 100%;
+            flex-direction: row;
+        }
+        @include desktop-xl {
+            align-items: center;
+        }
+    }
+    .whiteTriangle {
+        display: none;
+        @include tablet {
+            display: inline-block;
+            position: absolute;
+            bottom:-20px;
+            right:0px;
+            z-index: 2;
+        }
+    }
+    &:after {
+        display: none;
+        content: '';
+        position: absolute;
+        background: black;
+        border-left: solid 2px $color-primary;
+        transform: rotate(45deg);
+        bottom:-50px;
+        right: -10px;
+        width: 50px;
+        height: 100px;
+        z-index: 1;
+        @include tablet {
+            display: inline-block;
+        }
+    }
+    &:before {
+        content: '';
+        position: absolute;
+        background: black;
+        border-left: solid 2px $color-primary;
+        transform: rotate(-45deg);
+        top:-50px;
+        right: -10px;
+        width: 50px;
+        height: 100px;
+        z-index: 1;
+        @include tablet {
+            // display: none;
+            left: -10px;
+            transform: rotate(-125deg);
+        }
+    }
+    .downBlockGreen {
+        position: absolute;
+        bottom: -20px;
+        @include tablet {
+            display: none;
+        }
+    }
+    .numBack {
+        position: absolute;
+        left:-1px;
+        top:-1px;
+        z-index: 1;
+        @include tablet {
+            display: none;
+        }
+    }
+    p {
+        margin: 0;
+        font-size: 16px;
+    }
+    .divider {
+        display: none;
+        @include desktop {
+            display: block;
+            margin-bottom: 20px;
+        }
+    }
+    .card {
+        border-bottom: solid 1px $color-primary;
+        flex:1;
+        object-fit: cover;
+        img{
+          object-fit: cover;
+        }
+        @include tablet {
+            min-width: 40%;
+            border-bottom: none;
+        }
+        @include desktop-xl {
+            max-height: 600px;
+            min-width: 560px;
+            max-width: 560px;
+        }
+       
+    }
+    .num {
+        position: absolute;
+        color: black;
+        padding: 20px;
+        font-family: $font-secondary-alt;
+        z-index: 1;
+        @include tablet {
+            display: none;
+        }
+    }
+    .title {
+        margin: 0 0 16px 0;
+        text-align: start;
+        font-family: $font-secondary-alt;
+        @include desktop {
+            font-size: 46px;
+            line-height: 50px;
+        }
+        @include desktop-xl {
+            font-size: 50px;
+        }
+    }
+    .date {
+        position: absolute;
+        text-transform: uppercase;
+        color: black;
+        background-color: $color-primary;
+        font-family: $font-primary-alt;
+        padding: 8px;
+        top: -24px;
+        left: 20px;
+        @include tablet {
+            position: static;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        @include desktop-xl {
+            margin-bottom: 35px;
+        }
+    }
+    .headline {
+        font-size: 68px;
+        font-family: $font-secondary-alt;
+    }
+    .content {
+        position: relative;
+        padding: 35px;
+        height:50%;
+        @include tablet {
+            padding: 35px 20px 0px 20px;
+        }
+        @include desktop {
+            padding: 20px 40px 20px 40px;
+        }
+        @include desktop-xl {
+            padding: 60px 100px 60px 100px;
+        }
+    }
+}
+
+.cardImage{
+  width: 100%;
+  // height: 400px;
+  object-fit: cover;
+  position: relative;
+  top: 1px;
+  vertical-align: bottom;
+}

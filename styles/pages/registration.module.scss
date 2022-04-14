@@ -1,0 +1,210 @@
+@import "../main";
+
+.registerBG {
+    position: absolute;
+    top: 0;
+    left:0;
+    max-width: 1000px;
+    z-index: -1;
+    display: none;
+    @include desktop {
+        display: inline;
+    }
+}
+
+.registerBG2 {
+    position: absolute;
+    bottom: 0;
+    right:0;
+    max-width: 400px;
+    z-index: -1;
+    @include desktop {
+        display: inline;
+    }
+}
+
+
+.page {
+    margin-top: 50px;
+    @include desktop {
+        margin-top: 100px;
+        margin-bottom: 50px;
+    }
+}
+
+.registration {
+    @include tablet {
+        display: flex;
+        justify-content: space-between;
+        gap: 50px;
+    }
+}
+
+.registrationProgress {
+    @include tablet {
+        order: 1;
+    }
+}
+
+.registrationInfo {
+    @include tablet  {
+        min-width: 350px;
+    }
+    @include desktop-xl {
+        min-width: 750px;
+    }
+}
+
+.progress {
+    display: flex;
+    flex-direction: column;
+    h5 {
+        margin-bottom: 20px;
+        @include desktop-xl {
+            margin-bottom: 0;
+        }
+    }
+}
+.progressBar {
+    @include desktop-xl {
+        margin-bottom: 50px;
+    }
+}
+.progressTop {
+    margin-bottom: 20px;
+    @include desktop-xl {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 50px;
+        margin-bottom: 50px;
+    }
+}
+
+.registrationDetail {
+    display: none;
+    @include tablet {
+        margin-top: 50px;
+        display: inline-block;
+    }
+}
+
+.card {
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.steps {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.infoTitle {
+    font-family: $font-primary-alt;
+    color: $color-primary;
+}
+
+.nextStep {
+    font-family: $font-primary-alt;
+}
+
+.percentage {
+    font-family: $font-secondary-alt;
+    color: $color-primary;
+    font-size: 20px;
+    @include desktop-xl {
+        margin: 0;
+        font-size: 30px;
+    }
+}
+
+.border{
+    width: 100%;
+    border: solid 2px $color-grey;
+    @include desktop-xl {
+        display: flex;
+    }
+}
+
+.borderDone {
+    @extend .border;
+    border: solid 2px $color-primary;
+}
+
+.step {
+    position: relative;
+    display: flex;
+    top:3px;
+    @include desktop-xl {
+        display: none;
+    }
+}
+
+.icon {
+    display: none;
+    @include desktop-xl {
+        display: block;
+        border-right: solid 2px $color-grey;
+        min-width: 200px;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.iconDone {
+    @extend .icon;
+    @include desktop-xl {
+        border-right: solid 2px $color-primary;
+    }
+}
+
+.stepNum {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    @include desktop-xl {
+        display: inline-block;
+    }
+}
+
+.stepLogo {
+    border: solid 2px $color-grey;
+    width: 90px;
+}
+
+.wrapper{
+    position: relative;
+    overflow: hidden;
+    background-color: black;
+    &:before {
+        content: '';
+        position: absolute;
+        background: black;
+        border-right: solid 2px $color-grey;
+        transform: rotate(-225deg);
+        top:-50px;
+        right: -25px;
+        width: 50px;
+        height: 100px;
+        z-index: 1;
+    }
+    .content {
+        padding: 30px 30px 20px 60px;
+        h5 {
+            margin-bottom: 20px;
+        }
+    }
+    .userInfo {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+}
+
+.wrapperDone {
+    @extend .wrapper;
+    &:before {
+        border-right: solid 2px $color-primary;
+    }
+}

@@ -1,0 +1,295 @@
+@import "../main";
+
+.playerDropDown{
+    list-style: none;
+    padding: 15px 20px;
+    li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        &:first-child{
+            margin-bottom: 10px;
+        }
+        &:hover {
+            color: $color-primary;
+        }
+    }
+}
+
+.dropArrow {
+    transform: rotate(180deg);
+    cursor: pointer;
+}
+
+.dropArrowOpen {
+    transform: rotate(0deg);
+    cursor: pointer;
+}
+
+.playerMobile {
+    display: flex;
+    // justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 50px;
+    max-width: 350px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    .signoutMobile {
+        margin-left: auto;
+        font-size: 16px;
+        color: #979797;
+        font-family: $font-primary;
+        text-transform: none;
+        cursor: pointer;
+    }
+}
+
+.displayNameMobile {
+    font-size: 16px;
+    color: $color-primary;
+    font-family: $font-primary;
+    text-transform: lowercase;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1920px;
+      padding: 40px 30px;
+      @include tablet {
+        margin: 40px auto;
+      }
+      @include desktop {
+          padding: 40px 100px;
+      }
+      @include desktop-xxxl {
+        padding: 0 175px;
+      }    
+    // padding: 40px 30px;
+    // @include desktop {
+    //     padding: 40px 100px;
+    // }
+    .vl {
+        height: 30px;
+        border: solid 1px $color-grey;
+    }
+    div, nav {
+        z-index: 100;
+    }
+    .menuButton {
+        display: none;
+        min-width: 230px;
+        max-width: 230px;
+        min-height: 59px;
+        @include desktop {
+            display: inline-block;
+        }
+    }
+    .socialLinks {
+        display: none;
+        padding-left: 40px;
+        position: relative;
+        top: 4px;
+        @include desktop {
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+            list-style: none;
+        }
+        li {
+            &:hover {
+                filter: sepia(25%) saturate(10000%) hue-rotate(25deg);
+            }
+        }
+    }
+    li {
+        cursor: pointer;
+        &:hover {
+            color: $color-primary;
+        }
+    }
+    .playerIconDesktop {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding-left: 25px;
+        border-left: 1px solid grey;
+        position: relative;
+        top: 10px;
+        min-width: 200px;
+    }
+    .displayName{
+        color: $color-primary;
+        font-size: 16px;
+        margin: 0;
+    }
+    .avatar {
+        position: relative;
+        overflow: hidden;
+        // max-width: 35px;
+        height:35px;
+        .avatarBorder{
+            width: 100%;
+            border: solid 2px $color-primary;
+            max-width: 35px;
+            height:35px;
+            // @include desktop {
+            //     max-width: 200px;
+            //     height: 210px;
+            // }
+            // @include desktop-xl {
+            //     display: flex;
+            // }
+        }
+        span  {
+            min-height: 100% !important;
+        };
+        img {
+            object-fit: cover;
+        }
+        &:before {
+            content: '';
+            position: absolute;
+            background: black;
+            border-right: solid 2px $color-primary;
+            transform: rotate(-225deg);
+            top:-60px;
+            right: -40px;
+            width: 50px;
+            height: 100px;
+            z-index: 1;
+        }
+    }
+    .navLinks {
+        display: none;
+        @include desktop {
+            display: flex;
+            align-items: flex-start;
+            gap: 50px;
+            list-style: none;
+        }
+        @include desktop-xl {
+            gap: 70px;
+        }
+    }
+    .navItems {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        list-style: none;
+        @include desktop-xl {
+            gap: 50px;
+        }
+    }
+    .navRight {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        button {
+            font-size: 15px;
+        }
+    }
+    .menuOpen {
+        display: inline-block;
+        cursor: pointer;
+        @include desktop {
+            display: none;
+        }
+    }
+    .menuClose {
+        cursor: pointer;
+    }
+    .mobileNav {
+        position: fixed;
+        top:0;
+        left:0;
+        background-color: rgba(0,0,0,0.95);
+        height:100vh;
+        width:100%;
+        padding: 40px 30px;
+    }
+    .menuPlus {
+        position: absolute;
+        right:30px;
+        top:120px;
+        z-index: -1;
+    }
+    .menuDots {
+        text-align: center;
+    }
+    .mobileNavTop {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 50px;
+    }
+    .mobileNavLinks {
+        list-style: none;
+        font-size: 24px;
+        font-family: $font-secondary;
+        text-transform: uppercase;
+        li {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    }
+    .buttonGroup {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap:20px;
+    }
+}
+
+%button {
+  min-width: 230px;
+  max-width: 230px;
+  min-height: 59px;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  padding-top: 6px;
+  text-align: center;
+  font-family: $font-primary-alt;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.primaryLarge {
+  @extend %button;
+  min-width: 300px;
+  max-width: 300px;
+  background-image: url('../../public/images/button-primary-background-large.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  color: white;
+  &:hover {
+      background-image: url('../../public/images/button-secondary-background-large-hover.svg');
+      color:white;
+      filter: invert(1) sepia(86%) saturate(236%) hue-rotate(30deg) brightness(106%) contrast(103%);
+  }
+  
+}
+
+
+.secondaryLarge {
+  @extend %button;
+  min-width: 300px;
+  max-width: 300px;
+  background-image: url('../../public/images/button-secondary-background-large.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  color: white;
+  &:hover {
+      background-image: url('../../public/images/button-secondary-background-large-hover.svg');
+  }
+}
+
+.popup {
+    background-color: black;
+}

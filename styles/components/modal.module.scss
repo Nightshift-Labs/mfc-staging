@@ -1,0 +1,316 @@
+@import "../main";
+
+.outline {
+    background: url('../../public/images/modal-outline-mobile.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width:100%;
+    max-width: 370px;
+    height:570px;
+    margin: 0 auto;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    @include tablet {
+        background: url('../../public/images/modal-outline.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        max-width: 610px;
+        height:500px;
+    }
+}
+
+.outlineDelete {
+    background: url('../../public/images/modal-delete-outline-mobile.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width:100%;
+    max-width: 350px;
+    height:500px;
+    margin: 0 auto;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @include tablet {
+        background: url('../../public/images/modal-delete-outline.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        max-width: 600px;
+        height:400px;
+    }
+    .title {
+        margin-bottom: 30px;
+    }
+}
+
+.deleteInner {
+    max-width: 300px;
+    margin:0 auto;
+    @include tablet {
+        max-width: 480px;
+    }
+}
+
+.buttonWrapper {
+    display: flex;
+    gap:20px;
+    flex-direction: column;
+    align-items: center;
+    @include tablet {
+        flex-direction: row;
+    }
+}
+
+.outlineUsername{
+    background: url('../../public/images/modal-outline-username-mobile.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height:700px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include tablet {
+        background: url('../../public/images/modal-outline-username.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        height: 750px;
+    }
+}
+
+.outlineAvatar {
+    background: url('../../public/images/modal-outline-avatar-mobile.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height:800px;
+    z-index: 1;
+    padding-top: 70px;
+    h4 {
+        text-align: start;
+        margin: 0;
+    }
+    @include tablet {
+        background: url('../../public/images/modal-outline-avatar.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        height: 650px;
+    }
+}
+
+.avatarWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    @include tablet {
+        max-width: 450px;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+.avatarInner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    gap: 30px;
+    max-width: 450px;
+}
+
+
+.form {
+    max-width: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 auto;
+    position: relative;
+    left: -4px;
+    top: -20px;
+    @include desktop {
+        max-width: 450px;
+        height: 500px;
+        left: 0px;
+        top: -30px;
+    }
+}
+
+.title {
+    margin: 0;
+    text-align: center;
+}
+
+.description {
+    font-size: 16px;
+    line-height: 22px;
+    margin: 0;
+    color: #979797;
+    text-align: center;
+    @include tablet {
+        text-align: start;
+    }
+}
+
+.checkbox {
+    @extend .description;
+    text-align: start;
+}
+
+.closeButton {
+    position: absolute;
+    cursor: pointer;
+    display: inline-block;
+    top: -40px;
+    right: -40px;
+    // @include tablet {
+    //     display: inline-block;
+    //     top: -30px;
+    //     right: -10px;
+    // };
+}
+
+.walletButton {
+    border: solid 1px white;
+    padding: 10px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    &>span {
+        font-family: $font-secondary-alt;
+    }
+    &:hover {
+        border: solid 1px $color-primary;
+        &>span {
+            color: $color-primary;
+        }
+    }
+}
+
+.buttonWrapper {
+    margin: 0 auto;
+}
+
+.avatar {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    .border{
+        width: 100%;
+        // border: solid 2px $color-secondary;
+        max-width: 110px;
+        height:115px;
+        @include tablet {
+            max-width: 130px;
+            height: 140px;
+        }
+        @include desktop-xl {
+            display: flex;
+        }
+    }
+    span  {
+        min-height: 100% !important;
+    };
+    img {
+        object-fit: cover;
+    }
+    &:before {
+        content: '';
+        position: absolute;
+        background: black;
+        // border-right: solid 2px $color-secondary;
+        transform: rotate(45deg);
+        top:-60px;
+        left: -10px;
+        width: 50px;
+        height: 100px;
+        z-index: 1;
+    }
+}
+
+.avatarSelected {
+    @extend .avatar;
+    .border {
+        border: solid 2px $color-primary;
+    }
+    &:before {
+        content: '';
+        position: absolute;
+        background: black;
+        border-right: solid 2px $color-primary;
+        transform: rotate(45deg);
+        top:-60px;
+        left: -10px;
+        width: 50px;
+        height: 100px;
+        z-index: 1;
+    }
+}
+.wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width:100%;
+}
+
+.inputWrapper, .inputWrapperFocus {
+    width: 100%;
+    height: 50px;
+    position: relative;
+    display: block;
+  }
+  
+  .inputWrapper::before {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 50px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #979797;
+    clip-path: polygon(
+        0px 0px, 
+        100% 0px, 
+        100% calc(100% - 10px), 
+        calc(100% - 10px) 100%, 
+        0px 100%, 
+        0px 1.5px, 
+        1.5px 1.5px, 
+        1.5px calc(100% - 1.5px), 
+        calc(100% - 11.5px) calc(100% - 1.5px), 
+        calc(100% - 1.5px) calc(100% - 11.5px), 
+        calc(100% - 1.5px) 1.5px, 
+        0px 1.5px);
+}
+
+.inputWrapperFocus::before {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 50px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $color-primary;
+    clip-path: polygon(0px 0px, 100% 0px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0px 100%, 0px 1.5px, 1.5px 1.5px, 1.5px calc(100% - 1.5px), calc(100% - 11.5px) calc(100% - 1.5px), calc(100% - 1.5px) calc(100% - 11.5px), calc(100% - 1.5px) 1.5px, 0px 1.5px);
+}
+  
+  .input {
+    background: transparent;
+    border-color: transparent;
+    border-radius: 0;
+    color: white;
+    width : 100%;
+    height: 50px;
+    border: none;
+    outline: none;
+    padding: 10px 15px;
+    &:focus {
+        border: none;
+    }
+  }

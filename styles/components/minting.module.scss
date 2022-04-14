@@ -1,0 +1,580 @@
+@import "../../styles/main";
+
+.flair {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  user-select: none;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+
+  .borderLeft {
+    position: absolute;
+    background-color: $color-border;
+    height: 100%;
+    width: 1px;
+    top: 0;
+    left: 40px;
+
+    @include desktop {
+      left: 200px;
+    }
+  }
+
+  .borderRight {
+    position: absolute;
+    background-color: $color-border;
+    height: 100%;
+    width: 1px;
+    top: 0;
+    right: 40px;
+
+    @include desktop {
+      right: 200px;
+    }
+  }
+
+  .numbers {
+    font-size: 12px;
+    color: $color-border;
+    font-family: $font-primary-alt;
+    position: absolute;
+    transform: rotate(-90deg);
+
+    display: none;
+    @include desktop {
+      display: block;
+    }
+
+    &::before {
+      content: "57333459 7455";
+    }
+  }
+
+  .moltrez {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-image: url("../../public/images/moltres.svg");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: rotate(10deg);
+  }
+
+  .dashed {
+    position: absolute;
+    width: 100px;
+    left: 50px;
+    bottom: 200px;
+    border-top: 1px $color-border dashed;
+    transform: scaleX(2);
+
+    display: none;
+    @include desktop {
+      display: block;
+    }
+  }
+}
+
+.footer {
+  position: absolute;
+  left: 40px;
+  width: calc(100% - 80px);
+  height: 25px;
+  bottom: 100px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @include desktop {
+    width: calc(100% - 400px);
+    left: 200px;
+  }
+
+  .footerText {
+    font-size: 14px;
+  }
+
+  .socialMedia {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 20px;
+
+    .icon {
+      height: 25px;
+      width: 25px;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .twitter {
+      background-image: url("../../public/images/sm-twitter.svg");
+    }
+
+    .medium {
+      background-image: url("../../public/images/sm-medium.svg");
+    }
+
+    .linkedin {
+      background-image: url("../../public/images/sm-linkedin.svg");
+    }
+
+    .discord {
+      background-image: url("../../public/images/sm-discord.svg");
+    }
+  }
+}
+
+.wrapper {
+  height: 100vh;
+  min-height: 900px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .body {
+    position: absolute;
+    height: auto;
+    width: auto;
+    max-width: 1200px;
+
+  }
+
+  .content {
+    position: relative;
+    height: auto;
+    min-height: 400px;
+    width: 100%;
+    left: 0;
+    top: 0;
+
+    display: grid;
+    grid-template-columns: 4fr;
+    column-gap: 100px;
+
+    @include desktop {
+      grid-template-columns: 3fr 4fr;
+    }
+
+    .logo {
+      display: none;
+      @include desktop {
+        display: block;
+      }
+
+      height: 100%;
+      width: 100%;
+      background-image: url("../../public/images/mintinglogo2.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    .layout {
+      height: 100%;
+      width: 100%;
+      display: grid;
+      grid-template-rows: auto auto auto 1fr auto auto;
+
+      .minting {
+        height: 36px;
+        width: 120px;
+        padding: 0 30px 0 26px;
+        font-size: 14px;
+        font-family: $font-primary-alt;
+        font-weight: 700;
+        box-sizing: border-box;
+        background-color: $color-primary;
+        position: relative;
+        line-height: 36px;
+        color: black;
+        margin-bottom: 30px;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          right: 0;
+          background-color: black;
+          height: 25px;
+          width: 25px;
+          transform: translate(50%, -50%) rotate(45deg);
+        }
+      }
+
+      .title {
+        text-transform: uppercase;
+        font-size: 32px;
+        font-family: $font-secondary;
+        margin-bottom: 30px;
+      }
+
+      .amount {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        row-gap: 10px;
+        width: 100%;
+        margin-bottom: 30px;
+
+        @include desktop {
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: 1fr;
+        }
+
+        .amountTitle {
+          color: $color-primary;
+          font-family: $font-primary-alt;
+          font-size: 18;
+          margin-bottom: 20px;
+        }
+
+        .amountContent {
+          font-size: 34px;
+          font-weight: 400;
+        }
+
+        .amountCurrency {
+          display: flex;
+          align-items: center;
+        }
+
+        .or {
+          font-size: 25px;
+          padding: 0 20px;
+        }
+
+        .iconSol {
+          background-image: url("../../public/images/icon-sol.svg");
+          height: 34px;
+          width: 25px;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: contain;
+          display: inline-block;
+          margin-right: 5px;
+        }
+
+        .iconDollar {
+          background-image: url("../../public/images/icon-dollar.svg");
+          height: 34px;
+          width: 25px;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: contain;
+          display: inline-block;
+          margin-right: 5px;
+        }
+      }
+
+      .text {
+        margin-bottom: 40px;
+        font-size: 16px;
+        display: none;
+      }
+
+      .btns {
+        display: flex;
+        margin-bottom: 50px;
+        flex-direction: column;
+
+        @include desktop {
+          flex-direction: row;
+        }
+
+        .btnsSideText {
+          height: 100%;
+          width: 100%;
+          display: flex;
+          align-items: center;
+        }
+
+        button {
+          margin-right: 0px;
+          margin-bottom: 30px;
+          @include desktop {
+            margin-right: 30px;
+            margin-bottom: 0px;
+          }
+        }
+      }
+
+      .live {
+        .liveTitle {
+          color: $color-primary;
+          font-family: $font-primary-alt;
+          font-size: 18;
+          display: flex;
+          align-items: center;
+          margin-bottom: 3px;
+
+          .icon {
+            background-image: url("../../public/images/icon-exclaim.svg");
+            height: 24px;
+            width: 15px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            display: inline-block;
+            margin-right: 5px;
+          }
+        }
+
+        .liveText {
+          font-family: $font-secondary-alt;
+        }
+      }
+    }
+  }
+
+  .complete {
+    position: relative;
+    height: auto;
+    min-height: 650px;
+    width: 100%;
+    left: 0;
+    top: 0;
+
+    display: grid;
+    grid-template-rows: 1fr auto;
+    row-gap: 10px;
+
+    .logo {
+      height: 100%;
+      width: 100%;
+      background-image: url("../../public/images/mintinglogo2.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    .layout {
+      width: 100%;
+      display: grid;
+      grid-template-rows: auto auto auto;
+
+      .title {
+        width: 100%;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 20px;
+        font-family: $font-secondary;
+        margin-bottom: 10px;
+      }
+
+      .text {
+        width: 100%;
+        max-width: 700px;
+        margin: 0 auto;
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 16px;
+      }
+
+      .btns {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        @include desktop {
+          flex-direction: row;
+        }
+
+        button {
+          margin: 10px 0;
+
+          @include desktop {
+            margin: 0 30px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.coinbase {
+  position: fixed;
+  z-index: 150;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.884);
+
+  transition: opacity 0.5s ease-out;
+  opacity: 0;
+  pointer-events: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .exit {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    cursor: pointer;
+  }
+
+  &.coinbaseOpen {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .coinbaseWrapper {
+    height: 80vh;
+    width: 600px;
+  }
+  .coinbase-commerce-iframe {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.mobileContent {
+  height: auto;
+  width: calc(100% - 80px);
+  left: 0;
+  top: 0;
+  margin: 0 auto 100px auto;
+
+  .mobileFlair {
+    position: fixed;
+    z-index: 50;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    width: calc(100% - 80px);
+    left: 40px;
+    pointer-events: none;
+    border-left: 1px solid $color-border;
+    border-right: 1px solid $color-border;
+  }
+
+  .logo {
+    height: 300px;
+    width: 100%;
+    background-image: url("../../public/images/mintinglogo2.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .layout {
+    height: 100%;
+    width: 100%;
+
+    .minting {
+      height: 36px;
+      width: 120px;
+      padding: 0 30px 0 26px;
+      font-size: 14px;
+      font-family: $font-primary-alt;
+      font-weight: 700;
+      box-sizing: border-box;
+      background-color: $color-primary;
+      position: relative;
+      line-height: 36px;
+      color: black;
+      margin-bottom: 30px;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: black;
+        height: 25px;
+        width: 25px;
+        transform: translate(50%, -50%) rotate(45deg);
+      }
+    }
+
+    .title {
+      text-transform: uppercase;
+      font-size: 20px;
+      font-family: $font-secondary-alt;
+      margin-bottom: 30px;
+    }
+
+    .amount {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      width: 100%;
+      margin-bottom: 30px;
+
+      .amountGroup {
+        width: 100%;
+        padding-bottom: 30px;
+      }
+
+      .amountTitle {
+        color: $color-primary;
+        font-family: $font-primary-alt;
+        font-size: 18;
+        margin-bottom: 10px;
+      }
+
+      .amountContent {
+        font-size: 34px;
+        font-weight: 400;
+      }
+
+      .amountCurrency {
+        display: flex;
+        align-items: center;
+      }
+
+      .or {
+        font-size: 25px;
+        padding: 0 20px;
+      }
+
+      .iconSol {
+        background-image: url("../../public/images/icon-sol.svg");
+        height: 34px;
+        width: 25px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        display: inline-block;
+        margin-right: 5px;
+      }
+
+      .iconDollar {
+        background-image: url("../../public/images/icon-dollar.svg");
+        height: 34px;
+        width: 25px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        display: inline-block;
+        margin-right: 5px;
+      }
+    }
+
+    .disabled {
+      width: 230px;
+      height: 60px;
+      background-image: url(../../public/images/minting-mobile-disabled.svg);
+      background-position: left;
+      background-repeat: no-repeat;
+      background-size: contain;
+      margin-bottom: 10px;
+    }
+  }
+}

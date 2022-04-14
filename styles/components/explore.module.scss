@@ -1,0 +1,434 @@
+@import "../main";
+
+
+.subtitle {
+    margin-bottom: 40px;
+}
+
+.rightBracket {
+    display: none;
+    position: absolute;
+    @include desktop {
+        display: inline;
+        right: -100px;
+        bottom: 10px;
+    }
+    @include desktop-xl {
+        bottom: 20px;
+    }
+    @include desktop-xxl {
+        bottom: 10px;
+    }
+
+}
+
+.leftBracket {
+    display: none;
+    position: absolute;
+    @include desktop {
+        display: inline;
+        left: -100px;
+        bottom: 10px;
+    }
+    @include desktop-xl {
+        bottom: 20px;
+    }
+    @include desktop-xxl {
+        bottom: 10px;
+    }
+}
+
+.explore {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    padding-bottom: 20px;
+    max-width: 1920px;
+    background: url('../../public/images/explore/explore-bg-2.png');
+    background-size: cover;
+    background-position: top right;
+    background-size: 900px;
+    background-repeat: no-repeat;
+    @include tablet{
+      padding-bottom: 250px;
+      margin-bottom: 350px;
+    }
+    @include desktop {
+        margin-bottom: 0 !important;
+    }
+    .exploreDots {
+        display: none;
+        @include desktop {
+            display: inline-block;
+            position: absolute;
+            left:200px;
+            top:20px;
+        }
+    }
+    .twoDots {
+        display: none;
+        @include desktop {
+            display: inline-block;
+            position: absolute;
+            right:100px;
+            top: 280px;
+        }
+    }
+    .exploreIntro {
+        max-width: 80%;
+        position: relative;
+        @include tablet {
+            margin-bottom: 300px;
+        }
+        @include desktop {
+            max-width: 55%;
+            text-align: center;
+        }
+        p {
+            font-family: $font-primary-alt;
+        }
+    }
+    .intro2Title {
+        @include desktop {
+            display: flex;
+            gap: 10px;
+            font-size: 40px;
+            z-index: 1;
+        }
+    }
+    .exploreSVG {
+        display: none;
+        @include desktop {
+            display: block;
+            margin-bottom: 50px;
+        }
+    }
+    .mechaWrapper {
+        background-image: url('../../public/images/explore/bird-bg.svg');
+        background-repeat: no-repeat;
+        background-position: 48% 50%;
+        background-size: cover;
+        width: 100%;
+        max-width: 1600px;
+        margin:0 auto;
+        height: 770px;
+        position: relative;
+        @include desktop {
+            background-image: url('../../public/images/explore/bird-bg.svg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            min-height: 1000px;
+        }
+    }
+    .mecha {
+        position: absolute;
+        width: 850px;
+        left: 50%;
+        top: 60%;
+        transform: translate(-280px, -725px);
+        @include tablet {
+            transform: translate(-350px, -640px);
+        }
+    }
+    .purpleLine {
+      position: absolute;
+      top: 325px;
+      left: -80px;
+      visibility: hidden;
+      z-index: 9;
+      @include desktop {
+        visibility: visible;
+      }
+    }
+    .whiteLine {
+        position: absolute;
+        bottom: 30px;
+        z-index: -1;
+        visibility: hidden;
+        z-index: 9;
+        @include tablet {
+            bottom: 70px;
+            left: 50px;
+        }
+        @include desktop {
+          visibility: visible;
+          left: 80px;
+          top: 720px;
+        }
+    }
+    .whiteLine2 {
+        position: absolute;
+        top: 420px;
+        right: 250px;
+        visibility: hidden;
+        z-index: 9;
+        @include tablet {
+            top: 420px;
+            right: 190px;
+        }
+        @include desktop {
+          visibility: visible;
+        }
+    }
+    .bird{
+      position: relative;
+      top: -80px;
+      left: -20px;
+    }
+    .greenLine {
+        position: absolute;
+        bottom: -40px;
+        right: 355px;
+        z-index: 1;
+        visibility: hidden;
+        z-index: 9 !important;
+        @include tablet {
+            bottom: -20px;
+            right: 375px;
+            z-index: -1;
+        }
+        @include desktop {
+          visibility: visible;
+          right: 310px;
+          bottom: 50px;
+        }
+    }
+    .circle {
+        position: absolute;
+        width: 400px;
+        left: 50%;
+        top: 60%;
+        transform: translate(-255px, -400px);
+        z-index: 1;
+        @include tablet {
+            transform: translate(-340px, -340px);
+        }
+    }
+}
+
+.mechaContainer {
+    position: relative;
+    width: 100%;
+}
+
+.cardWrapper {
+    position: relative;
+}
+
+.exploreGroup {
+    @include tablet {
+        display: flex;
+        justify-content: space-around;
+    }
+    @include desktop {
+        display: block;
+    }
+}
+
+%exploreCard {
+    position: relative;
+    text-align: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+    z-index: 3;
+
+    h4{
+      font-family: $font-secondary-alt;
+    }
+    @include tablet {
+        position: absolute;
+    }
+    h4 {
+        text-align: start;
+        font-size: 18px;
+    }
+    p {
+        font-size: 16px;
+    }
+    .exploreCardContent {
+        position: absolute;
+        width: 275px;
+    }
+}
+
+.exploreCard1 {
+    @extend %exploreCard;
+    @include tablet {
+        opacity: 0;
+        z-index: 1;
+        left: -20px;
+        top: -150px;
+    }
+    @include desktop {
+        left: 64px;
+        top: -50px;
+    }
+    @include desktop-xl {
+        top: 0px !important;
+        left: 70px;
+    }
+    @include desktop-xxl {
+        left: 64px;
+    }
+    @include desktop-xxxl {
+        left: 180px;
+    }
+    .exploreCardContent {
+        @include desktop-xl {
+            width: 600px;
+            top: 70px;
+        }
+    }
+    .exploreCardImage1 {
+        @include desktop-xl {
+            display: none;
+        }
+    }
+    .exploreCardImage1Desktop {
+        display: none;
+        @include desktop-xl {
+            display: inline;
+        }
+    }
+}
+.exploreCard2 {
+    display: none;
+    z-index: 1;
+    // right:130px;
+    // top: -50px;
+    @include desktop {
+        opacity: 0;
+        right: 0px;
+        display: inline-flex;
+    }
+    @include desktop-xl {
+        top: -80px;
+    }
+    @include desktop-xxl {
+        right:130px;
+        top: -50px;
+    }
+    @extend %exploreCard;
+    .exploreCardContent {
+        width: 400px;
+        top: 50%;
+        transform: translate(0, -45%);
+    }
+    .exploreCardImage2 {
+        @include desktop {
+            display: none;
+        }
+    }
+    .exploreCardImage2Desktop {
+        display: none;
+        @include desktop {
+            display: inline;
+        }
+    }
+}
+
+.exploreCard3 {
+    @extend %exploreCard;
+    display: none;
+    @include tablet {
+        display: flex;
+        opacity: 0;
+        bottom: -100px;
+        left: 30px;
+    }
+    @include desktop {
+      left: 20px;
+      top: 800px;
+    }
+    @include desktop-xl {
+      left: 80px;
+    }
+    @include desktop-xxl {
+      left: 60px;
+    }
+    @include desktop-xxxl {
+      left: 180px;
+    }
+    .exploreCardContent {
+        @include desktop {
+            width: 450px;
+            top: 20px;
+        }
+    }
+    .exploreCardImage3 {
+        @include desktop {
+            display: none;
+        }
+    }
+    .exploreCardImage3Desktop {
+        display: none;
+        @include desktop {
+            display: inline;
+        }
+    }
+}
+
+.exploreCard3Mobile {
+    margin-top: 60px;
+    @extend .exploreCard3;
+    display: flex;
+    @include tablet {
+        display: none;
+    }
+}
+
+
+.exploreCard4 {
+    @extend %exploreCard;
+    display: none;
+    @include tablet {
+        bottom: -100px;
+        right: 10px;
+        opacity: 0;
+        display: flex;
+    }
+    @include desktop {
+        right: 120px;
+    }
+    @include desktop-xl {
+        right: 0px;
+    }
+    @include desktop-xxl {
+        right: 160px;
+    }
+    @include desktop-xxxl {
+        right: 160px;
+    }
+    .exploreCardContent {
+        @include desktop-xl {
+            width: 500px;
+        }
+    }
+    .exploreCardImage4 {
+        @include desktop-xl {
+            display: none;
+        }
+    }
+    .exploreCardImage4Desktop {
+        display: none;
+        @include desktop-xl {
+            display: inline;
+        }
+    }
+}
+
+.exploreCard4Mobile {
+    @extend .exploreCard4;
+    display: flex;
+    @include tablet {
+        display: none;
+    }
+}

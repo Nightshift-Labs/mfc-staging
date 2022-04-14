@@ -1,0 +1,102 @@
+@import '../main';
+
+.outline {
+  margin: 0 auto;
+  z-index: 1;
+  background: url('../../public/images/modal-transactions-mobile.svg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 400px;
+  height: 550px;
+
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  padding: 100px 40px 150px 40px;
+  box-sizing: border-box;
+
+  @include desktop {
+    background: url('../../public/images/modal-transaction.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 810px;
+    padding: 100px 150px 150px 150px;
+  }
+
+  h3 {
+    font-size: 20px;
+    font-family: $font-secondary-alt;
+  }
+
+  p {
+    color: #979797;
+    font-size: 16px;
+    line-height: 25px;
+    text-align: center;
+    margin-bottom: 0;
+  }
+}
+
+.buttonWrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status {
+  height: 50px;
+  width: 50px;
+  margin: 45px auto;
+  position: relative;
+
+  .statusWaiting {
+    height: 100%;
+    width: 100%;
+    background: url('../../public/images/transaction-loader.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    animation: rotation 1s infinite linear;
+  }
+
+  .statusConfirmed {
+    height: 100%;
+    width: 100%;
+    background: url('../../public/images/transaction-confirmed.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .statusTransferring {
+    height: 100%;
+    width: 100%;
+    background: url('../../public/images/transaction-transfering.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .statusExpired {
+    height: 100%;
+    width: 100%;
+    background: url('../../public/images/transaction-expired.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  @keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
+}
