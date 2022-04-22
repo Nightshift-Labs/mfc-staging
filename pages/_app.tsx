@@ -15,6 +15,10 @@ import { PhantomWalletAdapter } from "@solana/wallet-adapter-wallets";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { clusterApiUrl } from "@solana/web3.js";
 import { CookiesProvider } from "react-cookie";
+import 'react-toastify/dist/ReactToastify.css';
+import 'normalize.css'
+import '../styles/global.scss'
+import Home from '.';
 
 import "react-toastify/dist/ReactToastify.css";
 import "normalize.css";

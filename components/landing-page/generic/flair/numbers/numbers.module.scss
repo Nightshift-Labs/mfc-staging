@@ -1,0 +1,18 @@
+@import '../../../../../styles/_main.scss';
+
+.wrapper {
+    font-family: $font-primary-alt;
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 45px;
+    transform: rotate(180deg);
+
+    font-size: 8px;
+    line-height: 11px;
+    
+    color: $color-flair-2;
+
+    .highlight {
+        color: white;
+    }
+}

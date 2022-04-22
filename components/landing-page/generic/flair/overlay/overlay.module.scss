@@ -1,0 +1,129 @@
+@import '../../../../../styles/_main.scss';
+
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 50;
+  pointer-events: none;
+  transition: opacity 0.5s ease-out;
+}
+
+.hideWrapper {
+  opacity: 0;
+}
+
+.borderline {
+  height: 100vh;
+  background-color: $color-flair;
+  width: 1px;
+}
+
+.left {
+  position: absolute;
+  top: 0;
+  left: 40px;
+  @include desktop {
+    left: 200px;
+  }
+}
+
+.right {
+  position: absolute;
+  top: 0;
+  right: 40px;
+  @include desktop {
+    right: 200px;
+  }
+}
+
+.borderNumberLeft {
+  position: absolute;
+  left: 20px;
+  font-size: 11px;
+  height: 11px;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  color: $color-flair-2;
+  @include desktop {
+    left: 180px;
+  }
+}
+
+.borderNumberRight {
+  position: absolute;
+  right: 0;
+  font-size: 11px;
+  height: 11px;
+  transform: rotate(-90deg);
+  color: $color-flair-2;
+  @include desktop {
+    right: 158px;
+  }
+}
+
+.borderLine {
+  width: 100%;
+  height: 1px;
+  background-color: $color-flair;
+  position: absolute;
+  left: 0px;
+  top: 100px;
+}
+
+.borderLineBottom {
+  top: unset;
+  bottom: 100px;
+}
+
+.numbers {
+  position: absolute;
+  width: 200px;
+  right: 100px;
+  bottom: 50px;
+  transform: translate(110%, 0);
+  @include desktop {
+    right: 100px;
+    bottom: 50px;
+    transform: translate(0, 0);
+  }
+}
+
+.borderCircle {
+  position: absolute;
+  left: 25px;
+  bottom: 85px;
+  z-index: 900;
+  height: 30px;
+  @include desktop {
+    left: 185px;
+  }
+}
+
+.mouse {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 30px;
+  left: 0px;
+  bottom: 50px;
+  object-fit: contain;
+  object-position: center;
+  @include largeTablet {
+    display: block;
+  }
+}
+
+.finger {
+  position: absolute;
+  width: 100%;
+  height: 30px;
+  left: 0px;
+  bottom: 50px;
+  object-fit: contain;
+  object-position: center;
+  @include largeTablet {
+    display: none;
+  }
+}

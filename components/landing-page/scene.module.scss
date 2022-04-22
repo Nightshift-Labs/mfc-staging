@@ -1,0 +1,68 @@
+@import '../../styles/_main.scss';
+
+.wrapper {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+}
+.viewWrapper {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.desktop {
+  display: none;
+  @include desktop {
+    display: block;
+  }
+}
+
+.mobile {
+  display: block;
+  @include desktop {
+    display: none;
+  }
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #272727;
+}
+
+.pageCursor {
+  cursor: url("data:image/svg+xml,%3Csvg width='46' height='46' viewBox='0 0 46 46' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle opacity='0.7' cx='22.9997' cy='23.0002' r='18.8145' stroke='white' stroke-width='1.47104'/%3E%3Ccircle opacity='0.7' cx='23' cy='23' r='22.6322' stroke='white' stroke-width='0.735518'/%3E%3Crect x='18.1216' y='23.0742' width='6.9' height='6.9' rx='1.47104' transform='rotate(-45.8646 18.1216 23.0742)' fill='white'/%3E%3C/svg%3E%0A")
+      32 32,
+    pointer;
+}
+
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 10000;
+  background-color: black;
+  align-items: center;
+  justify-content: center;
+  display: none;
+
+  &.loaderActive {
+    display: flex;
+  }
+}
+
+.hideOnMobile {
+  display: none;
+  @include desktop {
+    display: block;
+  }
+}

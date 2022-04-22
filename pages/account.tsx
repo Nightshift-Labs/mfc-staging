@@ -100,40 +100,43 @@ const Account: NextPage = () => {
         router.push("/account", undefined, { shallow: true });
       }
 
-      await api.get("/api/v1/players/me").then((response) => {
-        if (response.ok) {
-          const playerProfile = response.data as PlayersMe;
+      let response = await api.get("/api/v1/players/me");
 
-          if (setPlayerProfile && playerProfile && setCompletedSteps) {
-            setPlayerProfile(playerProfile);
-            setAvatarColor(playerProfile?.avatarColor);
+      if (response.status === 404) {
+        router.push("/registration");
+        return;
+      }
 
-            const completedSteps = getCompletedSteps(playerProfile) || [];
-            setCompletedSteps(completedSteps);
-
-            if (completedSteps?.length < 3) {
-              router.push("/registration");
-              return;
-            }
-          }
-        } else {
-          if (response.status === 404) {
-            router.push("/registration");
-            return;
-          }
-        }
-
-        if (!cookies[MODAL_COOKIE_KEY]) {
-          setIsHatchListModalOpen(true);
-          const expires = moment().add(1, "day");
-          setCookie(MODAL_COOKIE_KEY, "true", {
-            expires: expires.toDate(),
-          });
-        }
+      if (!response.ok) {
         setLoading(false);
-      });
+        console.error("Error getting account information");
+        return;
+      }
 
-      const response = await api.get("/api/v1/status/mint");
+      const playerProfile = response.data as PlayersMe;
+
+      if (setPlayerProfile && playerProfile && setCompletedSteps) {
+        setPlayerProfile(playerProfile);
+        setAvatarColor(playerProfile?.avatarColor);
+
+        const completedSteps = getCompletedSteps(playerProfile) || [];
+        setCompletedSteps(completedSteps);
+
+        if (completedSteps?.length < 3) {
+          router.push("/registration");
+          return;
+        }
+      }
+
+      if (!cookies[MODAL_COOKIE_KEY]) {
+        setIsHatchListModalOpen(true);
+        const expires = moment().add(1, "day");
+        setCookie(MODAL_COOKIE_KEY, "true", {
+          expires: expires.toDate(),
+        });
+      }
+
+      response = await api.get("/api/v1/status/mint");
 
       if (!response.ok) {
         console.error(response.originalError.message);
@@ -158,7 +161,7 @@ const Account: NextPage = () => {
         );
       } catch (e) {
         //if this fails user has not minted
-        console.log((e as Error).message);
+        console.error((e as Error).message);
       }
 
       setLoading(false);

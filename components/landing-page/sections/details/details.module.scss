@@ -1,0 +1,187 @@
+@import '../../../../styles/_main.scss';
+
+
+.textScrollDesktop {
+  display: none;
+  @include desktop {
+    display: block;
+  }
+}
+.textScrollMobile {
+  display: block;
+  @include desktop {
+    display: none;
+  }
+}
+
+.detailsTextWrapper {
+  padding: 0 40px;
+  width: 100%;
+  box-sizing: border-box;
+
+  .detailsLiberation {
+    font-family: $font-primary-alt;
+    color: $color-primary;
+    margin-bottom: 25px;
+  }
+
+  .detailsText {
+    font-family: $font-primary;
+    span {
+      color: $color-primary;
+    }
+  }
+
+  @include desktop {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 100px;
+    padding: 0 200px;
+    margin-top: 0px;
+  }
+}
+
+.detailsWrapper {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.detailsVideoWrapper {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: -2;
+
+  .video {
+    object-fit: cover;
+    border-top: 1px solid $color-flair-2;
+    border-bottom: 1px solid $color-flair-2;
+    height: 80%;
+    width: 80%;
+    display: none;
+    @include desktop {
+      display: block;
+    }
+  }
+
+  .videoMobile {
+    object-fit: cover;
+    border-top: 1px solid $color-flair-2;
+    border-bottom: 1px solid $color-flair-2;
+    height: 80%;
+    width: 80%;
+    @include desktop {
+      display: none;
+    }
+  }
+}
+
+.detailsVideoBlur {
+  background: rgba(0, 0, 0, 0.81);
+  mix-blend-mode: normal;
+  backdrop-filter: blur(15px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+}
+
+.plus {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  img {
+    height: 45px;
+    width: 45px;
+  }
+  z-index: 1;
+  display: none;
+  @include desktop {
+    display: flex;
+  }
+}
+
+.progFlair {
+  position: absolute;
+  bottom: 100px;
+  left: 300px;
+  height: 150px;
+  width: 200px;
+  object-fit: contain;
+  z-index: 1;
+  display: none;
+  @include desktop {
+    display: block;
+  }
+}
+
+.plusFlair {
+  position: absolute;
+  top: 30%;
+  right: 25%;
+  height: 200px;
+  width: 300px;
+  object-fit: contain;
+  z-index: 1;
+  display: none;
+  @include desktop {
+    display: block;
+  }
+}
+
+.title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  width: calc(100% - 80px);
+
+  @include desktop {
+    width: calc(50%);
+    display: block;
+  }
+
+  .titleHeader {
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: $font-secondary;
+    color: white;
+    font-size: 35px;
+    span {
+      color: $color-primary;
+    }
+  }
+
+  .titleContent {
+    text-align: center;
+    font-size: 20px;
+    font-family: $font-primary-alt;
+  }
+}
+
+.numbers {
+  position: absolute;
+  top: 73%;
+  left: 16%;
+}
+
+.progress {
+  position: absolute;
+  top: 87%;
+  left: 15.7%;
+}

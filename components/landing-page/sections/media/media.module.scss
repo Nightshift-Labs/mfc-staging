@@ -1,0 +1,166 @@
+@import '../../../../styles/_main.scss';
+
+.wrapper {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+
+  .title {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    text-align: center;
+    font-size: 40px;
+    font-family: $font-secondary-alt;
+    span {
+      color: $color-primary;
+    }
+    text-transform: uppercase;
+  }
+
+  .mediaContainer {
+    height: 50vh;
+    width: 100%;
+    position: absolute;
+    top: 32.5%;
+  }
+
+  .sliderItemWrapper {
+    height: 50vh;
+    position: absolute;
+    border-top: 1px solid $color-flair-2;
+    border-bottom: 1px solid $color-flair-2;
+    box-sizing: border-box;
+  }
+
+  .cardContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+
+  .cardWrapper {
+    height: 100%;
+    width: calc(100% - 100px);
+    position: relative;
+  }
+
+  .faderLeft {
+    height: 100%;
+    width: 300px;
+    background: linear-gradient(270deg, rgba(0, 0, 0, 0) 0%, #000 100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .faderRight {
+    height: 100%;
+    width: 300px;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, #000 100%);
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .carousel {
+    pointer-events: none;
+  }
+
+  .scrollbar {
+    position: absolute;
+    bottom: 10%;
+    width: 50vw;
+    left: 50%;
+    transform: translate(-50%, 0);
+    height: 30px;
+    border-left: 1px solid $color-flair-2;
+    border-right: 1px solid $color-flair-2;
+    overflow: hidden;
+
+    .scrollbarTrack {
+      height: 1px;
+      width: 100%;
+      top: 50%;
+      background-color: $color-flair-2;
+      position: absolute;
+      z-index: -1;
+    }
+
+    .bar {
+      height: 3px;
+      top: 50%;
+      background-color: $color-primary;
+      position: absolute;
+      transition: left 1.25s ease-out;
+      transform: translate(0, -50%);
+    }
+
+    .dot {
+      height: 8px;
+      width: 8px;
+      border-radius: 10px;
+      background-color: white;
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      transform: translate(-50%, -25%);
+    }
+  }
+}
+
+.moltrez {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.mobilewrapper {
+  height: auto;
+  width: 100%;
+  position: relative;
+  margin-bottom: 300px;
+  display: block;
+  @include desktop {
+    display: none;
+  }
+
+  .title {
+    margin: 100px 0 0 0;
+    width: 100%;
+    text-align: center;
+    font-size: 40px;
+    line-height: 50px;
+    font-family: $font-secondary-alt;
+    span {
+      color: $color-primary;
+    }
+    text-transform: uppercase;
+  }
+
+  .cardWrapper {
+    height: 100%;
+    width: calc(100% - 80px);
+    max-width: 500px;
+    margin: 100px auto;
+    position: relative;
+  }
+}

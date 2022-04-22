@@ -1,0 +1,172 @@
+@import '../../../../styles/_main.scss';
+
+.mobileCardWrapper {
+  border-top: 1px solid $color-flair-2;
+  border-bottom: 1px solid $color-flair-2;
+  row-gap: 1px;
+  background-color: $color-flair-2;
+  margin-top: 300px;
+    display: grid;
+  @include desktop {
+    display: none;
+  }
+}
+
+.mobileCard {
+  width: 100%;
+  height: 549px;
+  position: relative;
+
+  .bgImg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    object-fit: cover;
+    background-color: black;
+  }
+
+  .contentWrapper {
+    height: auto;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+
+    .contentBg {
+      background: rgba(0, 0, 0, 0.61);
+      mix-blend-mode: normal;
+      backdrop-filter: blur(25.7738px);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: -1;
+    }
+
+    .content {
+      width: 100%;
+      padding: 40px;
+      box-sizing: border-box;
+      height: auto;
+      z-index: 1;
+
+      .title {
+        font-family: $font-secondary-alt;
+        font-size: 25px;
+        line-height: 35px;
+        padding-bottom: 40px;
+      }
+
+      .text {
+        font-family: $font-primary;
+        font-size: 16px;
+        line-height: 25px;
+      }
+    }
+  }
+}
+
+.cardWrapper {
+  border-top: 1px solid $color-flair-2;
+  border-bottom: 1px solid $color-flair-2;
+
+  display: grid;
+  background-color: $color-flair-2;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 1px;
+  height: 100%;
+  width: 100%;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: black;
+
+  &:hover {
+    .contentWrapper {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+
+    .cardImg {
+        transform: translate(0, -10%);
+    }
+  }
+
+  .cardImg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    object-fit: cover;
+    transition: transform 0.5s ease-out;
+    background-color: black;
+  }
+
+  .contentWrapper {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    bottom: 0;
+    z-index: 1;
+    opacity: 0;
+    transform: translate(0, 10%);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+
+    .bgBlur {
+      background: rgba(0, 0, 0, 0.61);
+      mix-blend-mode: normal;
+      backdrop-filter: blur(25.7738px);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: -1;
+    }
+
+    .content {
+      width: 100%;
+      box-sizing: border-box;
+      height: auto;
+      z-index: 1;
+
+      .title {
+        padding: 20px;
+        font-family: $font-secondary-alt;
+        font-size: 26px;
+        line-height: 32px;
+        z-index: 1;
+        text-transform: uppercase;
+      }
+
+      .text {
+        padding: 0 20px;
+        font-family: $font-primary;
+        font-size: 16px;
+        line-height: 27px;
+        z-index: 1;
+      }
+
+      .marqee {
+        line-height: 100px;
+        height: 100px;
+        box-sizing: border-box;
+        font-size: 18px;
+        font-family: $font-primary-alt;
+        text-transform: uppercase;
+      }
+
+      .marqeeDot {
+        line-height: 100px;
+        height: 100px;
+        box-sizing: border-box;
+        font-size: 18px;
+        font-family: $font-primary-alt;
+        text-transform: uppercase;
+        padding: 0 10px;
+      }
+    }
+  }
+}

@@ -60,27 +60,31 @@ const Mint: NextPage = () => {
         setLoading(false);
         return;
       }
-      await api.get("/api/v1/players/me").then((response) => {
-        if (response.ok) {
-          const playerProfile = response.data as PlayersMe;
 
-          if (setPlayerProfile && playerProfile) {
-            setPlayerProfile(playerProfile);
-            //check if profile is ready for mint
-            if (playerProfile) {
-              if (isProfileReadyForMint(playerProfile)) {
-                setIsProfileComplete(true);
-              }
-            }
+      let response = await api.get("/api/v1/players/me");
+
+      if (!response.ok) {
+        setLoading(false);
+        return;
+      }
+
+      const playerProfile = response.data as PlayersMe;
+
+      if (setPlayerProfile && playerProfile) {
+        setPlayerProfile(playerProfile);
+        //check if profile is ready for mint
+        if (playerProfile) {
+          if (isProfileReadyForMint(playerProfile)) {
+            setIsProfileComplete(true);
           }
         }
-      });
+      }
 
       if (isMobile) {
         setIsMobileView(true);
       }
 
-      const response = await api.get("/api/v1/status/mint");
+      response = await api.get("/api/v1/status/mint");
 
       if (!response.ok) {
         console.error(response.originalError.message);

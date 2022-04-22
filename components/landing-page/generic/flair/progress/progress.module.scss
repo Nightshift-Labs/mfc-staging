@@ -1,0 +1,28 @@
+@import '../../../../../styles/_main.scss';
+
+.wrapper {
+    width: 180px;
+    height: auto;
+    font-family: $font-primary-alt;
+    font-size: 8px;
+    line-height: 10px;
+    
+    .top {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    .progress {
+        width: 100%;
+        height: 9px;
+        border: 1px solid white;
+        border-radius: 3px;
+
+        .complete {
+            height: 100%;
+            background-color: white;
+        }
+    }
+}

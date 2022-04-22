@@ -1,0 +1,46 @@
+@import '../../../../styles/_main.scss';
+
+.img {
+  height: auto;
+  width: 80vw;
+  object-fit: contain;
+  transform: translate(0, -20%);
+  max-width: 400px;
+
+  @include tablet {
+    max-width: unset;
+    height: 60vh;
+    width: auto;
+    transform: translate(0, 0);
+  }
+}
+
+.details {
+  width: 60vw;
+  max-width: 800px;
+  height: auto;
+  object-fit: contain;
+  display: none;
+  @include tablet {
+    display: block;
+  }
+}
+
+.detailsMobile {
+  display: block;
+  height: 30vh;
+  @include tablet {
+    display: none;
+  }
+}
+
+.backsplash {
+  width: 80vw;
+  height: auto;
+  object-fit: contain;
+}
+
+.desktopWrapper {
+  height: 100vh;
+  width: 100%;
+}

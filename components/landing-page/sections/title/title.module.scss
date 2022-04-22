@@ -1,0 +1,56 @@
+@import '../../../../styles/_main.scss';
+
+.logo {
+  width: calc(100vw - 150px);
+  object-fit: contain;
+  @include desktop {
+    width: 100%;
+  }
+}
+
+.desc {
+  width: calc(100vw - 150px);
+
+  @include desktop {
+    width: calc(100vw - 500px);
+  }
+}
+
+.descLogo {
+  display: none;
+  width: 70%;
+  margin: 0 auto;
+  @include tablet {
+    display: block;
+  }
+}
+
+.descLogoMobile {
+  width: 100%;
+  @include tablet {
+    display: none;
+  }
+}
+
+.buttonContainer {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  margin-top: 30px;
+  @include tablet {
+    grid-template-columns: auto auto;
+    column-gap: 50px;
+  }
+}
+
+.buttonWrapper {
+  display: grid;
+  grid-template-rows: auto auto;
+  row-gap: 25px;
+
+  @include tablet {
+    grid-template-columns: auto auto;
+    column-gap: 50px;
+    transform: scale(0.75);
+  }
+}

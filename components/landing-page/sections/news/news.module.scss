@@ -1,0 +1,288 @@
+@import '../../../../styles/_main.scss';
+
+.wrapper {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include desktop {
+    padding: 0 300px;
+  }
+}
+
+.overlay {
+  display: none;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  @include desktop {
+    display: block;
+  }
+
+  .icons {
+    position: absolute;
+    top: 100px;
+    right: 300px;
+  }
+
+  .numbers {
+    position: absolute;
+    bottom: 75px;
+    left: 300px;
+  }
+}
+
+.dateWrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.date {
+  width: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 20px;
+  box-sizing: border-box;
+  line-height: 45px;
+  height: 45px;
+  background-color: $color-primary;
+  text-align: center;
+  color: black;
+  font-size: 18px;
+  font-family: $font-primary-alt;
+  font-weight: 700;
+  transition: opacity 0.5s ease-out;
+
+  span {
+    position: absolute;
+    height: 45px;
+    width: 45px;
+    background-color: black;
+    right: -30px;
+    top: -30px;
+    transform: rotate(45deg);
+  }
+
+  &.past {
+    opacity: 0;
+  }
+  &.future {
+    opacity: 0;
+  }
+  &.active {
+    opacity: 1;
+  }
+}
+
+.content {
+  height: 400px;
+  width: 100%;
+  position: relative;
+  display: none;
+  grid-template-columns: 4fr 6fr;
+  column-gap: 100px;
+  box-sizing: border-box;
+
+  @include desktop {
+    display: grid;
+  }
+
+  .progress {
+    position: absolute;
+    height: 30px;
+    width: calc(60% - 60px);
+    right: 0;
+    bottom: 0;
+  }
+
+  .images {
+    height: 100%;
+    width: 100%;
+    position: relative;
+
+    .image {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      object-fit: contain;
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+
+      &.past {
+        opacity: 0;
+      }
+      &.future {
+        opacity: 0;
+      }
+      &.active {
+        opacity: 1;
+        transform: translate(0, 0%);
+      }
+    }
+  }
+
+  .titleAndDescription {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    position: relative;
+
+    .fader {
+      position: absolute;
+      top: 100%;
+      left: 0%;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 25%);
+      z-index: 1;
+      height: 100%;
+      width: 100%;
+    }
+
+    .card {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      transition: opacity 0.25s ease-out, transform 0.5s ease-out;
+      display: grid;
+      grid-template-rows: 80px 60px 235px 50px;
+
+      .title {
+        font-family: $font-secondary-alt;
+        text-transform: uppercase;
+        height: 100%;
+        width: 100%;
+      }
+
+      .desc {
+        padding: 20px 0;
+        height: 100%;
+        box-sizing: border-box;
+        font-family: $font-primary-alt;
+
+        span {
+          color: $color-primary;
+        }
+      }
+
+      &.past {
+        transform: translate(0, -100%);
+        opacity: 0;
+      }
+
+      &.future {
+        transform: translate(0, 200%);
+        opacity: 0;
+      }
+
+      &.next {
+        transform: translate(0, 90%);
+        opacity: 0.25;
+      }
+    }
+  }
+}
+
+.contentMobile {
+  height: 100%;
+  width: 100%;
+  display: block;
+
+  @include desktop {
+    display: none;
+  }
+
+  .cardWrapper {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.25s ease-out, transform 0.5s ease-out;
+
+    &.past {
+      transform: translate(0, -100%);
+      opacity: 0;
+    }
+
+    &.future {
+      transform: translate(0, 100%);
+      opacity: 0;
+    }
+
+    &.active {
+      transform: translate(0, 0%);
+      opacity: 1;
+    }
+
+    .card {
+      height: calc(100% - 200px);
+      width: calc(100% - 80px);
+      max-width: 500px;
+
+      display: grid;
+      row-gap: 50px;
+      grid-template-rows: auto 1fr;
+
+      .header {
+        height: calc(40vh - 100px - 25px);
+        width: 100%;
+
+        display: grid;
+        grid-template-columns: 1fr 60px;
+
+        .imageWrapper {
+          height: calc(40vh - 100px - 25px);
+          width: 100%;
+          position: relative;
+
+          .image {
+            object-fit: contain;
+            object-position: left;
+            height: 100%;
+            position: relative;
+            width: 100%;
+          }
+        }
+      }
+
+      .text {
+        display: grid;
+        grid-row: 40px;
+        grid-template-rows: 80px 80px calc(60vh - 250px);
+
+        .title {
+          font-family: $font-secondary-alt;
+          text-transform: uppercase;
+          height: 100%;
+          width: 100%;
+        }
+
+        .desc {
+          height: 100%;
+          box-sizing: border-box;
+          font-family: $font-primary-alt;
+
+          span {
+            color: $color-primary;
+          }
+        }
+      }
+    }
+  }
+}

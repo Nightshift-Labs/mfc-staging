@@ -1,0 +1,168 @@
+@import '../../../../styles/_main.scss';
+
+.wrapper {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+
+    display: none;
+    @include desktop {
+        display: block;
+    }
+}
+
+.backdrop {
+    height: 90%;
+    width: 90%;
+    top: 5%;
+    left: 5%;
+    object-fit: contain;
+    position: absolute;
+    z-index: 0;
+}
+
+.moltresWrapper {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.moltres {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    right: 0;
+    transform: translate(20%, 20%) rotate(45deg);
+}
+
+.title {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    width: calc(100% - 400px);
+    transform: translate(-50%, -50%);
+}
+
+.numbers {
+    position: absolute;
+    bottom: 150px;
+    right: 600px;
+    transform: scale(1.25);
+    opacity: 0.75;
+}
+
+.progress {
+    position: absolute;
+    bottom: 75px;
+    right: 450px;
+    transform: scale(1.25);
+    opacity: 0.75;
+}
+
+.imagesWrapper {
+    height: 100%;
+    width: 100%;
+    will-change: opacity;
+
+    .textSeason {
+        position: absolute;
+        font-size: 140px;
+        font-family: $font-secondary-alt;
+        top: 50%;
+        right: 17%;
+        color: $color-primary;
+        z-index: 2;
+        mix-blend-mode: exclusion;
+        
+        color: $color-primary;
+        -webkit-text-fill-color: black; /* Will override color (regardless of order) */
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: $color-primary;
+    }
+
+    .textYear {
+        position: absolute;
+        font-size: 140px;
+        font-family: $font-secondary-alt;
+        top: 70%;
+        left: 25%;
+        color: $color-primary;
+        z-index: 2;
+        mix-blend-mode: exclusion;
+    }
+
+    .images {
+        position: absolute;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        left: 0;
+    }
+
+
+}
+
+
+.chicken {
+    max-width: 500px;
+    width: 25vw;
+    height: auto;
+    top: 100px;
+    left: 350px;
+    position: absolute;
+}
+
+.vegas {
+    width: 600px;
+    width: 35vw;
+    height: auto;
+    bottom: 100px;
+    right: 200px;
+    position: absolute;
+}
+
+.egg {
+    width: 20vw;
+    height: auto;
+    bottom: 50px;
+    left: 250px;
+    position: absolute;
+}
+
+.mobileWrapper {
+    height: auto;
+    min-height: 100%;
+    width: 100%;
+    padding: 500px 40px;
+    box-sizing: border-box;
+
+    display: block;
+    @include desktop {
+        display: none;
+    }
+
+    .img {
+        width: 100%;
+        height: auto;
+        max-width: 600px;
+        display: block;
+        margin: 0 auto 50px auto;
+
+
+    }
+
+    .textYear {
+        font-size: 100px;
+        font-family: $font-secondary-alt;
+        color: $color-primary;
+        z-index: 2;
+        mix-blend-mode: exclusion;
+    }
+}   

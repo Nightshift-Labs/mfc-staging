@@ -1,12 +1,12 @@
-@import "../main";
+@import '../main';
 
 .signup {
-  @include tablet{
+  @include tablet {
     margin-bottom: 250px !important;
   }
-  .formContent{
+  .formContent {
     width: 100%;
-    h3{
+    h3 {
       font-size: 28px;
       line-height: 45px;
       @include tablet {
@@ -15,91 +15,90 @@
       }
     }
   }
+  @include desktop {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-end;
+    gap: 50px;
+  }
+  h3 {
+    text-align: start;
     @include desktop {
-        display: flex;
-        flex-direction: row-reverse;
-        align-items: flex-end;
-        gap: 50px;
+      font-size: 50px;
+      line-height: 50px;
     }
-    h3 {
-        text-align: start;
-        @include desktop {
-            font-size: 50px;
-            line-height: 50px;
-        }
+  }
+  .signupSubtitle {
+    font-family: $font-primary-alt;
+    @include desktop {
+      font-size: 30px;
+      margin: 30px 0;
     }
-    .signupSubtitle {
-        font-family: $font-primary-alt;
-        @include desktop {
-            font-size: 30px;
-            margin: 30px 0; 
-        }
+  }
+  .formInner {
+    @include tablet {
+      display: flex;
     }
-    .formInner {
-        @include tablet{
-          display: flex;
-        }
-        @include desktop {
-          max-width: 600px;
-        }
-        align-content: center;
-
+    @include desktop {
+      max-width: 600px;
     }
-    .formButtons {
-        margin-top:20px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap:20px;
-        @include tablet {
-            flex-direction: row;
-            justify-content: space-between;
-            position: relative;
-            left: 0px;
-            top: 0px;
-            margin-top: 0;
-            gap: 50px;
-        }
-        .discordButton {
-          display: none;
-          @include tablet{
-            display: block;
-          }
-        }
+    align-content: center;
+  }
+  .formButtons {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    @include tablet {
+      flex-direction: row;
+      justify-content: space-between;
+      position: relative;
+      left: 0px;
+      top: 0px;
+      margin-top: 0;
+      gap: 50px;
     }
-    form {
-        margin-top: 40px;
+    .discordButton {
+      display: none;
+      @include tablet {
+        display: block;
+      }
     }
-    .signupImage {
-        margin-bottom: 50px;
-        text-align: end;
-        @include desktop {
-            width: 50%;
-            max-width:700px;
-            margin-bottom: -120px;
-        }
+  }
+  form {
+    margin-top: 40px;
+  }
+  .signupImage {
+    margin-bottom: 50px;
+    text-align: end;
+    @include desktop {
+      width: 50%;
+      max-width: 700px;
+      margin-bottom: -120px;
     }
-    input {
-        max-height: 60px;
+  }
+  input {
+    max-height: 60px;
+  }
+  .button {
+    // height: 60px;
+    flex-shrink: 0;
+    width: 100%;
+    &::after {
+      @include tablet {
+        top: -40px;
+      }
     }
-    .button {
-        // height: 60px;
-        flex-shrink: 0;
-        width: 100%;
-        &::after {
-          @include tablet {
-              top: -40px;
-          }  
-        }
-    }
+  }
 }
 
-.formText{
+.formText {
   @include desktop {
     max-width: 600px;
   }
 }
 
-.message{
+.message {
   margin-top: 20px;
 }

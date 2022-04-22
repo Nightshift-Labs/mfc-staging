@@ -1,0 +1,281 @@
+{
+  "infoCards": [
+    {
+      "title": "These are the thinky bits",
+      "content": "MFC's mechabots are powered by highly advanced artificial intelligence and lifelike reproduction processes, making them change and evolve over time and across generations.",
+      "img": "images/landingpage/info-cards/1.png"
+    },
+    {
+      "title": "For the rooster lovers out there",
+      "content": "In the early days, alien mechabots came in many form factors. From worms to weird ukelele-shaped monsters with EMP weapons that would disrupt your dreams, they've come a long way in the last century!",
+      "img": "images/landingpage/info-cards/2.png"
+    },
+    {
+      "title": "Urk Reactor",
+      "content": "Did you know that a single URK reactor uses alien technology to produce more power than 700 nuclear bombs? And your mech will have three!",
+      "img": "images/landingpage/info-cards/3.png"
+    },
+    {
+      "title": "Your Bionic Birdies",
+      "content": "Your mechabot will be just like you... except you're made of goo and they're made of alien materials too advanced for the human mind to comprehend! Some mechabots even hatch with irreplaceably-rare bionic claws, beaks and other parts!",
+      "img": "images/landingpage/info-cards/4.png"
+    }
+  ],
+  "news": [
+    {
+      "date": "SPRING 2022",
+      "title": "GENESIS",
+      "content": "Due to widespread demand, MFC is finally making mechabot ownership a public option, starting with 6969 pre-fertilized, highly potent EGGs. Based on our calculations, EGGs should take just a couple of weeks to incubate before you're ready to train your sorta-living new best friend for arena combat!",
+      "img": "images/roadmap/1.svg"
+    },
+    {
+      "date": "SPRING 2022",
+      "title": "THE HATCHENING™",
+      "content": "MFC's first chapter begins as the first 6969 EGGs finish incubating and hatch new intelligent life, each with a provenance card which entitles your mechabot to fight and train in MFC's official arenas!",
+      "img": "images/roadmap/2.svg"
+    },
+    {
+      "date": "SPRING 2022",
+      "title": "WELCOME TO THE COCKPIT™",
+      "content": "Genesis continues with another exclusive round of EGGs for MFC's early-bird supporters. Around this time, we'll have constructed the Las Vegas Cockpit, the first-ever MFC amateur fighting arena. Don't worry, you can send your bird to fight from anywhere.",
+      "img": "images/roadmap/3.svg"
+    },
+    {
+      "date": "SUMMER 2022",
+      "title": "THE COCKTAGON™",
+      "content": "MFC is the official sport of the liberated peoples of Earth! MFC's premiere professional tournament arena, the Cocktagon, finishes completion and we're throwing the first-ever global tournament! Glory and breeding elitism waits for the champions of the Cocktagon.",
+      "img": "images/roadmap/4.svg"
+    },
+    {
+      "date": "SUMMER 2022",
+      "title": "WEN BREEDING?!",
+      "content": "Soon after the Cocktagon, Genesis generation mechabots will reach breeding maturity! Only 2 in 5 mechabots are hens, which we've found to be more intelligent. Around this time, more about our new world order will be revealed.",
+      "img": "images/roadmap/5.svg"
+    },
+    {
+      "date": "SUMMER 2022",
+      "title": "RECOMBINATION",
+      "content": "Without EGGs, there are no more mechs. There's only so many EGGs on Earth, and they're all being horded by the corporate war machine. With your help, MFC's agents plan to recover all 41,000 and make them available so YOU can breed the next generations of prize fighters!",
+      "img": "images/roadmap/6.svg"
+    }
+  ],
+  "mediaCards": [
+    {
+      "title": "Rahul Sood returns to gaming with $5M raise for Irreverent Labs",
+      "description": "Gaming veteran Rahul Sood is returning with a new startup today dubbed Irreverent Labs, which has raised $5 million to build games with AI characters.",
+      "link": "https://venturebeat.com/2021/11/15/rahul-sood-returns-to-gaming-with-5m-raise-for-irreverent-labs/#:~:text=Irreverent%20Labs%20is%20a%20new%20game%20studio%20in%20Seattle.&text=The%20Seattle%2Dbased%20company%20is,as%20nonfungible%20tokens%20(NFTs)",
+      "image": "/images/media-1.png",
+      "logo": "/images/venture-beast.png"
+    },
+    {
+      "title": "Andreessen Horowitz leads $5M round for new blockchain gaming startup",
+      "description": "A new Seattle startup led by longtime entrepreneur Rahul Sood is combining a flurry of the latest tech trends...",
+      "link": "https://www.geekwire.com/2021/andreessen-horowitz-leads-5m-round-for-new-blockchain-gaming-startup-led-by-microsoft-vets/",
+      "image": "/images/media-2.jpeg",
+      "logo": "/images/geek-wire.png"
+    },
+    {
+      "title": "Metaverse gaming tokens Ethverse and Axie Infinity avoid crypto downtrend",
+      "description": "Metaverse gaming tokens Ethverse, The Sandbox, GameSwap, Yield Guild Games and Axie Infinity are the few seeing gains.",
+      "link": "https://cointelegraph.com/news/metaverse-gaming-tokens-ethverse-and-axie-infinity-avoid-crypto-downtrend",
+      "image": "/images/media-3.jpeg",
+      "logo": "/images/coin-telegraph.png"
+    }
+  ],
+  "projectTeam": [
+    {
+      "name": "Amar",
+      "linkedIn": "https://www.linkedin.com/in/amarsood0/",
+      "twitter": "https://twitter.com/soodlum",
+      "insta": "",
+      "img": "/images/team/amar.png"
+    },
+    {
+      "name": "Dasheed",
+      "linkedIn": "",
+      "twitter": "",
+      "insta": "",
+      "img": "/images/team/dasheed.png"
+    },
+    {
+      "name": "David",
+      "linkedIn": "https://www.linkedin.com/in/davidraskino/",
+      "twitter": "https://twitter.com/goofydr1",
+      "insta": "",
+      "img": "/images/team/david.png"
+    },
+    {
+      "name": "Gear",
+      "linkedIn": "",
+      "twitter": "https://twitter.com/metagear2600",
+      "insta": "https://www.instagram.com/metagear2600/?hl=en",
+      "img": "/images/team/gear.png"
+    },
+    {
+      "name": "Greg",
+      "linkedIn": "",
+      "twitter": "",
+      "insta": "",
+      "img": "/images/team/greg.png"
+    },
+    {
+      "name": "Maddi",
+      "linkedIn": "",
+      "twitter": "https://twitter.com/officialgodard2",
+      "insta": "https://www.instagram.com/officialgodard2/",
+      "img": "/images/team/maddi.png"
+    },
+    {
+      "name": "Mc Sav",
+      "linkedIn": "",
+      "twitter": "",
+      "insta": "https://www.instagram.com/SkillsAndVariety/",
+      "img": "/images/team/mcsav.png"
+    },
+    {
+      "name": "Moodie",
+      "linkedIn": "",
+      "twitter": "https://twitter.com/michael_moodie",
+      "insta": "",
+      "img": "/images/team/moodie.png"
+    },
+    {
+      "name": "Rahul",
+      "linkedIn": "https://www.linkedin.com/in/serialceo/",
+      "twitter": "https://twitter.com/rahulsood",
+      "insta": "",
+      "img": "/images/team/rahul.png"
+    },
+    {
+      "name": "Ryan",
+      "linkedIn": "https://www.linkedin.com/in/ryan-jurado/",
+      "twitter": "https://twitter.com/TheWonderCow",
+      "insta": "",
+      "img": "/images/team/ryan.png"
+    }
+  ],
+  "mecha": [
+    "/images/landingpage/hero_shot/001.png",
+    "/images/landingpage/hero_shot/002.png",
+    "/images/landingpage/hero_shot/003.png",
+    "/images/landingpage/hero_shot/004.png",
+    "/images/landingpage/hero_shot/005.png",
+    "/images/landingpage/hero_shot/006.png",
+    "/images/landingpage/hero_shot/007.png",
+    "/images/landingpage/hero_shot/008.png",
+    "/images/landingpage/hero_shot/009.png",
+    "/images/landingpage/hero_shot/010.png",
+    "/images/landingpage/hero_shot/011.png",
+    "/images/landingpage/hero_shot/012.png",
+    "/images/landingpage/hero_shot/013.png",
+    "/images/landingpage/hero_shot/014.png",
+    "/images/landingpage/hero_shot/015.png",
+    "/images/landingpage/hero_shot/016.png",
+    "/images/landingpage/hero_shot/017.png",
+    "/images/landingpage/hero_shot/018.png",
+    "/images/landingpage/hero_shot/019.png",
+    "/images/landingpage/hero_shot/020.png",
+    "/images/landingpage/hero_shot/021.png",
+    "/images/landingpage/hero_shot/022.png",
+    "/images/landingpage/hero_shot/023.png",
+    "/images/landingpage/hero_shot/024.png",
+    "/images/landingpage/hero_shot/025.png",
+    "/images/landingpage/hero_shot/026.png",
+    "/images/landingpage/hero_shot/027.png",
+    "/images/landingpage/hero_shot/028.png",
+    "/images/landingpage/hero_shot/029.png",
+    "/images/landingpage/hero_shot/030.png",
+    "/images/landingpage/hero_shot/031.png",
+    "/images/landingpage/hero_shot/032.png",
+    "/images/landingpage/hero_shot/033.png",
+    "/images/landingpage/hero_shot/034.png",
+    "/images/landingpage/hero_shot/035.png",
+    "/images/landingpage/hero_shot/036.png",
+    "/images/landingpage/hero_shot/037.png",
+    "/images/landingpage/hero_shot/038.png",
+    "/images/landingpage/hero_shot/039.png",
+    "/images/landingpage/hero_shot/040.png",
+    "/images/landingpage/hero_shot/041.png",
+    "/images/landingpage/hero_shot/042.png",
+    "/images/landingpage/hero_shot/043.png",
+    "/images/landingpage/hero_shot/044.png",
+    "/images/landingpage/hero_shot/045.png",
+    "/images/landingpage/hero_shot/046.png",
+    "/images/landingpage/hero_shot/047.png",
+    "/images/landingpage/hero_shot/048.png",
+    "/images/landingpage/hero_shot/049.png",
+    "/images/landingpage/hero_shot/050.png",
+    "/images/landingpage/hero_shot/051.png",
+    "/images/landingpage/hero_shot/052.png",
+    "/images/landingpage/hero_shot/053.png",
+    "/images/landingpage/hero_shot/054.png",
+    "/images/landingpage/hero_shot/055.png",
+    "/images/landingpage/hero_shot/056.png",
+    "/images/landingpage/hero_shot/057.png",
+    "/images/landingpage/hero_shot/058.png",
+    "/images/landingpage/hero_shot/059.png",
+    "/images/landingpage/hero_shot/060.png",
+    "/images/landingpage/hero_shot/061.png",
+    "/images/landingpage/hero_shot/062.png",
+    "/images/landingpage/hero_shot/063.png",
+    "/images/landingpage/hero_shot/064.png",
+    "/images/landingpage/hero_shot/065.png",
+    "/images/landingpage/hero_shot/066.png",
+    "/images/landingpage/hero_shot/067.png",
+    "/images/landingpage/hero_shot/068.png",
+    "/images/landingpage/hero_shot/069.png",
+    "/images/landingpage/hero_shot/070.png",
+    "/images/landingpage/hero_shot/071.png",
+    "/images/landingpage/hero_shot/072.png",
+    "/images/landingpage/hero_shot/073.png",
+    "/images/landingpage/hero_shot/074.png",
+    "/images/landingpage/hero_shot/075.png",
+    "/images/landingpage/hero_shot/076.png",
+    "/images/landingpage/hero_shot/077.png",
+    "/images/landingpage/hero_shot/078.png",
+    "/images/landingpage/hero_shot/079.png",
+    "/images/landingpage/hero_shot/080.png"
+  ],
+  "investors": [
+    "/images/landingpage/egg_blur/001.png",
+    "/images/landingpage/egg_blur/002.png",
+    "/images/landingpage/egg_blur/003.png",
+    "/images/landingpage/egg_blur/004.png",
+    "/images/landingpage/egg_blur/005.png",
+    "/images/landingpage/egg_blur/006.png",
+    "/images/landingpage/egg_blur/007.png",
+    "/images/landingpage/egg_blur/008.png",
+    "/images/landingpage/egg_blur/009.png",
+    "/images/landingpage/egg_blur/010.png",
+    "/images/landingpage/egg_blur/011.png",
+    "/images/landingpage/egg_blur/012.png",
+    "/images/landingpage/egg_blur/013.png",
+    "/images/landingpage/egg_blur/014.png",
+    "/images/landingpage/egg_blur/015.png",
+    "/images/landingpage/egg_blur/016.png",
+    "/images/landingpage/egg_blur/017.png",
+    "/images/landingpage/egg_blur/018.png",
+    "/images/landingpage/egg_blur/019.png",
+    "/images/landingpage/egg_blur/020.png",
+    "/images/landingpage/egg_blur/021.png",
+    "/images/landingpage/egg_blur/022.png",
+    "/images/landingpage/egg_blur/023.png",
+    "/images/landingpage/egg_blur/024.png",
+    "/images/landingpage/egg_blur/025.png",
+    "/images/landingpage/egg_blur/026.png",
+    "/images/landingpage/egg_blur/027.png",
+    "/images/landingpage/egg_blur/028.png",
+    "/images/landingpage/egg_blur/029.png",
+    "/images/landingpage/egg_blur/030.png",
+    "/images/landingpage/egg_blur/031.png",
+    "/images/landingpage/egg_blur/032.png",
+    "/images/landingpage/egg_blur/033.png",
+    "/images/landingpage/egg_blur/034.png",
+    "/images/landingpage/egg_blur/035.png",
+    "/images/landingpage/egg_blur/036.png",
+    "/images/landingpage/egg_blur/037.png",
+    "/images/landingpage/egg_blur/038.png",
+    "/images/landingpage/egg_blur/039.png",
+    "/images/landingpage/egg_blur/040.png"
+  ]
+}
