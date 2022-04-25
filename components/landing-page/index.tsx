@@ -25,6 +25,7 @@ import FooterSection from './sections/footer'
 import Header from '../shared/header'
 import Loader from './loader'
 import ReleaseMobile from './sections/release/mobile'
+import NewsMobile from './sections/news/newsMobile'
 
 const LandingPage = () => {
   const [overlayVisible, setOverlayVisible] = useState(true)
@@ -111,8 +112,10 @@ const LandingPage = () => {
           updateSidebar={(p: any) => updateSidebar(6, p)}
         />
 
+        <NewsMobile news={landingPage.news}/>
         <SceneWrapper
           id={'landing-news'}
+          hideOnMobile={true}
           desktop={<NewsSection news={landingPage.news} />}
           duration={landingPage.news.length * 1000}
           updateSidebar={(p: any) => updateSidebar(7, p)}

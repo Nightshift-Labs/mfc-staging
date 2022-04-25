@@ -1,13 +1,14 @@
 @import "../../styles/main";
 
 %button {
-    min-width: 230px;
-    max-width: 230px;
+    min-width: 200px;
+    max-width: 200px;
     min-height: 59px;
     background-color: transparent;
     cursor: pointer;
     border: none;
     padding-top: 6px;
+    font-size: 15px;
     text-align: center;
     font-family: $font-primary-alt;
     display: flex;

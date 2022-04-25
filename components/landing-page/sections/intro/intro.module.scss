@@ -47,11 +47,20 @@
 }
 
 .animation {
-  display: none;
-  @include largeTablet {
-    display: block;
-  }
+  display: block;
   overflow: hidden;
+  
+  video {
+    height: 80vh;
+    width: 80vw;
+  }
+
+  @include largeTablet {
+    video {
+      height: 50vh;
+      width: 50vw;
+    }
+  }
 }
 
 .animtitle {
@@ -60,6 +69,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 100;
+
 }
 
 .circleAnimation {

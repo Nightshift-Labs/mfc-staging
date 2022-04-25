@@ -18,12 +18,16 @@
     left: 50%;
     transform: translate(-50%, 0);
     text-align: center;
-    font-size: 40px;
+    font-size: 35px;
     font-family: $font-secondary-alt;
     span {
       color: $color-primary;
     }
     text-transform: uppercase;
+
+    @include desktop {
+      font-size: 40px;
+    }
   }
 
   .mediaContainer {
@@ -74,10 +78,6 @@
     top: 0;
     right: 0;
     z-index: 10;
-    pointer-events: none;
-  }
-
-  .carousel {
     pointer-events: none;
   }
 

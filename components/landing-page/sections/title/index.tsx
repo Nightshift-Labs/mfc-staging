@@ -2,11 +2,17 @@ import ScrollFader from '../../generic/scrollFader'
 import styles from './title.module.scss'
 
 import Title from '../../../../public/images/landingpage/title/title.svg'
+import TitleMobile from '../../../../public/images/landingpage/title/title-mobile.svg'
 import Desc from '../../../../public/images/landingpage/title/desc.svg'
 import DescMobile from '../../../../public/images/landingpage/title/desc-mobile.svg'
 import Button from '../../../shared/button'
+import { useContext } from 'react'
+import { MagicLinkModalContext } from '../../../../contexts/magic-link-modal-context'
+
 
 const TitleSection = ({ progress }: any) => {
+  const { openModal } = useContext(MagicLinkModalContext)
+
   return (
     <div>
       <ScrollFader
@@ -17,7 +23,9 @@ const TitleSection = ({ progress }: any) => {
         scrollFadeDistance={0}
         scaleIn={0.975}
       >
+        
         <img src={Title.src} alt='title' className={styles.logo} />
+        <img src={TitleMobile.src} alt='title' className={styles.logoMobile} />
       </ScrollFader>
       <ScrollFader
         progress={progress}
@@ -37,7 +45,7 @@ const TitleSection = ({ progress }: any) => {
           <div className={styles.buttonContainer}>
             <div className={styles.buttonWrapper}>
               <Button
-                click={() => console.log('click')}
+                click={openModal}
                 text='Sign Up'
                 type='primary'
                 icon={false}
@@ -45,7 +53,7 @@ const TitleSection = ({ progress }: any) => {
                 link=''
               />
               <Button
-                click={() => console.log('click')}
+                click={() => window?.open("https://discord.com/invite/mechafightclub", '_blank')?.focus()}
                 text='Join Our Discord'
                 type='secondary'
                 icon={false}

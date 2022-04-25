@@ -299,10 +299,20 @@ input[type="checkbox"]:checked::before {
   display: none !important;
   height: 35px !important;
   line-height: 10px !important;
+  font-family: $font-primary-alt !important;
+  padding: 4px 20px 0 10px !important;
+  font-weight: 500 !important;
+  text-transform: uppercase;
+  font-size: 11px !important;
+  border-radius: 0px !important;
+  box-sizing: border-box;
   width: 160px;
   text-align: center;
   justify-content: center;
   align-items: center;
+  clip-path: polygon(0px 0px, calc(100% - 18px) 0 , 100% 18px, 100% 100%, 0px 100%);
+
+
   @include desktop {
     display: flex !important;
   }

@@ -12,11 +12,14 @@ const IntroSection = ({ progress, pageLoading }: any) => {
   const vidRef: any = useRef()
 
   useEffect(() => {
-    var video = vidRef.current;
-    if (!video) return;
+    var video = vidRef.current
+    if (!video) return
 
-    var isPlaying = video.currentTime > 0 && !video.paused && !video.ended 
-    && video.readyState > video.HAVE_CURRENT_DATA;
+    var isPlaying =
+      video.currentTime > 0 &&
+      !video.paused &&
+      !video.ended &&
+      video.readyState > video.HAVE_CURRENT_DATA
     if (progress > 0.95 && isPlaying) vidRef.current?.pause()
     else vidRef.current?.play()
   }, [progress])
@@ -33,49 +36,22 @@ const IntroSection = ({ progress, pageLoading }: any) => {
         scrollVisibleDistance={0}
         fadeIn={false}
       >
-        <div>
-          <div className={styles.animation}>
-            <div className={styles.animtitle}>
-              <Player
-                autoplay
-                src={animLoaded}
-                keepLastFrame
-                style={{ height: '100vh', width: '100vw' }}
-              />
-            </div>
-            <div
-              className={`${styles.circleAnimation} ${
-                !pageLoading ? styles.circleAnimationActive : ''
-              }`}
+        <div className={styles.animation}>
+          <div
+            className={`${styles.circleAnimation} ${
+              !pageLoading ? styles.circleAnimationActive : ''
+            }`}
+          >
+            <video
+              ref={vidRef}
+              autoPlay
+              muted
+              playsInline
+              loop
+              className={styles.animVid}
             >
-              <video
-                ref={vidRef}
-                autoPlay
-                muted
-                playsInline
-                loop
-                style={{ height: '100vh', width: '100vw' }}
-              >
-                <source src='/animations/Anim-Main.mp4' type='video/mp4' />
-              </video>
-            </div>
-          </div>
-          <div className={styles.splash}>
-            <img
-              className={styles.scrollToEnter}
-              width={375}
-              height='auto'
-              src={scrollSplash.src}
-              alt='scrollToEnter'
-            />
-            <img
-              className={styles.swipeToEnter}
-              width={250}
-              height='auto'
-              src={swipeSplash.src}
-              alt='scrollToEnter'
-            />
-            <div className={styles.pointerDown} />
+              <source src='/animations/logo-rotating.mp4' type='video/mp4' />
+            </video>
           </div>
         </div>
       </ScrollFader>

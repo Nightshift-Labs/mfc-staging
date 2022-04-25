@@ -12,7 +12,6 @@ import ProgressFlair from '../../generic/flair/progress'
 
 const ReleaseSection = ({ progress }: any) => {
   const transform = -240 * progress + 120
-  const transformMobile = -100 * progress + 50
 
   return (
     <>

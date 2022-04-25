@@ -9,7 +9,10 @@ const ReleaseMobile = () => {
   return (
     <div className={styles.mobileWrapper}>
       <div>
-        <img src={title.src} alt='title' className={styles.img} />
+        <div className={styles.mobileTitle}>
+        <h3>Game Release</h3>
+        <h3><span>Spring 2022</span></h3>
+        </div>
         <img src={chicken.src} alt='chicken' className={styles.img} />
         <img src={vegas.src} alt='vegas' className={styles.img} />
         <img src={egg.src} alt='egg' className={styles.img} />

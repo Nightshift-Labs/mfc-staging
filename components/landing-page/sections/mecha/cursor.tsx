@@ -29,7 +29,7 @@ const Cursor = ({ progress }: any) => {
   }, [progress])
 
   const { left, top } = mousePos
-  let hideCursor = left < 200;
+  let hideCursor = left < 200 || top < 100;
 
   return (
     <div

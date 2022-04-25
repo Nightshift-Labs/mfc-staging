@@ -148,6 +148,17 @@
         display: none;
     }
 
+    .mobileTitle {
+        margin-bottom: 50px;
+    }
+
+    h3 {
+        font-size: 35px;
+        span {
+            color: $color-primary;
+        }
+    }
+
     .img {
         width: 100%;
         height: auto;

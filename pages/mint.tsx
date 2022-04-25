@@ -56,6 +56,11 @@ const Mint: NextPage = () => {
   useEffect(() => {
     const init = async () => {
       setLoading(true);
+
+      if (isMobile) {
+        setIsMobileView(true);
+      }
+      
       if (!(await isLoggedIn())) {
         setLoading(false);
         return;
@@ -78,10 +83,6 @@ const Mint: NextPage = () => {
             setIsProfileComplete(true);
           }
         }
-      }
-
-      if (isMobile) {
-        setIsMobileView(true);
       }
 
       response = await api.get("/api/v1/status/mint");

@@ -83,19 +83,6 @@ const DetailsVideo = ({ progress }: any) => {
       >
         <div className={styles.detailsContentContainer}>
           <div className={styles.detailsVideoBlur} />
-          <div className={styles.plus} style={{ top: 0, left: 0 }}>
-            <img src={plus.src} alt='' />
-          </div>
-          <div className={styles.plus} style={{ bottom: 0, left: 0 }}>
-            <img src={plus.src} alt='' />
-          </div>
-          <div className={styles.plus} style={{ top: 0, right: 0 }}>
-            <img src={plus.src} alt='' />
-          </div>
-          <div className={styles.plus} style={{ bottom: 0, right: 0 }}>
-            <img src={plus.src} alt='' />
-          </div>
-          <img className={styles.plusFlair} src={plusFlair.src} />
           <ProgressFlair className={styles.progress} />
           <Numbers className={styles.numbers} />
           <div className={styles.title}>

@@ -1,15 +1,25 @@
 @import '../../../../styles/_main.scss';
 
 .logo {
-  width: calc(100vw - 150px);
+  display: none;
+  width: 100%;
   object-fit: contain;
-  @include desktop {
-    width: 100%;
+  @include tablet {
+    display: block;
+  }
+}
+
+.logoMobile {
+  width: calc(100vw - 150px);
+  max-width: 300px;
+  object-fit: contain;
+  @include tablet {
+    display: none;
   }
 }
 
 .desc {
-  width: calc(100vw - 150px);
+  width: calc(100vw - 100px);
 
   @include desktop {
     width: calc(100vw - 500px);
@@ -36,10 +46,10 @@
   display: flex;
   align-content: center;
   justify-content: center;
-  margin-top: 30px;
   @include tablet {
     grid-template-columns: auto auto;
     column-gap: 50px;
+    margin-top: 45px;
   }
 }
 
@@ -51,6 +61,5 @@
   @include tablet {
     grid-template-columns: auto auto;
     column-gap: 50px;
-    transform: scale(0.75);
   }
 }

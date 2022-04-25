@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -9,9 +9,7 @@ import { MagicLinkModalContext } from '../../contexts/magic-link-modal-context'
 import { AVATARS, GRAY } from '../../utils/constants'
 import React from 'react'
 import Popup from 'reactjs-popup'
-import {
-    WalletMultiButton
-  } from '@solana/wallet-adapter-react-ui';
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
 
 const Button = dynamic(() => import('./button'))
 
@@ -22,6 +20,8 @@ import 'reactjs-popup/dist/index.css'
 import Logo from '../../public/images/mfc-logo.svg'
 import LogoWhite from '../../public/images/mfc-logo-white.svg'
 import Twitter from '../../public/images/twitter.svg'
+import Medium from '../../public/images/medium.svg'
+import LinkedIn from '../../public/images/linkedin.svg'
 import Discord from '../../public/images/discord.svg'
 import MenuOpen from '../../public/images/menu-open.svg'
 import MenuClosed from '../../public/images/menu-closed.svg'
@@ -166,8 +166,9 @@ const Navbar = ({}) => {
       </div>
     )
   }
+
   return (
-    <header className={styles.navbar}>
+    <header className={styles.navbar} >
       <div className={styles.navItems}>
         <div
           className={styles.logoContainer}
@@ -199,9 +200,6 @@ const Navbar = ({}) => {
           style={{ display: open ? 'block' : 'none' }}
           className={styles.mobileNav}
         >
-          <div className={styles.menuPlus}>
-            <Image src={Plus} alt='plus signs' />
-          </div>
           <div className={styles.mobileNavTop}>
             <div
               className={styles.logoContainer}
@@ -235,6 +233,28 @@ const Navbar = ({}) => {
                   Sign Up / Log in
                 </li>
               )}
+              <li className={styles.socialLogoMobile} onClick={() => setOpen(false)}>
+                <Link href='http://discord.gg/mechafightclub'>
+                  <a target='_blank' rel='noopener noreferrer'>
+                    <Image src={Discord} alt='Discord logo' />
+                  </a>
+                </Link>
+                <Link href='https://medium.com/@IrreverentLabs'>
+                  <a target='_blank' rel='noopener noreferrer'>
+                    <Image src={Medium} alt='medium logo' />
+                  </a>
+                </Link>
+                <Link href='http://twitter.com/mechafightclub'>
+                  <a target='_blank' rel='noopener noreferrer'>
+                    <Image src={Twitter} alt='Twitter logo' />
+                  </a>
+                </Link>
+                <Link href='https://www.linkedin.com/company/irreverentlabs/'>
+                  <a target='_blank' rel='noopener noreferrer'>
+                    <Image src={LinkedIn} alt='LinkedIn logo' />
+                  </a>
+                </Link>
+              </li>
             </ul>
           </nav>
         </div>
@@ -258,7 +278,9 @@ const Navbar = ({}) => {
         <Link href='/mint'>
           <div className={styles.mintButton} />
         </Link>
-        {!user && openModal && <div className={styles.loginButton} onClick={openModal} />}
+        {!user && openModal && (
+          <div className={styles.loginButton} onClick={openModal} />
+        )}
         {user && <PlayerIcon />}
       </nav>
     </header>

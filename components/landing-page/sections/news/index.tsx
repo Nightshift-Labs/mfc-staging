@@ -3,7 +3,6 @@ import styles from './news.module.scss'
 import NewsContent from './newsContent'
 
 import icons from '../../../../public/images/landingpage/news/icons.svg'
-import numbers from '../../../../public/images/landingpage/news/numbers.svg'
 import NumbersFlair from '../../generic/flair/numbers'
 
 const NewsSection = ({ progress, news }: any) => {

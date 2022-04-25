@@ -13,12 +13,6 @@ const NewsContent = ({ news, progress }: any) => {
     state > 1 ? 'past' : state < 0 ? 'future' : 'active'
 
   return (
-    <>
-      <div className={styles.contentMobile}>
-        {news.map((n: any, i: number) => (
-          <NewsMobileCard key={i} news={n} state={index-i} stateClass={getStateClass(index - i)} />
-        ))}
-      </div>
       <div className={styles.content}>
         <div className={styles.images}>
           {news.map((n: any, i: number) => (
@@ -35,7 +29,6 @@ const NewsContent = ({ news, progress }: any) => {
           <ScrollBar pos={progress} horz />
         </div> */}
       </div>
-    </>
   )
 }
 

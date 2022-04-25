@@ -1,5 +1,16 @@
 @import '../../../../styles/_main.scss';
 
+.mobileWrapper {
+  width: calc(100% - 80px);
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 100px 0;
+
+  @include desktop {
+    display: none;
+  }
+}
+
 .wrapper {
   height: 100%;
   width: 100%;
@@ -10,7 +21,9 @@
   justify-content: center;
 
   @include desktop {
-    padding: 0 300px;
+    width: calc(100% - 600px);
+    max-width: 900px;
+    margin: 0 auto;
   }
 }
 
@@ -37,7 +50,7 @@
   .numbers {
     position: absolute;
     bottom: 75px;
-    left: 300px;
+    left: 0px;
   }
 }
 
@@ -195,93 +208,52 @@
   }
 }
 
-.contentMobile {
-  height: 100%;
+.cardMobile {
+  position: relative;
+  height: auto;
   width: 100%;
-  display: block;
+  padding-bottom: 30px;
 
-  @include desktop {
-    display: none;
+  .header {
+    height: auto;
+    width: 100%;
+    margin-bottom: 40px;
+
+    .imageWrapper {
+      height: 300px;
+      width: 100%;
+      position: relative;
+
+      .image {
+        object-fit: contain;
+        object-position: left;
+        height: 100%;
+        position: relative;
+        width: 100%;
+      }
+    }
   }
 
-  .cardWrapper {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.25s ease-out, transform 0.5s ease-out;
-
-    &.past {
-      transform: translate(0, -100%);
-      opacity: 0;
+  .text {
+    .dateWrapper {
+      height: 80px;
+    }
+    .title {
+      font-family: $font-secondary-alt;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      font-size: 24px;
     }
 
-    &.future {
-      transform: translate(0, 100%);
-      opacity: 0;
-    }
+    .desc {
+      height: 100%;
+      box-sizing: border-box;
+      font-family: $font-primary-alt;
+      margin-bottom: 100px;
+      font-size: 17x;
 
-    &.active {
-      transform: translate(0, 0%);
-      opacity: 1;
-    }
-
-    .card {
-      height: calc(100% - 200px);
-      width: calc(100% - 80px);
-      max-width: 500px;
-
-      display: grid;
-      row-gap: 50px;
-      grid-template-rows: auto 1fr;
-
-      .header {
-        height: calc(40vh - 100px - 25px);
-        width: 100%;
-
-        display: grid;
-        grid-template-columns: 1fr 60px;
-
-        .imageWrapper {
-          height: calc(40vh - 100px - 25px);
-          width: 100%;
-          position: relative;
-
-          .image {
-            object-fit: contain;
-            object-position: left;
-            height: 100%;
-            position: relative;
-            width: 100%;
-          }
-        }
-      }
-
-      .text {
-        display: grid;
-        grid-row: 40px;
-        grid-template-rows: 80px 80px calc(60vh - 250px);
-
-        .title {
-          font-family: $font-secondary-alt;
-          text-transform: uppercase;
-          height: 100%;
-          width: 100%;
-        }
-
-        .desc {
-          height: 100%;
-          box-sizing: border-box;
-          font-family: $font-primary-alt;
-
-          span {
-            color: $color-primary;
-          }
-        }
+      span {
+        color: $color-primary;
       }
     }
   }

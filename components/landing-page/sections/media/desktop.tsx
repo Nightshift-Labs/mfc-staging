@@ -1,4 +1,4 @@
-import MediaCard from '../../../media-card'
+import MediaCard from './mediaCard'
 import ScrollFader from '../../generic/scrollFader'
 import styles from './media.module.scss'
 const Slider = require('../../generic/slider').default

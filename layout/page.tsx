@@ -38,9 +38,17 @@ const Page = ({ children, footer = true }: LayoutProps) => {
     setHideFooter(!['mint'].includes(!!window ? window.location.href : ''))
   }, [])
 
+  const [isHome, setIsHome] = useState(false);
+  useEffect(() => {
+    const isCurrentHome = window.location.pathname === '/';
+    if (isCurrentHome != isHome)
+      setIsHome(isCurrentHome);
+  })
+
+
   return (
     <>
-      <div className={pageStyles.header}>
+      <div className={pageStyles.header} style={{position: isHome ? 'fixed' : 'relative'}}>
         <TopBar />
         <Navbar />
       </div>

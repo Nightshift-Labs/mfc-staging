@@ -57,9 +57,6 @@ const SocialMediaItems = () => {
 const FooterSection = () => {
   return (
     <div className={styles.footerWrapper} id='landing-footer'>
-      <div className={styles.copywrite}>
-        © 2022 Irreverent Labs. All rights reserved.
-      </div>
       <div className={styles.footer}>
         <h3 className={styles.title}>
           Early birds <br />
@@ -68,6 +65,9 @@ const FooterSection = () => {
         <SignUp />
         <img src={logo.src} alt='logo' className={styles.logo} />
         <SocialMediaItems />
+        <div className={styles.copywrite}>
+          © 2022 Irreverent Labs. All rights reserved.
+        </div>
       </div>
     </div>
   )
