@@ -54,14 +54,6 @@
 <g style="mix-blend-mode:lighten" opacity="0.2">
 <rect x="250" y="150" width="300" height="300" fill="url(#pattern0)"/>
 </g>
-
-<circle cx="1269.88" cy="201.573" r="1.26488" transform="rotate(180 1269.88 201.573)" fill="#8EFE1C"/>
-<circle cx="1245.55" cy="201.573" r="1.26488" transform="rotate(180 1245.55 201.573)" fill="#8EFE1C"/>
-<circle cx="1269.88" cy="177.046" r="1.26488" transform="rotate(180 1269.88 177.046)" fill="#8EFE1C"/>
-<circle cx="1245.55" cy="177.046" r="1.26488" transform="rotate(180 1245.55 177.046)" fill="#8EFE1C"/>
-<circle cx="1164.44" cy="201.573" r="1.26488" transform="rotate(180 1164.44 201.573)" fill="#8EFE1C"/>
-<circle cx="1164.44" cy="177.046" r="1.26488" transform="rotate(180 1164.44 177.046)" fill="#8EFE1C"/>
-<circle cx="1095.63" cy="189.183" r="1.26488" transform="rotate(180 1095.63 189.183)" fill="#8EFE1C"/>
 <defs>
 <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
 <use xlink:href="#image0_95_2" transform="scale(0.002 0.00228833)"/>

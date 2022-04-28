@@ -89,6 +89,13 @@
   }
 
   .socialLogoMobile {
+    position: fixed;
+    left: 0;
+    bottom: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     a {
       margin: 0 10px;
     }

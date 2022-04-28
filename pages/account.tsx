@@ -123,8 +123,8 @@ const Account: NextPage = () => {
         setCompletedSteps(completedSteps);
 
         if (completedSteps?.length < 3) {
-          // router.push("/registration");
-          // return;
+          router.push("/registration");
+          return;
         }
       }
 

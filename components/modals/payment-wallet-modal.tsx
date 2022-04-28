@@ -112,7 +112,11 @@ const PaymentWalletModal = ({ isOpen, closeModal }: ModalProps) => {
         .patch("/api/v1/players/me/wallets/airdrop", updatePaymentWalletBody)
         .then((response) => {
           if (!response.ok) {
-            showError(response.originalError.message);
+            if (response?.originalError?.response?.data) {
+              showError(response.originalError.response.data);
+            } else {
+              showError(response.originalError.message);
+            }
             setLoadingPhantom(false);
             return;
           }
@@ -122,7 +126,11 @@ const PaymentWalletModal = ({ isOpen, closeModal }: ModalProps) => {
         .patch("/api/v1/players/me/wallets/payment", updatePaymentWalletBody)
         .then((response) => {
           if (!response.ok) {
-            showError(response.originalError.message);
+            if (response?.originalError?.response?.data) {
+              showError(response.originalError.response.data);
+            } else {
+              showError(response.originalError.message);
+            }
             setLoadingMetaMask(false);
             return;
           }

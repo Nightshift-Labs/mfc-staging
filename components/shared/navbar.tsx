@@ -168,7 +168,7 @@ const Navbar = ({}) => {
   }
 
   return (
-    <header className={styles.navbar} >
+    <header className={styles.navbar}>
       <div className={styles.navItems}>
         <div
           className={styles.logoContainer}
@@ -200,6 +200,31 @@ const Navbar = ({}) => {
           style={{ display: open ? 'block' : 'none' }}
           className={styles.mobileNav}
         >
+          <li
+            className={styles.socialLogoMobile}
+            onClick={() => setOpen(false)}
+          >
+            <Link href='http://discord.gg/mechafightclub'>
+              <a target='_blank' rel='noopener noreferrer'>
+                <Image src={Discord} alt='Discord logo' />
+              </a>
+            </Link>
+            <Link href='https://medium.com/@IrreverentLabs'>
+              <a target='_blank' rel='noopener noreferrer'>
+                <Image src={Medium} alt='medium logo' />
+              </a>
+            </Link>
+            <Link href='http://twitter.com/mechafightclub'>
+              <a target='_blank' rel='noopener noreferrer'>
+                <Image src={Twitter} alt='Twitter logo' />
+              </a>
+            </Link>
+            <Link href='https://www.linkedin.com/company/irreverentlabs/'>
+              <a target='_blank' rel='noopener noreferrer'>
+                <Image src={LinkedIn} alt='LinkedIn logo' />
+              </a>
+            </Link>
+          </li>
           <div className={styles.mobileNavTop}>
             <div
               className={styles.logoContainer}
@@ -233,28 +258,6 @@ const Navbar = ({}) => {
                   Sign Up / Log in
                 </li>
               )}
-              <li className={styles.socialLogoMobile} onClick={() => setOpen(false)}>
-                <Link href='http://discord.gg/mechafightclub'>
-                  <a target='_blank' rel='noopener noreferrer'>
-                    <Image src={Discord} alt='Discord logo' />
-                  </a>
-                </Link>
-                <Link href='https://medium.com/@IrreverentLabs'>
-                  <a target='_blank' rel='noopener noreferrer'>
-                    <Image src={Medium} alt='medium logo' />
-                  </a>
-                </Link>
-                <Link href='http://twitter.com/mechafightclub'>
-                  <a target='_blank' rel='noopener noreferrer'>
-                    <Image src={Twitter} alt='Twitter logo' />
-                  </a>
-                </Link>
-                <Link href='https://www.linkedin.com/company/irreverentlabs/'>
-                  <a target='_blank' rel='noopener noreferrer'>
-                    <Image src={LinkedIn} alt='LinkedIn logo' />
-                  </a>
-                </Link>
-              </li>
             </ul>
           </nav>
         </div>

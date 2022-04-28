@@ -304,7 +304,7 @@ const Mint: NextPage = () => {
         break;
       case PurchaseType.Solana:
         window.open(
-          `https://explorer.solana.com/tx/${transactionTxId}?cluster=devnet`
+          `https://explorer.solana.com/tx/${transactionTxId}`
         );
         break;
     }
