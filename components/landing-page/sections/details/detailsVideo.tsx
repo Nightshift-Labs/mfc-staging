@@ -56,7 +56,7 @@ const DetailsVideo = ({ progress }: any) => {
             loop
             style={vidStyles}
           >
-            <source src='/images/banner/egg-loop-fog.mp4' />
+            <source src='/images/landingpage/details/video.mp4' />
           </video>
           <video
             className={styles.videoMobile}
@@ -66,7 +66,7 @@ const DetailsVideo = ({ progress }: any) => {
             loop
             style={mobileVidStyles}
           >
-            <source src='/images/banner/egg-loop-fog.mp4' />
+            <source src='/images/landingpage/details/video.mp4' />
           </video>
         </div>
       </ScrollFader>

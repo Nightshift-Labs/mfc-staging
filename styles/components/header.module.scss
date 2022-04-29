@@ -5,6 +5,9 @@
   padding: 10px 20px;
   transform: translate(0, -5px);
   li {
+    span{ 
+      padding: 0 8px;
+    }
     display: flex;
     align-items: center;
     font-size: 15px;

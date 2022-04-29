@@ -71,7 +71,7 @@ const Page = ({ children, footer = true }: LayoutProps) => {
           closeModal={closePaymentWalletModal}
         />
       )}
-      {!!footer ? <Footer /> : <></>}
+      {/* {!!footer ? <Footer /> : <></>} */}
     </>
   )
 }
