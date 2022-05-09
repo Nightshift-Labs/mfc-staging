@@ -1,5 +1,4 @@
 module.exports = {
-  swcMinify:false,
   reactStrictMode: true,
   env: {
     ORIGIN: process.env.ORIGIN,
