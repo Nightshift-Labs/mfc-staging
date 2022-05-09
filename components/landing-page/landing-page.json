@@ -91,11 +91,11 @@
       "img": "/images/team/amar.png"
     },
     {
-      "name": "Dasheed",
-      "linkedIn": "",
-      "twitter": "",
+      "name": "Craig",
+      "linkedIn": "https://www.linkedin.com/in/craigowenby",
+      "twitter": "https://twitter.com/MiamiVice_sol",
       "insta": "",
-      "img": "/images/team/dasheed.png"
+      "img": "/images/team/craig.png"
     },
     {
       "name": "David",
@@ -110,13 +110,6 @@
       "twitter": "https://twitter.com/metagear2600",
       "insta": "https://www.instagram.com/metagear2600/?hl=en",
       "img": "/images/team/gear.png"
-    },
-    {
-      "name": "Greg",
-      "linkedIn": "",
-      "twitter": "",
-      "insta": "",
-      "img": "/images/team/greg.png"
     },
     {
       "name": "Maddi",
@@ -145,6 +138,13 @@
       "twitter": "https://twitter.com/rahulsood",
       "insta": "",
       "img": "/images/team/rahul.png"
+    },
+    {
+      "name": "Rasheed",
+      "linkedIn": "",
+      "twitter": "",
+      "insta": "",
+      "img": "/images/team/rasheed.png"
     },
     {
       "name": "Ryan",

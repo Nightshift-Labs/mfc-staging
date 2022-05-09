@@ -1,8 +1,5 @@
 module.exports = {
   reactStrictMode: true,
-  images: {
-    domains: ['picsum.photos'],
-  },
   env: {
     ORIGIN: process.env.ORIGIN,
     SENDINBLUE_API: process.env.SENDINBLUE_API,

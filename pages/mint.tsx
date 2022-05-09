@@ -22,12 +22,12 @@ import { isLoggedIn } from "../services/magic-service";
 import Spinner from "../components/spinner";
 import MintingMobileBlocker from "../components/minting/mobile";
 import { MintingProps } from "../interfaces/MintingProps";
-import { PurchaseStatus, PurchaseType } from "../utils/constants";
+import { DATE_FORMAT, PurchaseStatus, PurchaseType } from "../utils/constants";
 
 const Header = dynamic(() => import("../components/shared/header"));
 
 const Mint: NextPage = () => {
-  const { playerProfile, setPlayerProfile, user } = useContext(UserContext);
+  const { playerProfile, user } = useContext(UserContext);
   const router = useRouter();
   const [hatchListOpen, setHatchListOpen] = useState(false);
   const [hatchListOpensAtUtc, setHatchListOpensAtUtc] = useState("");
@@ -47,49 +47,38 @@ const Mint: NextPage = () => {
   const [priceInUsd, setPriceInUsd] = useState(0);
   const [mintPassComplete, setMintPassComplete] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [disabledPrePaySol, setDisabledPrePaySol] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const { connection } = useConnection();
   const { publicKey, sendTransaction } = useWallet();
 
   useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+  }, []);
+
+  useEffect(() => {
+    if (playerProfile) {
+      if (isProfileReadyForMint(playerProfile)) {
+        setIsProfileComplete(true);
+      }
+    }
+  }, [playerProfile]);
+
+  useEffect(() => {
+    if (isMobile) {
+      setIsMobileView(true);
+    }
+  }, []);
+
+  useEffect(() => {
     const init = async () => {
-      setLoading(true);
-
-      if (isMobile) {
-        setIsMobileView(true);
-      }
-      
-      if (!(await isLoggedIn())) {
-        setLoading(false);
-        return;
-      }
-
-      let response = await api.get("/api/v1/players/me");
-
+      let response = await api.get("/api/v1/status/mint");
       if (!response.ok) {
-        setLoading(false);
-        return;
-      }
-
-      const playerProfile = response.data as PlayersMe;
-
-      if (setPlayerProfile && playerProfile) {
-        setPlayerProfile(playerProfile);
-        //check if profile is ready for mint
-        if (playerProfile) {
-          if (isProfileReadyForMint(playerProfile)) {
-            setIsProfileComplete(true);
-          }
-        }
-      }
-
-      response = await api.get("/api/v1/status/mint");
-
-      if (!response.ok) {
-        console.error(response.originalError.message);
-        setLoading(false);
+        console.log(response.originalError.message);
         return;
       }
 
@@ -119,35 +108,30 @@ const Mint: NextPage = () => {
           setMintPassComplete(true);
 
           //get transcation from api
-          await api.get("/api/v1/payments/status").then(async (response) => {
-            if (!response.ok) {
-              console.error(response.originalError.message);
-              return;
-            }
+          const response = await api.get("/api/v1/payments/status");
 
-            const tx = response.data as PurchaseStatusAPIResponse;
-            setPurchaseType(tx.result?.data?.type);
-            setTransactionTxId(tx.result?.data?.paymentTxId || "");
-          });
+          if (!response.ok) {
+            console.log(response.originalError.message);
+            return;
+          }
+
+          const tx = response.data as PurchaseStatusAPIResponse;
+          setPurchaseType(tx.result?.data?.type);
+          setTransactionTxId(tx.result?.data?.paymentTxId || "");
         }
       } catch (e) {
         //if this fails user has not minted
-        console.log((e as Error).message);
       }
-
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000);
     };
     init();
-  }, [publicKey, user]);
+  }, []);
 
   const onPrePayEth = async () => {
     try {
       const response = await api.post("/api/v1/payments/create/ethereum");
 
       if (!response.ok) {
-        console.error(response.originalError.message);
+        console.log(response.originalError.message);
         return;
       }
 
@@ -179,7 +163,7 @@ const Mint: NextPage = () => {
       const response = await api.post("/api/v1/payments/create/solana");
 
       if (!response.ok) {
-        console.error(response);
+        console.log(response);
         return;
       }
 
@@ -187,6 +171,12 @@ const Mint: NextPage = () => {
 
       if (!result.success) {
         toast.error(result.message);
+        return;
+      }
+
+      //check for pending ethereum transaction
+      if (result.success && result.result?.type === PurchaseType.Ethereum) {
+        toast.error("You have a pending ETH request.");
         return;
       }
 
@@ -224,7 +214,7 @@ const Mint: NextPage = () => {
       if (message === "payer not found") {
         toast.error("Please make sure you have funds available");
       } else {
-        toast.error((e as Error).message);
+        console.log((e as Error).message);
       }
     }
   };
@@ -233,7 +223,7 @@ const Mint: NextPage = () => {
     const response = await api.get("/api/v1/payments/status");
 
     if (!response.ok) {
-      console.error(response.originalError.message);
+      console.log(response.originalError.message);
       return;
     }
 
@@ -303,9 +293,7 @@ const Mint: NextPage = () => {
         window.open(`https://etherscan.io/tx/${transactionTxId}`);
         break;
       case PurchaseType.Solana:
-        window.open(
-          `https://explorer.solana.com/tx/${transactionTxId}`
-        );
+        window.open(`https://explorer.solana.com/tx/${transactionTxId}`);
         break;
     }
   };
@@ -318,9 +306,9 @@ const Mint: NextPage = () => {
   // minting window
   const mintingWindow =
     playerProfile?.status?.hatchList && hatchListOpensAtUtc
-      ? dateformat(new Date(hatchListOpensAtUtc), "mmmm dS yyyy, hTT")
+      ? dateformat(new Date(hatchListOpensAtUtc), DATE_FORMAT)
       : playerProfile?.status?.waitList && waitListOpensAtUtc
-      ? dateformat(new Date(hatchListOpensAtUtc), "mmmm dS yyyy, hTT")
+      ? dateformat(new Date(hatchListOpensAtUtc), DATE_FORMAT)
       : "";
   let content: MintingProps = {};
 
@@ -412,12 +400,12 @@ const Mint: NextPage = () => {
       title: "Get Your Mint Pass",
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vel hendrerit ante. Maecenas ligula urna, laoreet eu rhoncus sed, interdum non ante pellentesque ",
       buttonA: {
-        click: () => onPrePayEth(),
-        text: "Mint with ETH",
-      },
-      buttonB: {
         click: () => onPrePaySol(),
         text: "Mint with SOL",
+      },
+      buttonB: {
+        click: () => onPrePayEth(),
+        text: "Mint with ETH",
       },
       windowTitle: "Your mint window is now LIVE",
       windowText: mintingWindow,

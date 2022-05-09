@@ -13,12 +13,16 @@ const Card = ({ title, img, content }: any) => {
           <div className={styles.title}>{title}</div>
           <div className={styles.text}>{content}</div>
           <Marquee gradient={false}>
-            {[0, 1, 2, 3, 4, 5].map(i => (
-              <React.Fragment key={i}>
                 <div className={styles.marqee}>{title}</div>
                 <div className={styles.marqeeDot}>•</div>
-              </React.Fragment>
-            ))}
+                <div className={styles.marqee}>{title}</div>
+                <div className={styles.marqeeDot}>•</div>
+                <div className={styles.marqee}>{title}</div>
+                <div className={styles.marqeeDot}>•</div>
+                <div className={styles.marqee}>{title}</div>
+                <div className={styles.marqeeDot}>•</div>
+                <div className={styles.marqee}>{title}</div>
+                <div className={styles.marqeeDot}>•</div>
           </Marquee>
         </div>
       </div>

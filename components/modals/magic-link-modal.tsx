@@ -1,4 +1,4 @@
-import { useState, useContext, useRef } from "react";
+import { useState, useContext, useRef, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Modal from "react-modal";
@@ -53,6 +53,13 @@ const MagicLinkModal = ({ isOpen, closeModal }: ModalProps) => {
   const [focus, setFocus] = useState(false);
   const submitBtn = useRef<HTMLButtonElement>(null);
 
+  useEffect(() => {
+    return () => {
+      setLoading(false);
+      closeModal();
+    };
+  }, [router]);
+
   const clickEl = () => {
     submitBtn.current?.click();
   };
@@ -62,36 +69,33 @@ const MagicLinkModal = ({ isOpen, closeModal }: ModalProps) => {
 
     if (setPlayerProfile && setUser) {
       try {
+
         await loginUser(values.email, setUser);
+        const response = await api.get("/api/v1/players/me");
 
-        await api.get("/api/v1/players/me").then((response) => {
-          if (!response.ok) {
-            if (response.status === 404 && openModal) {
-              closeModal();
-              openModal();
-            } else {
-              showError(response.originalError.message);
-            }
+        if (!response.ok) {
+          if (response.status === 404 && openModal) {
+            closeModal();
+            openModal();
           } else {
-            const playerProfile = response.data as PlayersMe;
-            setPlayerProfile(playerProfile);
+            showError(response.originalError.message);
+          }
+          setLoading(false);
+        } else {
+          const playerProfile = response.data as PlayersMe;
+          setPlayerProfile(playerProfile);
 
-            if (playerProfile) {
-              const completedSteps = getCompletedSteps(playerProfile) || [];
-
-              closeModal();
-
-              if (completedSteps?.length === 3) {
-                router.push("/account");
-              } else {
-                router.push("/registration");
-              }
+          if (playerProfile) {
+            const completedSteps = getCompletedSteps(playerProfile);
+            if (completedSteps?.length === 3) {
+              router.push("/account");
+            } else {
+              router.push("/registration");
             }
           }
-        });
-
-        setLoading(false);
+        }
       } catch (e) {
+        console.log((e as Error).message)
         setLoading(false);
       }
     }

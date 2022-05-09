@@ -3,6 +3,8 @@ import { useContext, useState } from "react";
 import dynamic from "next/dynamic";
 import Modal from "react-modal";
 import Image from "next/image";
+import { useWallet } from "@solana/wallet-adapter-react";
+
 import { UserContext } from "../../contexts/user-context";
 import { DeleteAccountModalProps } from "../../interfaces/DeleteAccountModalProps";
 import { api } from "../../pages/_app";
@@ -15,7 +17,6 @@ const Button = dynamic(() => import("../shared/button"));
 
 //ASSETS
 import Close from "../../public/images/close-button.svg";
-
 import styles from "../../styles/components/modal.module.scss";
 
 const customStyles = {
@@ -44,19 +45,22 @@ const DeleteAccountModal = ({
   isOpen,
   closeModal,
 }: DeleteAccountModalProps) => {
-  const { setUser, setPlayerProfile } = useContext(UserContext);
+  const { setUser, setPlayerProfile,setCompletedSteps } = useContext(UserContext);
   const router = useRouter();
   const [isDisabled, setIsDisabled] = useState(false);
+  const { disconnect } = useWallet();
 
   const onYesDeleteClick = async () => {
     setIsDisabled(true);
 
-    await api.delete("/api/v1/players/me").then((response) => {
+    await api.delete("/api/v1/players/me").then(async (response) => {
       if (response.ok) {
-        logoutUser();
+        disconnect();
+        await logoutUser();
 
-        if (setUser && setPlayerProfile) {
+        if (setUser && setPlayerProfile && setCompletedSteps) {
           setUser(null);
+          setCompletedSteps([]);
           setPlayerProfile(null);
         }
         router.push("/");

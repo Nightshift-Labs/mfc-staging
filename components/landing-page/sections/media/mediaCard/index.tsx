@@ -9,20 +9,22 @@ const MediaCard = ({
   logo,
   image
 }: MediaCardProps) => {
-  const bodyRef: any = useRef();
-  const [isSmall, setIsSmall] = useState(false);
+  const bodyRef: any = useRef()
+  const [isSmall, setIsSmall] = useState(false)
 
   useEffect(() => {
-    var height = bodyRef.current?.getBoundingClientRect().height;
-    if (height > 400 && !!isSmall)
-        setIsSmall(false);
-    else if (height <= 400 && !isSmall) 
-        setIsSmall(true);
+    var height = bodyRef.current?.getBoundingClientRect().height
+    if (height > 400 && !!isSmall) setIsSmall(false)
+    else if (height <= 400 && !isSmall) setIsSmall(true)
   })
 
   return (
-    <div ref={bodyRef} className={`${styles.wrapper} ${styles.cuttout}`}> 
-      <div className={`${styles.container} ${styles.cuttout} ${isSmall ? styles.small : ''}`}>
+    <div ref={bodyRef} className={`${styles.wrapper} ${styles.cuttout}`}>
+      <div
+        className={`${styles.container} ${styles.cuttout} ${
+          isSmall ? styles.small : ''
+        }`}
+      >
         <div className={styles.image}>
           <img src={image} alt={title} />
         </div>

@@ -32,8 +32,8 @@
   margin: 0 auto;
 
   @include desktop {
-    max-width: unset;
-    margin: 0;
+    max-width: 1700px;
+    margin: 0 auto;
   }
 
   .logo {

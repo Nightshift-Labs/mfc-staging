@@ -6,32 +6,37 @@ class MyDocument extends Document {
       <Html style={{ scrollBehavior: "smooth" }}>
         <Head />
         <link
-          rel="preload"
+          rel="prefetch"
           href="/fonts/TerminaW00-Demi.woff"
           as="font"
-          crossOrigin=""
+          type="font/woff"
+          crossOrigin="anonymous"
         />
         <link
-          rel="preload"
+          rel="prefetch"
           href="/fonts/TerminaW00-Demi.woff2"
           as="font"
-          crossOrigin=""
+          type="font/woff2"
+          crossOrigin="anonymous"
         />
         <link
-          rel="preload"
+          rel="prefetch"
           href="/fonts/TerminaW05-Bold.woff"
           as="font"
-          crossOrigin=""
+          type="font/woff"
+          crossOrigin="anonymous"
         />
         <link
-          rel="preload"
+          rel="prefetch"
           href="/fonts/TerminaW05-Bold.woff2"
           as="font"
-          crossOrigin=""
+          type="font/woff2"
+          crossOrigin="anonymous"
         />
         <meta name="theme-color" content="#8efe1c"></meta>
         <link
           href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans+Condensed:wght@700&family=Roboto:wght@400;700&family=Roboto+Mono:wght@300;400&display=swap"
+          
           rel="stylesheet"
         />
         <body>

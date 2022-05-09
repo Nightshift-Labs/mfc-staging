@@ -1,4 +1,4 @@
-import { useState, useContext, useRef } from "react";
+import { useState, useContext, useRef, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Modal from "react-modal";
 import Image from "next/image";
@@ -59,6 +59,13 @@ const CompleteSignUpModal = ({ isOpen, closeModal }: ModalProps) => {
   const [focusUser, setFocusUser] = useState(false);
   const submitBtn = useRef<HTMLButtonElement>(null);
 
+  useEffect(() => {
+    return () => {
+      setLoading(false);
+      closeModal();
+    };
+  }, [router]);
+
   const clickEl = () => {
     submitBtn.current?.click();
   };
@@ -91,39 +98,41 @@ const CompleteSignUpModal = ({ isOpen, closeModal }: ModalProps) => {
       },
     };
 
-    await api
-      .post("/api/v1/players/register", playerRegistrationBody)
-      .then(async (response) => {
-        if (response.ok) {
-          await api.get("/api/v1/players/me").then((response) => {
-            if (response.ok) {
-              const playerProfile = response.data as PlayersMe;
+    let response = await api.post(
+      "/api/v1/players/register",
+      playerRegistrationBody
+    );
 
-              if (setPlayerProfile && playerProfile && setCompletedSteps) {
-                setPlayerProfile(playerProfile);
-              }
+    if (!response.ok) {
+      showError(response.originalError.message);
+      setLoading(false);
+      return;
+    }
 
-              if (completedSteps && setCompletedSteps) {
-                updateCompleteSteps(
-                  completedSteps,
-                  steps.basicInformation,
-                  setCompletedSteps
-                );
-              }
+    response = await api.get("/api/v1/players/me");
 
-              if (router.pathname !== "/registration") {
-                router.push("/registration");
-              }
+    if (!response.ok) return;
 
-              closeModal();
-            }
-          });
-        } else {
-          showError(response.originalError.message);
-        }
-      });
+    const playerProfile = response.data as PlayersMe;
 
-    setLoading(false);
+    if (setPlayerProfile && playerProfile && setCompletedSteps) {
+      setPlayerProfile(playerProfile);
+    }
+
+    if (completedSteps && setCompletedSteps) {
+      updateCompleteSteps(
+        completedSteps,
+        steps.basicInformation,
+        setCompletedSteps
+      );
+    }
+
+    // setLoading(false);
+    closeModal();
+
+    if (router.pathname !== "/registration") {
+      router.push("/registration");
+    }
   };
 
   const initialValues: CompleteSignUpFormValues = {

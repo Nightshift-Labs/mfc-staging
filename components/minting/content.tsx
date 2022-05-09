@@ -1,11 +1,11 @@
-import { useState } from "react";
-import Button from "../shared/button";
-import CoinbaseCommerceButton from "react-coinbase-commerce";
+import { useState } from 'react'
+import Button from '../shared/button'
+import CoinbaseCommerceButton from 'react-coinbase-commerce'
 
-import { MintingProps } from "../../interfaces/MintingProps";
+import { MintingProps } from '../../interfaces/MintingProps'
 
-import styles from "../../styles/components/minting.module.scss";
-import buttonStyles from "../../styles/components/button.module.scss";
+import styles from '../../styles/components/minting.module.scss'
+import buttonStyles from '../../styles/components/button.module.scss'
 
 const MintingContent = ({
   title,
@@ -21,10 +21,10 @@ const MintingContent = ({
   windowTitle,
   windowText,
   hideMinted,
-  commerceData,
+  commerceData
 }: MintingProps) => {
-  const showCommerceButton = !!commerceData?.showCommerceButton;
-  const [paymentSuccessful, setPaymentSuccessful] = useState(false);
+  const showCommerceButton = !!commerceData?.showCommerceButton
+  const [paymentSuccessful, setPaymentSuccessful] = useState(false)
 
   return (
     <div className={styles.content}>
@@ -40,8 +40,8 @@ const MintingContent = ({
             <div>
               <div className={styles.amountTitle}>Minted</div>
               <div className={styles.amountContent}>
-                {mintedAmount?.toLocaleString()} /{" "}
-                {mintedTotal?.toLocaleString()}{" "}
+                {mintedAmount?.toLocaleString()} /{' '}
+                {mintedTotal?.toLocaleString()}{' '}
               </div>
               <div>({pending} pending)</div>
             </div>
@@ -64,47 +64,46 @@ const MintingContent = ({
         <div className={styles.text}>{text}</div>
 
         {/* Buttons */}
-        {(buttonA || showCommerceButton) && (
+        {!!buttonA && (
           <div className={styles.btns}>
-            {showCommerceButton && (
+            {buttonA && (
+              <div>
+                <Button
+                  click={buttonA.click}
+                  text={buttonA.text}
+                  disabled={showCommerceButton}
+                  link=''
+                  type='primary'
+                  icon={false}
+                />
+              </div>
+            )}
+            {!!showCommerceButton ? (
               <div>
                 <CoinbaseCommerceButton
                   chargeId={commerceData?.coinbaseChargeId}
                   onChargeFailure={() => setPaymentSuccessful(false)}
                   onModalClosed={() => {
-                    commerceData?.setShowCommerceButton(false);
-                    setPaymentSuccessful(false);
+                    commerceData?.setShowCommerceButton(false)
+                    setPaymentSuccessful(false)
                   }}
                   onPaymentDetected={() => {
-                    commerceData?.setShowCommerceButton(false);
-                    commerceData?.startTransactionModal();
-                    setPaymentSuccessful(false);
+                    commerceData?.setShowCommerceButton(false)
+                    commerceData?.startTransactionModal()
+                    setPaymentSuccessful(false)
                   }}
-                  className={buttonStyles.primary}
+                  className={buttonStyles.secondary}
                 >
                   Confirm Payment
                 </CoinbaseCommerceButton>
               </div>
-            )}
-            {buttonA && !showCommerceButton && (
-              <div>
-                <Button
-                  click={buttonA.click}
-                  text={buttonA.text}
-                  link=""
-                  type="primary"
-                  icon={false}
-                />
-              </div>
-            )}
-            {buttonB ? (
+            ) : !!buttonB ? (
               <div>
                 <Button
                   click={buttonB.click}
                   text={buttonB.text}
-                  disabled={showCommerceButton}
-                  link=""
-                  type="secondary"
+                  link=''
+                  type='secondary'
                   icon={false}
                 />
               </div>
@@ -128,7 +127,7 @@ const MintingContent = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default MintingContent;
+export default MintingContent

@@ -113,6 +113,11 @@
       background-size: contain;
       background-position: center;
       background-repeat: no-repeat;
+
+      &.linkedin {
+      height: 22px;
+      width: 25px;
+      }
     }
 
     .twitter {

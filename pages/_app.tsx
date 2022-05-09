@@ -11,14 +11,17 @@ import {
   WalletProvider,
 } from "@solana/wallet-adapter-react";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
-import { PhantomWalletAdapter } from "@solana/wallet-adapter-wallets";
+import {
+  PhantomWalletAdapter,
+  SolflareWalletAdapter,
+} from "@solana/wallet-adapter-wallets";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { clusterApiUrl } from "@solana/web3.js";
 import { CookiesProvider } from "react-cookie";
-import 'react-toastify/dist/ReactToastify.css';
-import 'normalize.css'
-import '../styles/global.scss'
-import Home from '.';
+import "react-toastify/dist/ReactToastify.css";
+import "normalize.css";
+import "../styles/global.scss";
+import Home from ".";
 
 import "react-toastify/dist/ReactToastify.css";
 import "normalize.css";
@@ -42,12 +45,16 @@ const MyApp: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
   Component,
   pageProps,
 }: AppLayoutProps) => {
-  //solana network init
-  const network = WalletAdapterNetwork.Devnet;
+  const network =
+    process.env.NODE_ENV === "development"
+      ? WalletAdapterNetwork.Devnet
+      : WalletAdapterNetwork.Mainnet;
   const endpoint = useMemo(() => clusterApiUrl(network), [network]);
 
-  //support wallets TBD
-  const wallets = useMemo(() => [new PhantomWalletAdapter()], [network]);
+  const wallets = useMemo(
+    () => [new PhantomWalletAdapter(), new SolflareWalletAdapter()],
+    [network]
+  );
 
   const getLayout =
     Component.getLayout || ((page: ReactNode) => <Page>{page}</Page>);

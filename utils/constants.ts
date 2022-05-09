@@ -44,3 +44,5 @@ export const GREEN = "green";
 export const YELLOW = "yellow";
 
 export const MODAL_COOKIE_KEY = "modalCookie";
+
+export const DATE_FORMAT ="mmmm dS yyyy, hTT Z"

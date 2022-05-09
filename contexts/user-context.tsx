@@ -16,7 +16,7 @@ const UserContextProvider = ({ children }: any) => {
       try {
         await checkUser(setUser);
       } catch (e) {
-        console.error((e as Error).message);
+        console.log((e as Error).message);
       }
     };
     init();

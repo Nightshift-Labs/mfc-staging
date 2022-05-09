@@ -295,7 +295,7 @@ input[type="checkbox"]:checked::before {
   transform: scale(0.7);
 }
 
-.wallet-adapter-button {
+.wallet-adapter-button-trigger {
   display: none !important;
   height: 35px !important;
   line-height: 10px !important;
@@ -323,4 +323,16 @@ input[type="checkbox"]:checked::before {
   top: 0;
   left: 0;
   transform: translateZ(1000000000000000000000000000000000px)
+}
+
+.slider-wrapper  {
+  overflow: visible !important;
+}
+
+.carousel-slider {
+  overflow: visible !important;
+}
+
+.slide {
+  text-align: left !important;
 }

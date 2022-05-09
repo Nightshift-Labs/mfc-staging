@@ -22,7 +22,7 @@ const TopBar = ({}) => {
       }
     };
     init();
-  }, [user]);
+  }, []);
 
   let text;
 

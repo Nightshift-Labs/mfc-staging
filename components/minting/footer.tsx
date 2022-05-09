@@ -1,7 +1,7 @@
-import styles from "../../styles/components/minting.module.scss";
+import styles from '../../styles/components/minting.module.scss'
 
 const MintingFooter = () => {
-  const year = new Date().getFullYear();
+  const year = new Date().getFullYear()
 
   return (
     <div className={styles.footer}>
@@ -10,36 +10,37 @@ const MintingFooter = () => {
       </div>
       <div className={styles.socialMedia}>
         <SocialMediaLink
-          link="https://twitter.com/mechafightclub"
-          site="twitter"
+          link='https://twitter.com/mechafightclub'
+          site='twitter'
         />
         <SocialMediaLink
-          link="https://medium.com/@IrreverentLabs"
-          site="medium"
+          link='https://medium.com/@IrreverentLabs'
+          site='medium'
         />
         <SocialMediaLink
-          link="https://discord.com/invite/mechafightclub"
-          site="discord"
+          link='https://discord.com/invite/mechafightclub'
+          site='discord'
         />
         <SocialMediaLink
-          link="https://www.linkedin.com/company/irreverentlabs/"
-          site="linkedin"
+          link='https://www.linkedin.com/company/irreverentlabs/'
+          site='linkedin'
+          linkedin
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-const SocialMediaLink = ({ link, site }: any) => {
+const SocialMediaLink = ({ link, site, linkedin = false }: any) => {
   return (
     <a
       href={link}
-      target="_blank"
-      rel="noreferrer"
-      referrerPolicy="no-referrer"
-      className={`${styles.icon} ${styles[site]}`}
+      target='_blank'
+      rel='noreferrer'
+      referrerPolicy='no-referrer'
+      className={`${styles.icon} ${styles[site]} ${linkedin ? styles.linkedin : ''}`}
     />
-  );
-};
+  )
+}
 
-export default MintingFooter;
+export default MintingFooter

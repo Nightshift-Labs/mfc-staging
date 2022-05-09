@@ -21,7 +21,7 @@ const IntroSection = ({ progress, pageLoading }: any) => {
       !video.ended &&
       video.readyState > video.HAVE_CURRENT_DATA
     if (progress > 0.95 && isPlaying) vidRef.current?.pause()
-    else vidRef.current?.play()
+    else if (!isPlaying) vidRef.current?.play()
   }, [progress])
 
   return (

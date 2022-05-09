@@ -2,11 +2,10 @@ import { NextPage } from "next";
 import { useContext, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import { isLoggedIn } from "../services/magic-service";
 import { UserContext } from "../contexts/user-context";
 import {
   AVATARS,
-  ETHEREUM,
+  DATE_FORMAT,
   MODAL_COOKIE_KEY,
   SOLANA,
   STATE_KEY,
@@ -23,7 +22,7 @@ import { UpdateAirdropWalletBody } from "../interfaces/api/UpdateAirdropWalletBo
 import { UpdateSocialFromOAuthBody } from "../interfaces/api/UpdateSocialFromOAuthBody";
 import { UpdateEmailSettingsBody } from "../interfaces/api/UpdateEmailSettingsBody";
 import { api } from "./_app";
-import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import { useConnection } from "@solana/wallet-adapter-react";
 import { useCookies } from "react-cookie";
 import dateFormat from "dateformat";
 
@@ -35,9 +34,9 @@ import { MintStatusAPIResponse } from "../interfaces/api/MintStatusAPIResponse";
 import styles from "../styles/pages/account.module.scss";
 
 //ASSETS
-import Meta from "../public/images/metamask-logo.svg";
 import Phantom from "../public/images/phantom-logo.svg";
 import AccountBG from "../public/images/account/account-background.png";
+import { isLoggedIn } from "../services/magic-service";
 
 const Header = dynamic(() => import("../components/shared/header"));
 const PageTitle = dynamic(() => import("../components/shared/page-title"));
@@ -50,11 +49,16 @@ const Account: NextPage = () => {
     useState(false);
   const [isHatchListModalOpen, setIsHatchListModalOpen] = useState(false);
   const [avatarColor, setAvatarColor] = useState("");
-  const { playerProfile, setCompletedSteps, setPlayerProfile } =
-    useContext(UserContext);
+  const {
+    playerProfile,
+    setPlayerProfile,
+    completedSteps,
+    user,
+    setCompletedSteps,
+  } = useContext(UserContext);
   const router = useRouter();
   const [isDisabled, setIsDisabled] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [hatchListOpen, setHatchListOpen] = useState(false);
   const [hatchListOpensAtUtc, setHatchListOpensAtUtc] = useState("");
   const [waitListOpen, setWaitListOpen] = useState(false);
@@ -64,82 +68,30 @@ const Account: NextPage = () => {
   const [cookies, setCookie] = useCookies([MODAL_COOKIE_KEY]);
 
   const { connection } = useConnection();
-  const { publicKey } = useWallet();
+
+  useEffect(() => {
+    const init = async () => {
+      if (!(await isLoggedIn())) {
+        router.push("/");
+      }
+    };
+    init();
+  }, [user]);
+
+  useEffect(() => {}, [playerProfile, completedSteps]);
 
   useEffect(() => {
     const init = async () => {
       setLoading(true);
 
-      if (!(await isLoggedIn())) {
-        router.push("/");
-      }
-
-      const { state, code } = router.query;
-
-      if (state && code) {
-        const localState = localStorage.getItem(STATE_KEY);
-
-        if (localState === state) {
-          const updateSocialFromOAuthBody: UpdateSocialFromOAuthBody = {
-            code: code.toString(),
-            redirectUri: process.env.DISCORD_RETURN_URL,
-            codeVerifier: "",
-          };
-
-          await api
-            .patch("/api/v1/players/me/discord", updateSocialFromOAuthBody)
-            .then((response) => {
-              if (!response.ok) {
-                showError(response.originalError.message);
-              }
-            });
-
-          localStorage.clear();
-        }
-
-        router.push("/account", undefined, { shallow: true });
-      }
-
-      let response = await api.get("/api/v1/players/me");
-
-      if (response.status === 404) {
-        router.push("/registration");
-        return;
-      }
-
-      if (!response.ok) {
-        setLoading(false);
-        console.error("Error getting account information");
-        return;
-      }
-
-      const playerProfile = response.data as PlayersMe;
-
-      if (setPlayerProfile && playerProfile && setCompletedSteps) {
-        setPlayerProfile(playerProfile);
+      if (playerProfile) {
         setAvatarColor(playerProfile?.avatarColor);
-
-        const completedSteps = getCompletedSteps(playerProfile) || [];
-        setCompletedSteps(completedSteps);
-
-        if (completedSteps?.length < 3) {
-          router.push("/registration");
-          return;
-        }
       }
 
-      if (!cookies[MODAL_COOKIE_KEY]) {
-        setIsHatchListModalOpen(true);
-        const expires = moment().add(1, "day");
-        setCookie(MODAL_COOKIE_KEY, "true", {
-          expires: expires.toDate(),
-        });
-      }
-
-      response = await api.get("/api/v1/status/mint");
+      const response = await api.get("/api/v1/status/mint");
 
       if (!response.ok) {
-        console.error(response.originalError.message);
+        console.log(response.originalError.message);
         setLoading(false);
         return;
       }
@@ -161,13 +113,69 @@ const Account: NextPage = () => {
         );
       } catch (e) {
         //if this fails user has not minted
-        console.error((e as Error).message);
       }
 
       setLoading(false);
     };
     init();
-  }, [router, publicKey]);
+  }, []);
+
+  useEffect(() => {
+    if (!cookies[MODAL_COOKIE_KEY]) {
+      setIsHatchListModalOpen(true);
+      const expires = moment().add(1, "day");
+      setCookie(MODAL_COOKIE_KEY, "true", {
+        expires: expires.toDate(),
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    const init = async () => {
+      const { state, code } = router.query;
+
+      if (state && code) {
+        const localState = localStorage.getItem(STATE_KEY);
+
+        if (localState === state) {
+          const updateSocialFromOAuthBody: UpdateSocialFromOAuthBody = {
+            code: code.toString(),
+            redirectUri: process.env.DISCORD_RETURN_URL,
+            codeVerifier: "",
+          };
+
+          let response = await api.patch(
+            "/api/v1/players/me/discord",
+            updateSocialFromOAuthBody
+          );
+
+          if (!response.ok) {
+            showError(response.originalError.message);
+            return;
+          }
+
+          //update profile after discord update to get handle
+          response = await api.get("/api/v1/players/me");
+
+          if (!response.ok) return;
+
+          const playerProfile = response.data as PlayersMe;
+
+          if (completedSteps && setCompletedSteps && setPlayerProfile) {
+            setPlayerProfile(playerProfile);
+            const completedSteps = getCompletedSteps(playerProfile) || [];
+            setCompletedSteps(completedSteps);
+          }
+
+          localStorage.clear();
+          setLoading(false);
+        }
+
+        router.push("/account", undefined, { shallow: true });
+      }
+    };
+    init();
+  }, [router]);
 
   const closePickAvatarModal = () => {
     setIsPickAvatarModalOpen(false);
@@ -267,47 +275,6 @@ const Account: NextPage = () => {
     setIsDeleteAccountModalOpen(true);
   };
 
-  const PaymentWallets = () => {
-    return (
-      <div className={styles.section}>
-        <h6 className={styles.subtitleAlt}>Payment Wallets</h6>
-
-        {loading && (
-          <div className={styles.walletConnect}>
-            <input type="checkbox" checked={false} readOnly />
-            <span className={styles.address}>Loading...</span>
-          </div>
-        )}
-
-        {playerProfile?.paymentWallet?.blockchain === ETHEREUM && (
-          <div className={styles.walletConnect}>
-            <input type="checkbox" checked={true} readOnly />
-            <Image loading="lazy" src={Meta} width={27} alt="Metamask logo" />
-            <span className={styles.address}>
-              {playerProfile?.paymentWallet.address.substr(0, 10)}...
-              {playerProfile?.paymentWallet.address.substr(-4, 4)}
-            </span>
-          </div>
-        )}
-
-        {playerProfile?.airdropWallet?.blockchain === SOLANA &&
-          !playerProfile?.paymentWallet?.blockchain && (
-            <div className={styles.walletConnect}>
-              <input type="checkbox" checked={true} readOnly />
-              <Image src={Phantom} width={27} alt="Phantom logo" />
-              <span className={styles.address}>
-                {playerProfile?.airdropWallet.address.substr(0, 10)}...
-                {playerProfile?.airdropWallet.address.substr(-4, 4)}
-              </span>
-              {!playerProfile?.airdropWallet && (
-                <a onClick={() => onConnectPhantomClick()}>CONNECT PHANTOM</a>
-              )}
-            </div>
-          )}
-      </div>
-    );
-  };
-
   const NFTWallet = () => {
     return (
       <div className={styles.section}>
@@ -336,7 +303,7 @@ const Account: NextPage = () => {
           <>
             <h6 className={styles.subtitleAlt}>NFT WALLET</h6>
             <div style={{ display: "flex", marginTop: "-15px" }}>
-              <Image src={Phantom} alt="Phantom logo" />
+              {Phantom && <Image src={Phantom} alt="Phantom logo" />}
               {playerProfile?.airdropWallet && (
                 <p style={{ marginLeft: "20px" }}>
                   {playerProfile?.airdropWallet.address.substr(0, 10)}...
@@ -356,18 +323,12 @@ const Account: NextPage = () => {
               </p>
               {playerProfile?.status?.hatchList && hatchListOpensAtUtc && (
                 <p className={styles.mintWindowDate}>
-                  {dateFormat(
-                    new Date(hatchListOpensAtUtc),
-                    "mmmm dS yyyy, hTT"
-                  )}
+                  {dateFormat(new Date(hatchListOpensAtUtc), DATE_FORMAT)}
                 </p>
               )}
               {playerProfile?.status?.waitList && waitListOpensAtUtc && (
                 <p className={styles.mintWindowDate}>
-                  {dateFormat(
-                    new Date(waitListOpensAtUtc),
-                    "mmmm dS yyyy, hTT"
-                  )}
+                  {dateFormat(new Date(waitListOpensAtUtc), DATE_FORMAT)}
                 </p>
               )}
             </div>
@@ -387,13 +348,13 @@ const Account: NextPage = () => {
 
   return (
     <>
-      {loading ? (
+      {loading || !playerProfile ? (
         <Spinner />
       ) : (
         <>
           <section className={styles.page}>
             <div className={styles.accountBG}>
-              <Image src={AccountBG} alt="background" priority />
+              {AccountBG && <Image src={AccountBG} alt="background" priority />}
             </div>
             <Header title="Account" />
             <Layout>
@@ -499,7 +460,6 @@ const Account: NextPage = () => {
                 </div>
                 <div className={styles.walletDetails}>
                   <div className={styles.wallets}>
-                    <PaymentWallets />
                     <NFTWallet />
                   </div>
                   <div className={styles.sectionMobile}>

@@ -22,6 +22,7 @@ import {
   getNextStep,
   getPercentageComplete,
   showError,
+  updateCompleteSteps,
 } from "../utils/helpers";
 import { UpdateSocialFromOAuthBody } from "../interfaces/api/UpdateSocialFromOAuthBody";
 import { api } from "./_app";
@@ -81,19 +82,26 @@ const Registration: NextPage = () => {
   );
   const router = useRouter();
   const [isDisabled, setIsDisabled] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const init = async () => {
-      setLoading(true);
-
       if (!(await isLoggedIn())) {
         router.push("/");
       }
+    };
+    init();
+  }, [user]);
 
+  useEffect(() => {}, [playerProfile]);
+
+  useEffect(() => {
+    const init = async () => {
       const { state, code } = router.query;
 
       if (state && code) {
+        setLoading(true);
+
         const localState = localStorage.getItem(STATE_KEY);
 
         if (localState === state) {
@@ -103,39 +111,44 @@ const Registration: NextPage = () => {
             codeVerifier: localStorage.getItem(VERIFIER_KEY) || "",
           };
 
-          await api
-            .patch("/api/v1/players/me/twitter", updateSocialFromOAuthBody)
-            .then((response) => {
-              if (!response.ok) {
-                showError(response.originalError.message);
-              }
-            });
+          let response = await api.patch(
+            "/api/v1/players/me/twitter",
+            updateSocialFromOAuthBody
+          );
+
+          if (!response.ok) {
+            showError(response.originalError.message);
+            return;
+          }
+
+          //update profile after twitter update to get handle
+          response = await api.get("/api/v1/players/me");
+
+          if (!response.ok) return;
+
+          const playerProfile = response.data as PlayersMe;
+
+          if (completedSteps && setCompletedSteps && setPlayerProfile) {
+            setPlayerProfile(playerProfile);
+            const completedSteps = getCompletedSteps(playerProfile) || [];
+            setCompletedSteps(completedSteps);
+          }
 
           localStorage.clear();
+          setLoading(false);
         }
 
         router.push("/registration", undefined, { shallow: true });
       }
-
-      await api.get("/api/v1/players/me").then((response) => {
-        if (response.ok) {
-          const playerProfile = response.data as PlayersMe;
-
-          if (setPlayerProfile && playerProfile && setCompletedSteps) {
-            setPlayerProfile(playerProfile);
-            const completedSteps = getCompletedSteps(playerProfile) || [];
-            setCompletedSteps(completedSteps);
-
-            if (completedSteps?.length === 3) {
-              router.push("/account");
-            }
-          }
-        }
-        setLoading(false);
-      });
     };
     init();
   }, [router]);
+
+  useEffect(() => {
+    if (playerProfile && completedSteps && completedSteps.length === 3) {
+      router.push("/account");
+    }
+  }, [completedSteps, playerProfile]);
 
   const onChoseUsernameClick = async () => {
     if (openCompleteSignUpModal) {
@@ -315,8 +328,8 @@ const Registration: NextPage = () => {
                   <span>{METAMASK}</span>
                   <span className={styles.infoTitle}>Address</span>
                   <span>
-                    {playerProfile?.paymentWallet.address.substr(0, 10)}...
-                    {playerProfile?.paymentWallet.address.substr(-4, 4)}
+                    {playerProfile?.paymentWallet?.address?.substr(0, 10)}...
+                    {playerProfile?.paymentWallet?.address?.substr(-4, 4)}
                   </span>
                 </div>
               )}
@@ -419,7 +432,7 @@ const Registration: NextPage = () => {
         <div className={styles.progressTop}>
           <h5>Registration Progress</h5>
           <div className={styles.steps}>
-            <Image width={32} height={32} src={Star} alt="star" />
+            {Star && <Image width={32} height={32} src={Star} alt="star" />}
             <span
               className={styles.altText}
             >{`${completedSteps?.length}/3 Steps Completed`}</span>
@@ -447,7 +460,9 @@ const Registration: NextPage = () => {
           )}`}</p>
         )}
         <div className={styles.registrationDetail}>
-          <Image src={RegistrationDetail} alt="background" />
+          {RegistrationDetail && (
+            <Image src={RegistrationDetail} alt="background" />
+          )}
         </div>
       </div>
     );

@@ -1,120 +1,156 @@
-import { useContext, useEffect, useState } from 'react'
-import dynamic from 'next/dynamic'
-import Link from 'next/link'
-import Image from 'next/image'
-import { isLoggedIn, logoutUser } from '../../services/magic-service'
-import { useRouter } from 'next/router'
-import { UserContext } from '../../contexts/user-context'
-import { MagicLinkModalContext } from '../../contexts/magic-link-modal-context'
-import { AVATARS, GRAY } from '../../utils/constants'
-import React from 'react'
-import Popup from 'reactjs-popup'
-import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
-
-const Button = dynamic(() => import('./button'))
-
-import styles from '../../styles/components/header.module.scss'
-import 'reactjs-popup/dist/index.css'
+import { useContext, useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { logoutUser } from "../../services/magic-service";
+import { useRouter } from "next/router";
+import { UserContext } from "../../contexts/user-context";
+import { MagicLinkModalContext } from "../../contexts/magic-link-modal-context";
+import { AVATARS, GRAY } from "../../utils/constants";
+import React from "react";
+import Popup from "reactjs-popup";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import { useWallet } from "@solana/wallet-adapter-react";
+import { PlayersMe } from "../../interfaces/api/PlayersMe";
 
 //ASSETS
-import Logo from '../../public/images/mfc-logo.svg'
-import LogoWhite from '../../public/images/mfc-logo-white.svg'
-import Twitter from '../../public/images/twitter.svg'
-import Medium from '../../public/images/medium.svg'
-import LinkedIn from '../../public/images/linkedin.svg'
-import Discord from '../../public/images/discord.svg'
-import MenuOpen from '../../public/images/menu-open.svg'
-import MenuClosed from '../../public/images/menu-closed.svg'
-import Dots from '../../public/images/menu-dots.svg'
-import Plus from '../../public/images/menu-plus.svg'
-import { getCompletedSteps } from '../../utils/helpers'
-import DropArrow from '../../public/images/drop-arrow.svg'
-import AccountIcon from '../../public/images/account-icon.svg'
-import LogoutIcon from '../../public/images/logout-icon.svg'
+import Logo from "../../public/images/mfc-logo.svg";
+import LogoWhite from "../../public/images/mfc-logo-white.svg";
+import Twitter from "../../public/images/twitter.svg";
+import Medium from "../../public/images/medium.svg";
+import LinkedIn from "../../public/images/linkedin.svg";
+import Discord from "../../public/images/discord.svg";
+import MenuOpen from "../../public/images/menu-open.svg";
+import MenuClosed from "../../public/images/menu-closed.svg";
+import { getCompletedSteps } from "../../utils/helpers";
+import DropArrow from "../../public/images/drop-arrow.svg";
+import AccountIcon from "../../public/images/account-icon.svg";
+import LogoutIcon from "../../public/images/logout-icon.svg";
+import { api } from "../../pages/_app";
+
+import styles from "../../styles/components/header.module.scss";
+import "reactjs-popup/dist/index.css";
 
 const Navbar = ({}) => {
-  const { openModal } = useContext(MagicLinkModalContext)
-  const { user, setUser, playerProfile } = useContext(UserContext)
-  const [open, setOpen] = useState(false)
-  const router = useRouter()
+  const { setCompletedSteps, setPlayerProfile } = useContext(UserContext);
+  const { openModal } = useContext(MagicLinkModalContext);
+  const { user, setUser, playerProfile } = useContext(UserContext);
+  const [open, setOpen] = useState(false);
+  const router = useRouter();
+  const { disconnect } = useWallet();
 
-  const logout = () => {
-    logoutUser()
+  useEffect(() => {
+    const init = async () => {
 
-    if (setUser) {
-      setUser(null)
+      const response = await api.get("/api/v1/players/me");
+
+      if (!response.ok) return;
+
+      const playerProfile = response.data as PlayersMe;
+      if (setPlayerProfile && playerProfile && setCompletedSteps) {
+        setPlayerProfile(playerProfile);
+        const completedSteps = getCompletedSteps(playerProfile) || [];
+        setCompletedSteps(completedSteps);
+        if (completedSteps.length < 3 && router.pathname === "/account") {
+          router.push("/registration");
+        }
+      }
+    };
+
+    init();
+  }, []);
+
+  const logout = async () => {
+    router.push("/");
+    disconnect();
+    await logoutUser();
+    if (setUser && setCompletedSteps && setPlayerProfile) {
+      setUser(null);
+      setPlayerProfile(null);
+      setCompletedSteps([]);
     }
-    router.push('/')
-  }
+  };
 
   const PlayerIcon = () => {
     const displayName = playerProfile
       ? playerProfile.displayName
-      : user?.email?.substring(0, user?.email?.indexOf('@'))
-    const avatarColor = playerProfile ? playerProfile.avatarColor : GRAY
+      : user?.email?.substring(0, user?.email?.indexOf("@"));
+    const avatarColor = playerProfile ? playerProfile.avatarColor : GRAY;
     const completedSteps = playerProfile
       ? getCompletedSteps(playerProfile) || []
-      : []
+      : [];
 
     return (
       <Popup
-        trigger={open => (
+        trigger={
           <div className={styles.playerIconDesktop}>
             <div className={styles.avatar}>
               <div className={styles.avatarBorder}>
-                <Image
-                  src={AVATARS[avatarColor]}
-                  width={35}
-                  height={35}
-                  alt='avatar'
-                />
+                {avatarColor && AVATARS[avatarColor] && (
+                  <Image
+                    src={AVATARS[avatarColor]}
+                    width={35}
+                    height={35}
+                    alt="avatar"
+                  />
+                )}
               </div>
             </div>
             <p className={styles.displayName}>{displayName}</p>
             <span className={open ? styles.dropArrowOpen : styles.dropArrow}>
-              <Image
-                width={12}
-                height={12}
-                src={DropArrow}
-                alt='dropdown arrow'
-              />
+              {DropArrow && (
+                <Image
+                  width={12}
+                  height={12}
+                  src={DropArrow}
+                  alt="dropdown arrow"
+                />
+              )}
             </span>
           </div>
-        )}
-        position='bottom right'
+        }
+        position="bottom right"
       >
         <ul className={styles.playerDropDown}>
           {completedSteps?.length === 3 ? (
-            <li onClick={() => router.push('/account')}>
-              <Image src={AccountIcon} alt='account icon' />
+            <li onClick={() => router.push("/account")}>
+              {AccountIcon && <Image src={AccountIcon} alt="account icon" />}
               <span>Account</span>
             </li>
           ) : (
-            <li onClick={() => router.push('/registration')}>
-              <Image
-                src={AccountIcon}
-                width={20}
-                height={18}
-                alt='account icon'
-              />
+            <li onClick={() => router.push("/registration")}>
+              {AccountIcon && (
+                <Image
+                  src={AccountIcon}
+                  width={20}
+                  height={18}
+                  alt="account icon"
+                />
+              )}
               <span>Registration</span>
             </li>
           )}
           <li onClick={logout}>
-            <Image width={20} height={12} src={LogoutIcon} alt='account icon' />
+            {LogoutIcon && (
+              <Image
+                width={20}
+                height={12}
+                src={LogoutIcon}
+                alt="account icon"
+              />
+            )}
             <span>Sign Out</span>
           </li>
         </ul>
       </Popup>
-    )
-  }
+    );
+  };
 
   const PlayerIconMobile = () => {
-    const displayName = playerProfile ? playerProfile.displayName : user?.email
-    const avatarColor = playerProfile ? playerProfile.avatarColor : GRAY
+    const displayName = playerProfile ? playerProfile.displayName : user?.email;
+    const avatarColor = playerProfile ? playerProfile.avatarColor : GRAY;
     const completedSteps = playerProfile
       ? getCompletedSteps(playerProfile) || []
-      : []
+      : [];
 
     return (
       <div className={styles.playerIcon}>
@@ -125,7 +161,7 @@ const Navbar = ({}) => {
                 src={AVATARS[avatarColor]}
                 width={35}
                 height={35}
-                alt='avatar'
+                alt="avatar"
               />
             </div>
           </div>
@@ -134,8 +170,8 @@ const Navbar = ({}) => {
             <span
               className={styles.signoutMobile}
               onClick={() => {
-                logout()
-                setOpen(false)
+                logout();
+                setOpen(false);
               }}
             >
               Sign out
@@ -145,8 +181,8 @@ const Navbar = ({}) => {
         {completedSteps.length === 3 ? (
           <li
             onClick={() =>
-              router.push('/account').then(() => {
-                setOpen(false)
+              router.push("/account").then(() => {
+                setOpen(false);
               })
             }
           >
@@ -155,8 +191,8 @@ const Navbar = ({}) => {
         ) : (
           <li
             onClick={() =>
-              router.push('/registration').then(() => {
-                setOpen(false)
+              router.push("/registration").then(() => {
+                setOpen(false);
               })
             }
           >
@@ -164,8 +200,8 @@ const Navbar = ({}) => {
           </li>
         )}
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <header className={styles.navbar}>
@@ -173,20 +209,20 @@ const Navbar = ({}) => {
         <div
           className={styles.logoContainer}
           onClick={() => {
-            setOpen(false)
+            setOpen(false);
           }}
         >
-          <Link href='/' passHref>
+          <Link href="/" passHref>
             <a>
               <img
                 src={LogoWhite.src}
                 className={styles.logo}
-                alt='MechaFightClub logo'
+                alt="MechaFightClub logo"
               />
               <img
                 src={Logo.src}
                 className={styles.logoMobile}
-                alt='MechaFightClub logo'
+                alt="MechaFightClub logo"
               />
             </a>
           </Link>
@@ -194,34 +230,34 @@ const Navbar = ({}) => {
       </div>
       <nav className={styles.navRight}>
         <div onClick={() => setOpen(!open)} className={styles.menuOpen}>
-          <Image src={MenuClosed} alt='menu button' />
+          <Image src={MenuClosed} alt="menu button" />
         </div>
         <div
-          style={{ display: open ? 'block' : 'none' }}
+          style={{ display: open ? "block" : "none" }}
           className={styles.mobileNav}
         >
           <li
             className={styles.socialLogoMobile}
             onClick={() => setOpen(false)}
           >
-            <Link href='http://discord.gg/mechafightclub'>
-              <a target='_blank' rel='noopener noreferrer'>
-                <Image src={Discord} alt='Discord logo' />
+            <Link href="http://discord.gg/mechafightclub">
+              <a target="_blank" rel="noopener noreferrer">
+                <Image src={Discord} alt="Discord logo" />
               </a>
             </Link>
-            <Link href='https://medium.com/@IrreverentLabs'>
-              <a target='_blank' rel='noopener noreferrer'>
-                <Image src={Medium} alt='medium logo' />
+            <Link href="https://medium.com/@IrreverentLabs">
+              <a target="_blank" rel="noopener noreferrer">
+                <Image src={Medium} alt="medium logo" />
               </a>
             </Link>
-            <Link href='http://twitter.com/mechafightclub'>
-              <a target='_blank' rel='noopener noreferrer'>
-                <Image src={Twitter} alt='Twitter logo' />
+            <Link href="http://twitter.com/mechafightclub">
+              <a target="_blank" rel="noopener noreferrer">
+                <Image src={Twitter} alt="Twitter logo" />
               </a>
             </Link>
-            <Link href='https://www.linkedin.com/company/irreverentlabs/'>
-              <a target='_blank' rel='noopener noreferrer'>
-                <Image src={LinkedIn} alt='LinkedIn logo' />
+            <Link href="https://www.linkedin.com/company/irreverentlabs/">
+              <a target="_blank" rel="noopener noreferrer">
+                <Image src={LinkedIn} alt="LinkedIn logo" />
               </a>
             </Link>
           </li>
@@ -230,29 +266,29 @@ const Navbar = ({}) => {
               className={styles.logoContainer}
               onClick={() => setOpen(false)}
             >
-              <Link href='/' passHref>
+              <Link href="/" passHref>
                 <a>
-                  <Image src={Logo} alt='MechaFightClub logo' />
+                  <Image src={Logo} alt="MechaFightClub logo" />
                 </a>
               </Link>
             </div>
             <div onClick={() => setOpen(false)} className={styles.menuClose}>
-              <Image src={MenuOpen} alt='menu button' />
+              <Image src={MenuOpen} alt="menu button" />
             </div>
           </div>
           <nav>
             <ul className={styles.mobileNavLinks}>
               {user && <PlayerIconMobile />}
               <li className={styles.socialLogo} onClick={() => setOpen(false)}>
-                <Link href='/mint'>
+                <Link href="/mint">
                   <a>Mint</a>
                 </Link>
               </li>
               {!user && openModal && (
                 <li
                   onClick={() => {
-                    openModal()
-                    setOpen(false)
+                    openModal();
+                    setOpen(false);
                   }}
                 >
                   Sign Up / Log in
@@ -263,22 +299,22 @@ const Navbar = ({}) => {
         </div>
         <ul className={styles.socialLinks}>
           <li className={styles.socialLogo}>
-            <Link href='http://discord.gg/mechafightclub'>
-              <a target='_blank' rel='noopener noreferrer'>
-                <Image src={Discord} alt='Discord logo' />
+            <Link href="http://discord.gg/mechafightclub">
+              <a target="_blank" rel="noopener noreferrer">
+                <Image src={Discord} alt="Discord logo" />
               </a>
             </Link>
           </li>
           <li className={styles.socialLogo}>
-            <Link href='http://twitter.com/mechafightclub'>
-              <a target='_blank' rel='noopener noreferrer'>
-                <Image src={Twitter} alt='Twitter logo' />
+            <Link href="http://twitter.com/mechafightclub">
+              <a target="_blank" rel="noopener noreferrer">
+                <Image src={Twitter} alt="Twitter logo" />
               </a>
             </Link>
           </li>
         </ul>
-        <WalletMultiButton />
-        <Link href='/mint'>
+        {user && <WalletMultiButton />}
+        <Link href="/mint">
           <div className={styles.mintButton} />
         </Link>
         {!user && openModal && (
@@ -287,7 +323,7 @@ const Navbar = ({}) => {
         {user && <PlayerIcon />}
       </nav>
     </header>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

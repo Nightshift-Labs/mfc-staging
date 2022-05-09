@@ -1,36 +1,34 @@
+import { useState } from 'react'
 import styles from './media.module.scss'
 
-const Scrollbar = ({ state, length }: any) => {
+const Scrollbar = ({ state, length, onUpdate }: any) => {
+  const [mouseDown, setMouseDown] = useState(true)
   const singleWidth = 100 / length
   const width = `${singleWidth}%`
+  const left = `${singleWidth * state}%`
 
-  const stateA = state % (3 * length)
-  const leftA = `${stateA * singleWidth - 100}%`
-  const opacityA = stateA === 0 || stateA === 3 * length - 1 ? 0 : 1
-
-  const stateB = (state + length) % (3 * length)
-  const leftB = `${stateB * singleWidth - 100}%`
-  const opacityB = stateB === 0 || stateB === 3 * length - 1 ? 0 : 1
-
-  const stateC = (state + 2 * length) % (3 * length)
-  const leftC = `${stateC * singleWidth - 100}%`
-  const opacityC = stateC === 0 || stateC === 3 * length - 1 ? 0 : 1
+  const onMouseMove = (e: any) => {
+    if (!mouseDown)
+      return;
+    const target = e.target
+    const rect = target.getBoundingClientRect()
+    const x = e.clientX  - rect.left - rect.width / (2 * length);
+    const perc = Math.max(Math.round((x / rect.width) * length), 0);
+    onUpdate(perc);
+  }
 
   return (
-    <div className={styles.scrollbar}>
+    <div
+      className={styles.scrollbar}
+      onMouseMove={onMouseMove}
+      onMouseDown={() => setMouseDown(true)}
+      onMouseUp={() => setMouseDown(false)}
+    >
       <div className={styles.scrollbarTrack} />
-      <Bar width={width} left={leftA} opacity={opacityA} />
-      <Bar width={width} left={leftB} opacity={opacityB} />
-      <Bar width={width} left={leftC} opacity={opacityC} />
-    </div>
-  )
-}
-
-const Bar = ({ width, left, opacity }: any) => {
-  return (
-    <div className={styles.bar} style={{ width, left, opacity }}>
-      <div className={styles.dot} />
-      <div className={styles.dot} style={{ left: '100%' }} />
+      <div className={styles.bar} style={{ width, left }}>
+        <div className={styles.dot} />
+        <div className={styles.dot} style={{ left: '100%' }} />
+      </div>
     </div>
   )
 }

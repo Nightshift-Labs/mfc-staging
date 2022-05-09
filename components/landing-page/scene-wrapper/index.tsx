@@ -45,23 +45,22 @@ const SceneWrapper = ({
         enabled={true}
         triggerHook='onLeave'
       >
-        {(progress: number) => (
+        {(progress: number) => {
+          return (
           <div className={styles.wrapper}>
-            {!!updateSidebar &&
-              progress > 0 &&
-              progress < 1 &&
-              updateSidebar(progress)}
             {mobile ? (
               <>
                 <ViewWrapper
                   desktop={true}
                   progress={itemHidden ? 0 : progress}
                   child={desktop}
+                  updateSidebar={updateSidebar}
                 />
                 <ViewWrapper
                   desktop={false}
                   progress={itemHidden ? 0 : progress}
                   child={mobile ?? desktop}
+                  updateSidebar={updateSidebar}
                 />
               </>
             ) : (
@@ -69,10 +68,11 @@ const SceneWrapper = ({
                 single={true}
                 progress={itemHidden ? 0 : progress}
                 child={desktop}
+                updateSidebar={updateSidebar}
               />
             )}
           </div>
-        )}
+        )}}
       </Scene>
     </div>
   )

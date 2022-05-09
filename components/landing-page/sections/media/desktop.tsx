@@ -1,20 +1,18 @@
 import MediaCard from './mediaCard'
 import ScrollFader from '../../generic/scrollFader'
 import styles from './media.module.scss'
-const Slider = require('../../generic/slider').default
+
 import moltrez from '../../../../public/images/landingpage/media/moltres.png'
 import { useSwipeable } from 'react-swipeable'
 import { useRef, useState } from 'react'
 import Scrollbar from './scrollbar'
+import { Carousel } from 'react-responsive-carousel'
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const MediaDesktop = ({ progress, mediaCards }: any) => {
   const sliderRef: any = useRef()
 
   const [sliderIndex, setSliderIndex] = useState(0)
-
-  const onChange = (a: number, b: number) => {
-    setSliderIndex(sliderIndex + (b - a))
-  }
 
   const handlers = useSwipeable({
     onSwipedLeft: () => sliderRef.current?.slickNext(),
@@ -50,27 +48,33 @@ const MediaDesktop = ({ progress, mediaCards }: any) => {
             <span>Media</span>
           </div>
           <div className={styles.mediaContainer}>
-            <Slider
-              className={styles.carousel}
-              centerMode={true}
-              arrows={false}
-              swipe={false}
-              centerPadding={250}
-              ref={sliderRef}
-              beforeChange={onChange}
+            <Carousel
+              // className={styles.carousel}
+              // centerMode={true}
+              // arrows={false}
+              // swipe={false}
+              // centerPadding={250}
+              // ref={sliderRef}
+              // beforeChange={onChange}
+              showArrows={false}
+              showStatus={false}
+              showIndicators={false}
+              showThumbs={false}
+              useKeyboardArrows={true}
+              emulateTouch={true}
+              onChange={setSliderIndex}
+              selectedItem={sliderIndex}
             >
               {mediaCards.map((m: any, i: number) => (
                 <div key={i} className={styles.sliderItemWrapper}>
                   <div className={styles.cardContainer}>
-                    <div className={styles.cardWrapper}>
                       <MediaCard {...m} />
-                    </div>
                   </div>
                 </div>
               ))}
-            </Slider>
+            </Carousel>
           </div>
-          <Scrollbar state={sliderIndex} length={mediaCards.length} />
+          <Scrollbar state={sliderIndex} length={mediaCards.length} onUpdate={setSliderIndex} />
         </div>
       </ScrollFader>
     </>
