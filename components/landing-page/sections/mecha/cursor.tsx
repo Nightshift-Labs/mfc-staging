@@ -9,8 +9,8 @@ const Cursor = ({ progress }: any) => {
     0,
     Math.min(
       1,
-      progress < fadeRange
-        ? progress / fadeRange
+      progress < 1 - fadeRange
+        ? 1
         : progress > 1 - fadeRange
         ? (1 - progress) / fadeRange
         : 1
@@ -18,7 +18,7 @@ const Cursor = ({ progress }: any) => {
   )
 
   useEffect(() => {
-    if (progress <= 0 || progress >= 1) return
+    if (progress >= 1) return
 
     const onMouseMove = (e: any) => {
       setMousePos({ top: e.clientY, left: e.clientX })
@@ -29,7 +29,7 @@ const Cursor = ({ progress }: any) => {
   }, [progress])
 
   const { left, top } = mousePos
-  let hideCursor = left < 200 || top < 100;
+  let hideCursor = left < 200 || top < 100
 
   return (
     <div

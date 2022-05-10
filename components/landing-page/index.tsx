@@ -43,11 +43,11 @@ const LandingPage = () => {
   useEffect(() => {
     var checkInterval = setInterval(() => {
       if (document.readyState === 'complete') {
-        setPageLoading(false);
-        clearInterval(checkInterval);
+        setPageLoading(false)
+        clearInterval(checkInterval)
       }
     }, 100)
-    return () => clearInterval(checkInterval);
+    return () => clearInterval(checkInterval)
   }, [])
 
   return (
@@ -90,7 +90,7 @@ const LandingPage = () => {
 
         <SceneWrapper
           id={'landing-details'}
-          desktop={<DetailsSection />}
+          desktop={<DetailsSection toggle={setOverlayVisible}  />}
           duration={5000}
           updateSidebar={(p: any) => updateSidebar(5, p)}
         />
@@ -112,7 +112,7 @@ const LandingPage = () => {
           updateSidebar={(p: any) => updateSidebar(6, p)}
         />
 
-        <NewsMobile news={landingPage.news}/>
+        <NewsMobile news={landingPage.news} />
         <SceneWrapper
           id={'landing-news'}
           hideOnMobile={true}
@@ -125,7 +125,7 @@ const LandingPage = () => {
         <SceneWrapper
           id={'landing-release'}
           hideOnMobile={true}
-          desktop={<ReleaseSection />}
+          desktop={<ReleaseSection/>}
           duration={2000}
           updateSidebar={(p: any) => updateSidebar(8, p)}
         />

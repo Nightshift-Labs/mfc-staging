@@ -3,8 +3,12 @@ import numbers from '../../../../../public/images/flair/numbers.svg'
 import borderCircle from '../../../../../public/images/flair/border-circle.svg'
 import mouse from '../../../../../public/images/flair/mouse.svg'
 import finger from '../../../../../public/images/flair/finger.svg'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Sidebar from '../sidebar'
+import { UserContext } from '../../../../../contexts/user-context'
+import { MintStatusAPIResponse } from '../../../../../interfaces/api/MintStatusAPIResponse'
+import { api } from '../../../../../pages/_app'
+import { SetupTopBarContext } from '../../../../../contexts/topbar-context'
 
 function randomInteger (min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min
@@ -17,6 +21,8 @@ const genNum = () => {
 }
 
 const FlairOverlay = ({ height, visible, sidebarValue }: any) => {
+  const {text: topBarText} = useContext(SetupTopBarContext);
+
   // Params
   const fadePoint = height - 1000
 
@@ -47,6 +53,8 @@ const FlairOverlay = ({ height, visible, sidebarValue }: any) => {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+
+
   return (
     <div
       className={`${styles.wrapper} ${
@@ -57,7 +65,7 @@ const FlairOverlay = ({ height, visible, sidebarValue }: any) => {
       <div className={`${styles.borderline} ${styles.left}`} />
       <div className={`${styles.borderline} ${styles.right}`} />
       <div style={{ opacity }}>
-        <div className={styles.borderLine} />
+        <div className={`${styles.borderLine} ${!!topBarText ? styles.borderLineTopBar : ''}`} />
         <div className={`${styles.borderLine} ${styles.borderLineBottom}`} />
         <div className={styles.borderNumberLeft} style={{ top: ` ${top[0]}%` }}>
           {num[0]}

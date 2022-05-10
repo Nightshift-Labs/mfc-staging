@@ -3,7 +3,9 @@ import DetailsText from './detailsText'
 import DetailsVideo from './detailsVideo'
 import styles from './details.module.scss'
 
-const DetailsSection = ({ progress }: any) => {
+const DetailsSection = ({ progress, toggle }: any) => {
+  if (progress > 0 && progress < 1)
+    toggle (progress <= 0.2)
   return (
     <>
       <div className={styles.textScrollDesktop}>

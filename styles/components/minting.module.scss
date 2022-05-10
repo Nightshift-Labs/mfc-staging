@@ -48,10 +48,6 @@
     @include desktop {
       display: block;
     }
-
-    &::before {
-      content: "57333459 7455";
-    }
   }
 
   .moltrez {
@@ -87,15 +83,15 @@
   left: 40px;
   width: calc(100% - 80px);
   height: 25px;
-  bottom: 100px;
+  bottom: 80px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   @include desktop {
-    width: calc(100% - 400px);
-    left: 200px;
+    width: calc(100% - 440px);
+    left: 220px;
   }
 
   .footerText {
