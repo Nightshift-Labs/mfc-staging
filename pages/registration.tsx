@@ -3,13 +3,12 @@ import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import { getIdToken, isLoggedIn } from "../services/magic-service";
+import { isLoggedIn } from "../services/magic-service";
 import { UserContext } from "../contexts/user-context";
-import { PaymentWalletModalContext } from "../contexts/payment-wallet-modal-context";
 import { OAuthPayload } from "../interfaces/OAuthTokenPayload";
 import {
-  METAMASK,
   PHANTOM,
+  SOLANA,
   STATE_KEY,
   steps,
   VERIFIER_KEY,
@@ -60,6 +59,8 @@ import Step3Icon from "../public/images/account/step-3-sign.svg";
 import Step3NumDone from "../public/images/account/step-3-num-done.svg";
 import Step3IconDone from "../public/images/account/step-3-sign-done.svg";
 import Step3Done from "../public/images/account/step-3-done.svg";
+import { getPhantomAddress } from "../services/wallet-service";
+import { UpdatePaymentWalletBody } from "../interfaces/api/UpdatePaymentWalletBody";
 
 const Header = dynamic(() => import("../components/shared/header"));
 const PageTitle = dynamic(() => import("../components/shared/page-title"));
@@ -74,15 +75,13 @@ const Registration: NextPage = () => {
     setPlayerProfile,
   } = useContext(UserContext);
 
-  const { openModal: openPaymentWalletModal } = useContext(
-    PaymentWalletModalContext
-  );
   const { openModal: openCompleteSignUpModal } = useContext(
     CompleteSignUpModalContext
   );
   const router = useRouter();
   const [isDisabled, setIsDisabled] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [loadingPhantom, setLoadingPhantom] = useState(false);
 
   useEffect(() => {
     const init = async () => {
@@ -92,8 +91,6 @@ const Registration: NextPage = () => {
     };
     init();
   }, [user]);
-
-  useEffect(() => {}, [playerProfile]);
 
   useEffect(() => {
     const init = async () => {
@@ -156,12 +153,6 @@ const Registration: NextPage = () => {
     }
   };
 
-  const onConnectWalletClick = async () => {
-    if (openPaymentWalletModal) {
-      openPaymentWalletModal();
-    }
-  };
-
   const onAuthorizeMFCClick = async () => {
     setIsDisabled(true);
 
@@ -178,6 +169,79 @@ const Registration: NextPage = () => {
     }
 
     setIsDisabled(false);
+  };
+
+  const onConnectPhantom = async () => {
+    setLoadingPhantom(true);
+    let address = "";
+
+    try {
+      address = await getPhantomAddress();
+    } catch (e) {
+      //do nothing
+    }
+
+    if (!address) {
+      setLoadingPhantom(false);
+      return;
+    }
+
+    updatePlayerProfileWithWallet(address, SOLANA);
+  };
+
+  const updatePlayerProfileWithWallet = async (
+    address: string,
+    blockchain: string
+  ) => {
+    if (loadingPhantom) return;
+
+    const updatePaymentWalletBody: UpdatePaymentWalletBody = {
+      blockchain: blockchain,
+      address: address,
+    };
+
+    let response = await api.patch(
+      "/api/v1/players/me/wallets/airdrop",
+      updatePaymentWalletBody
+    );
+
+    if (!response.ok) {
+      if (response?.originalError?.response?.data) {
+        showError(response.originalError.response.data);
+      } else {
+        showError(response.originalError.message);
+      }
+      setLoadingPhantom(false);
+      return;
+    }
+
+    if (completedSteps && setCompletedSteps) {
+      updateCompleteSteps(
+        completedSteps,
+        steps.connectWallet,
+        setCompletedSteps
+      );
+    }
+
+    response = await api.get("/api/v1/players/me");
+
+    if (response.ok) {
+      const playerProfile = response.data as PlayersMe;
+
+      if (setPlayerProfile && playerProfile && setCompletedSteps) {
+        setPlayerProfile(playerProfile);
+      }
+
+      const completedSteps = getCompletedSteps(playerProfile) || [];
+
+      if (completedSteps?.length === 3) {
+        router.push("/account");
+      }
+    } else {
+      if (response.status !== 404) {
+        showError(response.originalError.message);
+      }
+    }
   };
 
   const BasicInformation = () => {
@@ -315,23 +379,11 @@ const Registration: NextPage = () => {
               {!playerProfile?.paymentWallet && !playerProfile?.airdropWallet && (
                 <button
                   className={styles.button}
-                  disabled={!playerProfile}
-                  onClick={() => onConnectWalletClick()}
+                  disabled={!playerProfile || loadingPhantom}
+                  onClick={() => onConnectPhantom()}
                 >
-                  Connect Wallet
+                  {loadingPhantom ? "Waiting..." : "Connect Wallet"}
                 </button>
-              )}
-
-              {playerProfile?.paymentWallet && (
-                <div className={styles.userInfo}>
-                  <span className={styles.infoTitle}>Type</span>
-                  <span>{METAMASK}</span>
-                  <span className={styles.infoTitle}>Address</span>
-                  <span>
-                    {playerProfile?.paymentWallet?.address?.substr(0, 10)}...
-                    {playerProfile?.paymentWallet?.address?.substr(-4, 4)}
-                  </span>
-                </div>
               )}
 
               {!playerProfile?.paymentWallet && playerProfile?.airdropWallet && (

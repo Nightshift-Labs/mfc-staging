@@ -2,10 +2,15 @@ import ScrollFader from '../../generic/scrollFader'
 import DetailsText from './detailsText'
 import DetailsVideo from './detailsVideo'
 import styles from './details.module.scss'
+import { useEffect } from 'react'
 
 const DetailsSection = ({ progress, toggle }: any) => {
-  if (progress > 0 && progress < 1)
+  useEffect(() => {
+    if (progress > 0 && progress < 1)
     toggle (progress <= 0.2)
+  }, [progress])
+
+  
   return (
     <>
       <div className={styles.textScrollDesktop}>

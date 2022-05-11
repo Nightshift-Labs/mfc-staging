@@ -202,7 +202,7 @@ input[type="checkbox"]:checked::before {
 
 .spinner {
   width: 100vw;
-  height: 40vw;
+  height: calc(100vh - 150px);
   background-color: black;
   z-index: 50;
   display: flex;
@@ -310,19 +310,10 @@ input[type="checkbox"]:checked::before {
   text-align: center;
   justify-content: center;
   align-items: center;
-  // clip-path: polygon(0px 0px, calc(100% - 18px) 0 , 100% 18px, 100% 100%, 0px 100%);
+  clip-path: polygon(0px 0px, calc(100% - 18px) 0 , 100% 18px, 100% 100%, 0px 100%);
   // background-color: $color-primary !important;
-  background-image: url("../public/images/landingpage/button-wallet.svg") !important;
-  background-size: cover;
-  background-position: center;
-  background-color: transparent !important;
-  color: black !important;
-  font-weight: 700 !important;
+  color: $color-primary !important;
 
-  &:hover {
-    color: $color-primary !important;
-    background-image: url("../public/images/landingpage/button-wallet-hover.svg") !important;
-  }
 
   @include desktop {
     display: flex !important;
