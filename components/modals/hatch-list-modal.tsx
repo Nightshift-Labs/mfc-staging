@@ -42,7 +42,7 @@ const HatchListModal = ({ isOpen, closeModal }: ModalProps) => {
         isOpen={isOpen}
         closeModal={closeModal}
         title="Congratulations! you are on the hatchlist!"
-        text="You can view your exact minting time on your profile page."
+        text="Your minting window is available on your profile home page. Don't miss your window or you will lose your chance to mint!"
         button1={{
           click: () => closeModal(),
           text: "View Profile",
@@ -50,7 +50,7 @@ const HatchListModal = ({ isOpen, closeModal }: ModalProps) => {
       />
     );
   }
-
+ 
   if (playerProfile?.status?.waitList) {
     return (
       <HatchModalContent
@@ -71,8 +71,7 @@ const HatchListModal = ({ isOpen, closeModal }: ModalProps) => {
       isOpen={isOpen}
       closeModal={closeModal}
       title="You are not on the hatchlist"
-      text="For updates on when the next entry is, follow us on Twitter and join
-      our Discord."
+      text="To increase your chances at being added to the hatchlist, get involved with the MFC community!"
       button1={{
         click: () =>
           window.open("https://twitter.com/mechafightclub", "_blank"),

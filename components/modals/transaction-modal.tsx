@@ -55,6 +55,22 @@ const TransactionModal = ({
         return "Payment in Progress";
     }
   };
+  const getTransactionMessage = () => {
+    switch (status) {
+      case PurchaseStatus.Waiting:
+        return "Your transaction will be completed soon. We will let you know if there are any unexpected problems.";
+      case PurchaseStatus.Confirmed:
+        return "We have successfully confirmed your payment. We are preparing to send your mint confirmation!";
+      case PurchaseStatus.Transferring:
+        return "We are transferring your mint confirmation to your wallet. WARNING: Attempting to sell or transfer your mint confirmation may void your EGG mint.";
+      case PurchaseStatus.Completed:
+        return "";
+      case PurchaseStatus.Expired:
+        return "";
+      default:
+        return "We are processing your payment. Once your payment and transaction is complete, you will be sent your mint confirmation!";
+    }
+  };
 
   const getStatusIcon = () => {
     switch (status) {
@@ -82,10 +98,7 @@ const TransactionModal = ({
     >
       <div className={styles.outline}>
         <h3>{getTransactionTitle()}</h3>
-        <p>
-          Ut augue nisi, mollis nec vehicula vitae, pulvinar a ligula. Curabitur
-          molestie laoreet ultrices. Etiam vulputate mollis fringilla.
-        </p>
+        <p>{getTransactionMessage()}</p>
         <div className={styles.status}>{getStatusIcon()}</div>
         <div className={styles.buttonWrapper}>
           <Button

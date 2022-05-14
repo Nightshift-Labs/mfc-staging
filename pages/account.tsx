@@ -211,18 +211,23 @@ const Account: NextPage = () => {
       address: address,
     };
 
-    await api
-      .patch("/api/v1/players/me/wallets/airdrop", updateAirdropWalletBody)
-      .then((response) => {
-        if (!response.ok) {
-          showError(response.originalError.message);
-          setIsDisabled(false);
-          return;
-        }
+    const response = await api.patch(
+      "/api/v1/players/me/wallets/airdrop",
+      updateAirdropWalletBody
+    );
 
-        updateProfile();
-        setIsDisabled(false);
-      });
+    if (!response.ok) {
+      if (response.status === 400) {
+        showError(response.data as string);
+      } else {
+        showError(response.originalError.message);
+      }
+      setIsDisabled(false);
+      return;
+    }
+
+    updateProfile();
+    setIsDisabled(false);
   };
 
   const updateProfile = async () => {
@@ -336,9 +341,9 @@ const Account: NextPage = () => {
         {mintPassComplete && (
           <div className={styles.mindPassOwn}>
             <p className={styles.mobileOnly}>
-              <span className={styles.icon} /> You own a Mint Pass
+              <span className={styles.icon} /> Your own a mint confirmation:
             </p>
-            <p>You own a Mint Pass:</p>
+            <p>Your own a mint confirmation:</p>
             <div className={styles.mintLogo} />
           </div>
         )}

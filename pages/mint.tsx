@@ -49,17 +49,17 @@ const Mint: NextPage = () => {
   const [priceInUsd, setPriceInUsd] = useState(0);
   const [mintPassComplete, setMintPassComplete] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [disabledPrePaySol, setDisabledPrePaySol] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const { connection } = useConnection();
   const { publicKey, sendTransaction } = useWallet();
 
   useEffect(() => {
-    setLoading(true);
+    //load for 2.5 seconds as the states update accordingly
     setTimeout(() => {
       setLoading(false);
-    }, 1500);
+    }, 2500);
   }, []);
 
   useEffect(() => {
@@ -333,7 +333,7 @@ const Mint: NextPage = () => {
     (!playerProfile.status?.hatchList && !playerProfile.status?.waitList)
   ) {
     const title = !user
-      ? "Please login to mint"
+      ? "Please log in to mint"
       : "You are not on the hatchlist";
     content = {
       title,
@@ -376,8 +376,8 @@ const Mint: NextPage = () => {
   // Mint Pass Complete
   else if (mintPassComplete) {
     content = {
-      title: "Mint Pass Complete",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vel hendrerit ante. Maecenas ligula urna, laoreet eu rhoncus sed, interdum non ante pellentesque ",
+      title: "MINT CONFIRMATION... CONFIRMED",
+      text: "Congratulations, you have completed the confirmation process! You will be airdropped your MFC EGG when all mint confirmations have been claimed. NOTE: Attempting to sell or transfer your mint confirmation between wallets may void your airdrop without refund.",
       buttonA: {
         click: () => onViewTransactions(),
         text: "View Transactions",
@@ -392,14 +392,14 @@ const Mint: NextPage = () => {
   // Missed Minting Window
   else if (hasMissedHatchListMint() || hasMissedWaitListMint()) {
     content = {
-      title: "Missed your minting window",
+      title: "SORRY, BUT THE MINTING WINDOW ALREADY CLOSED",
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vel hendrerit ante. Maecenas ligula urna, laoreet eu rhoncus sed, interdum non ante pellentesque ",
     };
   }
   // Before Minting Window
   else if (isBeforeHatchListMint() || isBeforeWaitListMint()) {
     content = {
-      title: "Your minting window is soon",
+      title: "PREPARE YOURSELF! THE MINT WINDOW IS OPENING SOON.",
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vel hendrerit ante. Maecenas ligula urna, laoreet eu rhoncus sed, interdum non ante pellentesque ",
       windowTitle: "Your mint window is at:",
       windowText: mintingWindow,
@@ -409,7 +409,7 @@ const Mint: NextPage = () => {
   else {
     // Able to Mint
     content = {
-      title: "Get Your Mint Pass",
+      title: "CLAIM YOUR MINT CONFIRMATION",
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vel hendrerit ante. Maecenas ligula urna, laoreet eu rhoncus sed, interdum non ante pellentesque ",
       buttonA: {
         click: () => onPrePaySol(),
