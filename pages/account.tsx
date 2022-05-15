@@ -66,7 +66,7 @@ const Account: NextPage = () => {
   const [available, setAvailable] = useState(0);
   const [mintPassComplete, setMintPassComplete] = useState(false);
   const [cookies, setCookie] = useCookies([MODAL_COOKIE_KEY]);
-
+  const [mintPassAddress, setMintPassAddress] = useState("");
   const { connection } = useConnection();
 
   useEffect(() => {
@@ -103,17 +103,7 @@ const Account: NextPage = () => {
       setWaitListOpen(mintStatus.result?.waitListOpen || false);
       setWaitListOpensAtUtc(mintStatus.result?.waitListOpensAtUtc || "");
       setAvailable(mintStatus.result?.available || 0);
-
-      //check if user has a mint pass
-      try {
-        const mintPassAddress = mintStatus.result?.mintAddress;
-        const airDropAddress = playerProfile?.airdropWallet.address;
-        setMintPassComplete(
-          await hasMintPass(mintPassAddress, airDropAddress, connection)
-        );
-      } catch (e) {
-        //if this fails user has not minted
-      }
+      setMintPassAddress(mintStatus.result?.mintAddress || "");
 
       setLoading(false);
     };
@@ -176,6 +166,22 @@ const Account: NextPage = () => {
     };
     init();
   }, [router]);
+
+  useEffect(() => {
+    const init = async () => {
+      //check if user has a mint pass
+      try {
+        if (!mintPassAddress) return;
+        const airDropAddress = playerProfile?.airdropWallet.address;
+        setMintPassComplete(
+          await hasMintPass(mintPassAddress, airDropAddress, connection)
+        );
+      } catch (e) {
+        //if this fails user has not minted
+      }
+    };
+    init();
+  }, [playerProfile?.airdropWallet?.address, mintPassAddress]);
 
   const closePickAvatarModal = () => {
     setIsPickAvatarModalOpen(false);

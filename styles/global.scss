@@ -268,17 +268,6 @@ input[type="checkbox"]:checked::before {
   }
 }
 
-// .coinbase-commerce-iframe {
-//   display: none;
-//   height: 80%;
-//   width: 600px;
-//   margin: 0 auto;
-//   position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-// }
-
 .ReactModal__Overlay {
   opacity: 0;
   transform: scale(0.7);
@@ -324,7 +313,7 @@ input[type="checkbox"]:checked::before {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 99999999;
+  z-index: 99999999 !important;
 }
 
 .slider-wrapper  {

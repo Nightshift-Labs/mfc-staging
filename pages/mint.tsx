@@ -17,8 +17,6 @@ import { hasMintPass, isProfileReadyForMint } from "../utils/helpers";
 import TransactionModal from "../components/modals/transaction-modal";
 import MintingLayout from "../components/minting";
 import { api } from "./_app";
-import { PlayersMe } from "../interfaces/api/PlayersMe";
-import { isLoggedIn } from "../services/magic-service";
 import Spinner from "../components/spinner";
 import MintingMobileBlocker from "../components/minting/mobile";
 import { MintingProps } from "../interfaces/MintingProps";
@@ -51,9 +49,12 @@ const Mint: NextPage = () => {
   const [isMobileView, setIsMobileView] = useState(false);
   const [loading, setLoading] = useState(true);
   const [disabledPrePaySol, setDisabledPrePaySol] = useState(false);
+  const [solLoading, setSolLoading] = useState(false);
+  const [ethLoading, setEthLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const { connection } = useConnection();
   const { publicKey, sendTransaction } = useWallet();
+  const [mintPassAddress, setMintPassAddress] = useState("");
 
   useEffect(() => {
     //load for 2.5 seconds as the states update accordingly
@@ -101,9 +102,17 @@ const Mint: NextPage = () => {
       setPending(mintStatus.result?.pending || 0);
       setConfirmed(mintStatus.result?.claimed || 0);
 
+      setMintPassAddress(mintStatus.result?.mintAddress || "");
+    };
+    init();
+  }, []);
+
+  useEffect(() => {
+    const init = async () => {
       //check if user has a mint pass
       try {
-        const mintPassAddress = mintStatus.result?.mintAddress;
+        if (!mintPassAddress) return;
+
         const airDropAddress = playerProfile?.airdropWallet?.address;
 
         if (await hasMintPass(mintPassAddress, airDropAddress, connection)) {
@@ -126,14 +135,16 @@ const Mint: NextPage = () => {
       }
     };
     init();
-  }, []);
+  }, [playerProfile?.airdropWallet?.address, mintPassAddress]);
 
   const onPrePayEth = async () => {
+    setEthLoading(true);
     try {
       const response = await api.post("/api/v1/payments/create/ethereum");
 
       if (!response.ok) {
         console.log(response.originalError.message);
+        setEthLoading(false);
         return;
       }
 
@@ -141,6 +152,7 @@ const Mint: NextPage = () => {
 
       if (!result.success) {
         toast.error(result.message);
+        setEthLoading(false);
         return;
       }
 
@@ -153,12 +165,15 @@ const Mint: NextPage = () => {
     } catch (e) {
       toast.error((e as Error).message);
     }
+    setEthLoading(false);
   };
 
   const onPrePaySol = async () => {
+    setSolLoading(true);
     try {
       if (!publicKey) {
         toast.error("Please connect your wallet");
+        setSolLoading(false);
         return;
       }
 
@@ -166,6 +181,7 @@ const Mint: NextPage = () => {
 
       if (!response.ok) {
         console.log(response);
+        setSolLoading(false);
         return;
       }
 
@@ -173,12 +189,14 @@ const Mint: NextPage = () => {
 
       if (!result.success) {
         toast.error(result.message);
+        setSolLoading(false);
         return;
       }
 
       //check for pending ethereum transaction
       if (result.success && result.result?.type === PurchaseType.Ethereum) {
         toast.error("You have a pending ETH request.");
+        setSolLoading(false);
         return;
       }
 
@@ -219,6 +237,7 @@ const Mint: NextPage = () => {
         console.log((e as Error).message);
       }
     }
+    setSolLoading(false);
   };
 
   const onTrackTransaction = async () => {
@@ -414,10 +433,14 @@ const Mint: NextPage = () => {
       buttonA: {
         click: () => onPrePaySol(),
         text: "Mint with SOL",
+        loading: solLoading,
+        disabled: solLoading || ethLoading,
       },
       buttonB: {
         click: () => onPrePayEth(),
         text: "Mint with ETH",
+        loading: ethLoading,
+        disabled: solLoading || ethLoading,
       },
       windowTitle: "Your mint window is now LIVE",
       windowText: mintingWindow,

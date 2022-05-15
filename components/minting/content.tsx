@@ -70,8 +70,8 @@ const MintingContent = ({
               <div>
                 <Button
                   click={buttonA.click}
-                  text={buttonA.text}
-                  disabled={showCommerceButton}
+                  text={!!buttonA.loading ? 'Loading...' : buttonA.text}
+                  disabled={!!buttonA.disabled || showCommerceButton}
                   link=''
                   type='primary'
                   icon={false}
@@ -101,10 +101,11 @@ const MintingContent = ({
               <div>
                 <Button
                   click={buttonB.click}
-                  text={buttonB.text}
+                  text={!!buttonB.loading ? 'Loading...' : buttonB.text}
                   link=''
                   type='secondary'
                   icon={false}
+                  disabled={!!buttonB.disabled}
                 />
               </div>
             ) : (

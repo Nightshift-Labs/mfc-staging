@@ -28,4 +28,6 @@ type CommerceData = {
 type MintingButton = {
   click: MouseEventHandler<HTMLButtonElement>;
   text: string;
+  loading?: boolean;
+  disabled?: boolean;
 };
