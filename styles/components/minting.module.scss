@@ -7,7 +7,7 @@
   top: 0;
   left: 0;
   user-select: none;
-  z-index: -1;
+  z-index: 100;
   overflow: hidden;
   pointer-events: none;
 
@@ -18,6 +18,7 @@
     width: 1px;
     top: 0;
     left: 40px;
+    z-index: 100;
 
     @include desktop {
       left: 200px;
@@ -173,20 +174,24 @@
       @include desktop {
         display: block;
       }
+      video {
+        height: 100%;
+        max-height: 400px;
+        width: 100%;
+      }
+    }
 
-      height: 100%;
-      width: 100%;
-      background-image: url("../../public/images/mintinglogo2.png");
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: contain;
+    .layoutWrapper {
+      display: flex;
+      align-items: center;
     }
 
     .layout {
-      height: 100%;
+      height: auto;
       width: 100%;
       display: grid;
-      grid-template-rows: auto auto auto 1fr auto auto;
+      grid-template-rows: auto auto auto auto auto auto;
+
 
       .minting {
         height: 36px;
@@ -217,6 +222,7 @@
       .title {
         text-transform: uppercase;
         font-size: 32px;
+        line-height: 40px;
         font-family: $font-secondary;
         margin-bottom: 30px;
       }
@@ -230,7 +236,8 @@
         margin-bottom: 30px;
 
         @include desktop {
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: auto 1fr;
+          column-gap: 100px;
           grid-template-rows: 1fr;
         }
 
@@ -354,10 +361,11 @@
     .logo {
       height: 100%;
       width: 100%;
-      background-image: url("../../public/images/mintinglogo2.png");
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: contain;
+      
+      video {
+        height: 50vh;
+        width: 100%;
+      }
     }
 
     .layout {
@@ -468,10 +476,12 @@
   .logo {
     height: 300px;
     width: 100%;
-    background-image: url("../../public/images/mintinglogo2.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
+    margin-bottom: 50px;
+    
+    video {
+      max-height: 300px;
+      width: 100%;
+    }
   }
 
   .layout {

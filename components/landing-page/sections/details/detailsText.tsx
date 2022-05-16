@@ -4,17 +4,10 @@ const DetailsText = () => {
   return (
       <div className={styles.detailsTextWrapper}>
         <div className={styles.detailsLiberation}>
-          Liberated peoples of earth, take notice! Claim and train your mechabot
-          now to join MFC, the craziest combat arena since Rome&apos;s colleseum.
+        Claim and train your artificially-intelligent mechabot in the craziest combat arena ever created!
         </div>
         <div className={styles.detailsText}>
-          MFC is coming to liberate a city near you! We&apos;re releasing{' '}
-          <span>6,969 fully-fertilized EGGs</span> which will hatch into MFC
-          mechabots. They&apos;ll fight and breed for you. They&apos;re powered by lost
-          alien technologies beyond human comprehension, so supplies are
-          extremely limited! This is the first batch of{' '}
-          <span>only 41,000 total EGGs on Earth</span>, and we plan to find and
-          distribute every last one of them!
+          MFC is reinventing entertainment, starting with the release of <span>6,969 EGGs</span>, alien technology used to generate truly unique mechabots! Each Mechabot will train, fight, compete and breed for you, earning BokBoks based on human engagement and performance. Only <span>41,000 genesis mechabots</span> can ever be produced, one for each EGG left on Earth by the advanced Satoshi aliens.
         </div>
       </div>
   )

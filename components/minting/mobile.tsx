@@ -13,7 +13,11 @@ const MintingMobileBlocker = ({
   return (
     <div className={styles.mobileContent}>
       <div className={styles.mobileFlair} />
-      <div className={styles.logo} />
+      <div className={styles.logo}>
+        <video autoPlay playsInline loop muted={true}>
+          <source type="video/mp4" src="images/mint.mp4" />
+        </video>
+      </div>
       <div className={styles.layout}>
         {/* Green Title */}
         <div className={styles.minting}>MINTING</div>

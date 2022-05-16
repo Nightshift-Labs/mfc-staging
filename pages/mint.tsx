@@ -49,18 +49,18 @@ const Mint: NextPage = () => {
   const [isMobileView, setIsMobileView] = useState(false);
   const [loading, setLoading] = useState(true);
   const [disabledPrePaySol, setDisabledPrePaySol] = useState(false);
-  const [solLoading, setSolLoading] = useState(false);
-  const [ethLoading, setEthLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const { connection } = useConnection();
   const { publicKey, sendTransaction } = useWallet();
+  const [solLoading, setSolLoading] = useState(false);
+  const [ethLoading, setEthLoading] = useState(false);
   const [mintPassAddress, setMintPassAddress] = useState("");
 
   useEffect(() => {
-    //load for 2.5 seconds as the states update accordingly
+    //load for 3 seconds as the states update accordingly
     setTimeout(() => {
       setLoading(false);
-    }, 2500);
+    }, 3000);
   }, []);
 
   useEffect(() => {

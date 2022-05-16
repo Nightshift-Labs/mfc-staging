@@ -1,23 +1,23 @@
 {
   "infoCards": [
     {
-      "title": "These are the thinky bits",
-      "content": "MFC's mechabots are powered by highly advanced artificial intelligence and lifelike reproduction processes, making them change and evolve over time and across generations.",
+      "title": "BIG ROOSTER ENERGY",
+      "content": "Mechabots were created specifically to befriend, amuse, and reproduce for humanity. Each will be a truly unique friend who will develop experiences and attachments to its human trainer. They will earn as they compete in a variety of challenges against other mechabots and will even learn over time.",
       "img": "images/landingpage/info-cards/1.png"
     },
     {
-      "title": "For the rooster lovers out there",
-      "content": "In the early days, alien mechabots came in many form factors. From worms to weird ukelele-shaped monsters with EMP weapons that would disrupt your dreams, they've come a long way in the last century!",
+      "title": "BETTER THAN LIFE",
+      "content": "Unlike real bird — which are mostly goo and feathers — mechabots have bodies made of alien materials too advanced for the human mind to comprehend: Pulsar Plastic, Gold Standard, Synthetic Silver, Buterin Bronze, Finney Fiber, Doge Diamond and Satoshi Sapphire. They also have five bionics; rarer bionics improve a mechabot's natural talents.",
       "img": "images/landingpage/info-cards/2.png"
     },
     {
-      "title": "Urk Reactor",
-      "content": "Did you know that a single URK reactor uses alien technology to produce more power than 700 nuclear bombs? And your mech will have three!",
+      "title": "BIG MECHABOT ENERGY",
+      "content": "At around 1 meter tall, MFC's mechabots are the most advanced technology humans have ever harnessed. Their advanced artificial intelligence means they change over time! Lifelike reproduction simulations means the population will evolve across generations.",
       "img": "images/landingpage/info-cards/3.png"
     },
     {
-      "title": "Your Bionic Birdies",
-      "content": "Your mechabot will be just like you... except you're made of goo and they're made of alien materials too advanced for the human mind to comprehend! Some mechabots even hatch with irreplaceably-rare bionic claws, beaks and other parts!",
+      "title": "THE MECHABOT AND THE EGG",
+      "content": "Mechabots start life as electroweapon genome generators (or EGGs) and hatch together in The Hatchening. Before hatching, there's no indication what kind of mechabot an EGG will produce. Will you have a monster fighter, a clever problem solver, an aesthetic dinamo, a breeding stud or a well-rounded friend?",
       "img": "images/landingpage/info-cards/4.png"
     }
   ],
@@ -25,37 +25,37 @@
     {
       "date": "SPRING 2022",
       "title": "GENESIS",
-      "content": "Due to widespread demand, MFC is finally making mechabot ownership a public option, starting with 6969 pre-fertilized, highly potent EGGs. Based on our calculations, EGGs should take just a couple of weeks to incubate before you're ready to train your sorta-living new best friend for arena combat!",
+      "content": "Ready to meet your new sorta-living best friend? MFC will distribute 6,969 pre-fertilized, highly potent EGGs. After a short incubation period, these EGGs will hatch into unique Mechabots! Once you own an EGG, you'll be able to see its vitals and a countdown timer to the Hatchening. To get on the hatchlist, sign up and get active in the MFC community!",
       "img": "images/roadmap/1.svg"
     },
     {
       "date": "SPRING 2022",
       "title": "THE HATCHENING™",
-      "content": "MFC's first chapter begins as the first 6969 EGGs finish incubating and hatch new intelligent life, each with a provenance card which entitles your mechabot to fight and train in MFC's official arenas!",
+      "content": "All EGGs from the initial drop will hatch at once, creating the first ever batch of MFC mechabots. After enjoying your mechabot's first moments of artificial life, you'll be able to see, explore and share your mechabot's aesthetics and rarity. Later in the year, you'll be able to train and even compete with your mechabot in the Cockpit.",
       "img": "images/roadmap/2.svg"
     },
     {
-      "date": "SPRING 2022",
+      "date": "SUMMER 2022",
       "title": "WELCOME TO THE COCKPIT™",
-      "content": "Genesis continues with another exclusive round of EGGs for MFC's early-bird supporters. Around this time, we'll have constructed the Las Vegas Cockpit, the first-ever MFC amateur fighting arena. Don't worry, you can send your bird to fight from anywhere.",
+      "content": "After months of construction, the first-ever MFC amateur fighting arena, the Las Vegas Cockpit, will open! You can send your mechabot to fight, earn and train in preparation for the major league professional fights.",
       "img": "images/roadmap/3.svg"
     },
     {
-      "date": "SUMMER 2022",
+      "date": "AUTUMN 2022",
       "title": "THE COCKTAGON™",
-      "content": "MFC is the official sport of the liberated peoples of Earth! MFC's premiere professional tournament arena, the Cocktagon, finishes completion and we're throwing the first-ever global tournament! Glory and breeding elitism waits for the champions of the Cocktagon.",
+      "content": "MFC Mechabots will enter the first iteration of tournament-tier competition in The Cocktagon. The first-ever global tournament will bring glory and breeding demand for its elite champions, and winners will be permanently written into MFC's historical record.",
       "img": "images/roadmap/4.svg"
     },
     {
-      "date": "SUMMER 2022",
+      "date": "AUTUMN 2022",
       "title": "WEN BREEDING?!",
-      "content": "Soon after the Cocktagon, Genesis generation mechabots will reach breeding maturity! Only 2 in 5 mechabots are hens, which we've found to be more intelligent. Around this time, more about our new world order will be revealed.",
+      "content": "Genesis generation mechabots will reach breeding maturing after a set amount of experience. Two in five mechabots are hens, which also tend to be more clever than roosters, and will play a special role in breeding the next generation of mechabot competitors. More information about the world of MFC will be revealed with lore, art, broadcasting and platform updates.",
       "img": "images/roadmap/5.svg"
     },
     {
-      "date": "SUMMER 2022",
+      "date": "(TBD 2022)",
       "title": "RECOMBINATION",
-      "content": "Without EGGs, there are no more mechs. There's only so many EGGs on Earth, and they're all being horded by the corporate war machine. With your help, MFC's agents plan to recover all 41,000 and make them available so YOU can breed the next generations of prize fighters!",
+      "content": "Without EGGs, there are no more genesis Mechabots. There's only 41,000 EGGs on Earth, and MFC intends to reclaim all of them from the corporate war machine. As we liberate more cities, new limited drops will offer genesis Mechabots, each with unique traits linked to their city.",
       "img": "images/roadmap/6.svg"
     }
   ],
@@ -88,6 +88,7 @@
       "linkedIn": "https://www.linkedin.com/in/amarsood0/",
       "twitter": "https://twitter.com/soodlum",
       "insta": "",
+      "imdb": "",
       "img": "/images/team/amar.png"
     },
     {
@@ -95,6 +96,7 @@
       "linkedIn": "https://www.linkedin.com/in/craigowenby",
       "twitter": "https://twitter.com/MiamiVice_sol",
       "insta": "",
+      "imdb": "",
       "img": "/images/team/craig.png"
     },
     {
@@ -102,6 +104,7 @@
       "linkedIn": "https://www.linkedin.com/in/davidraskino/",
       "twitter": "https://twitter.com/goofydr1",
       "insta": "",
+      "imdb": "",
       "img": "/images/team/david.png"
     },
     {
@@ -109,6 +112,7 @@
       "linkedIn": "",
       "twitter": "https://twitter.com/metagear2600",
       "insta": "https://www.instagram.com/metagear2600/?hl=en",
+      "imdb": "",
       "img": "/images/team/gear.png"
     },
     {
@@ -116,6 +120,7 @@
       "linkedIn": "",
       "twitter": "https://twitter.com/officialgodard2",
       "insta": "https://www.instagram.com/officialgodard2/",
+      "imdb": "",
       "img": "/images/team/maddi.png"
     },
     {
@@ -123,6 +128,7 @@
       "linkedIn": "",
       "twitter": "",
       "insta": "https://www.instagram.com/SkillsAndVariety/",
+      "imdb": "",
       "img": "/images/team/mcsav.png"
     },
     {
@@ -130,6 +136,7 @@
       "linkedIn": "",
       "twitter": "https://twitter.com/michael_moodie",
       "insta": "",
+      "imdb": "",
       "img": "/images/team/moodie.png"
     },
     {
@@ -137,6 +144,7 @@
       "linkedIn": "https://www.linkedin.com/in/serialceo/",
       "twitter": "https://twitter.com/rahulsood",
       "insta": "",
+      "imdb": "",
       "img": "/images/team/rahul.png"
     },
     {
@@ -144,6 +152,7 @@
       "linkedIn": "",
       "twitter": "",
       "insta": "",
+      "imdb": "",
       "img": "/images/team/rasheed.png"
     },
     {
@@ -151,7 +160,40 @@
       "linkedIn": "https://www.linkedin.com/in/ryan-jurado/",
       "twitter": "https://twitter.com/TheWonderCow",
       "insta": "",
+      "imdb": "",
       "img": "/images/team/ryan.png"
+    },
+    {
+      "name": "Kwame",
+      "linkedIn": "",
+      "twitter": "https://twitter.com/Darkmythst1",
+      "insta": "",
+      "imdb": "https://www.imdb.com/name/nm4085364/",
+      "img": "/images/team/amar.png"
+    },
+    {
+      "name": "Thibault",
+      "linkedIn": "https://www.linkedin.com/in/thibault-reichelt/",
+      "twitter": "",
+      "insta": "",
+      "imdb": "",
+      "img": "/images/team/craig.png"
+    },
+    {
+      "name": "David",
+      "linkedIn": "",
+      "twitter": "https://twitter.com/david_fbx",
+      "insta": "",
+      "imdb": "",
+      "img": "/images/team/moodie.png"
+    },
+    {
+      "name": "Rasheed",
+      "linkedIn": "https://www.linkedin.com/in/rasheed-rajabzadeh-705047103",
+      "twitter": "https://twitter.com/TheWonderCow",
+      "insta": "",
+      "imdb": "",
+      "img": "/images/team/david.png"
     }
   ],
   "mecha": [

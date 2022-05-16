@@ -8,7 +8,6 @@ const MintingFlair = () => {
       <div className={styles.dashed} />
       <div className={styles.numbers} style={{ top: 270, left: 125 }} >57333459 7455</div>
       <div className={styles.numbers} style={{ top: 370, right: 180 }}>619142 751455</div>
-      <div className={styles.moltrez} />
     </div>
   );
 };

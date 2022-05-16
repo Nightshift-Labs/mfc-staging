@@ -349,8 +349,12 @@ const Account: NextPage = () => {
             <p className={styles.mobileOnly}>
               <span className={styles.icon} /> Your own a mint confirmation:
             </p>
-            <p>Your own a mint confirmation:</p>
-            <div className={styles.mintLogo} />
+            <p>You own a Mint Pass:</p>
+            <div className={styles.mintlogo}>
+              <video autoPlay playsInline loop muted={true}>
+                <source type="video/mp4" src="images/mint.mp4" />
+              </video>
+            </div>
           </div>
         )}
       </div>

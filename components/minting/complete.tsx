@@ -1,12 +1,16 @@
-import Button from "../shared/button";
-import { MintingProps } from "../../interfaces/MintingProps";
+import Button from '../shared/button'
+import { MintingProps } from '../../interfaces/MintingProps'
 
-import styles from "../../styles/components/minting.module.scss";
+import styles from '../../styles/components/minting.module.scss'
 
 const MintingComplete = ({ title, text, buttonA, buttonB }: MintingProps) => {
   return (
     <div className={styles.complete}>
-      <div className={styles.logo} />
+      <div className={styles.logo}>
+        <video autoPlay playsInline loop muted={true}>
+          <source type='video/mp4' src='images/mint.mp4' />
+        </video>
+      </div>
       <div className={styles.layout}>
         {/* Large title */}
         <div className={styles.title}>{title}</div>
@@ -20,8 +24,8 @@ const MintingComplete = ({ title, text, buttonA, buttonB }: MintingProps) => {
             <Button
               click={buttonA.click}
               text={buttonA.text}
-              link=""
-              type="primary"
+              link=''
+              type='primary'
               icon={false}
             />
           ) : null}
@@ -29,15 +33,15 @@ const MintingComplete = ({ title, text, buttonA, buttonB }: MintingProps) => {
             <Button
               click={buttonB.click}
               text={buttonB.text}
-              link=""
-              type="secondary"
+              link=''
+              type='secondary'
               icon={false}
             />
           ) : null}
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default MintingComplete;
+export default MintingComplete

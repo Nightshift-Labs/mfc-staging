@@ -87,13 +87,10 @@ const DetailsVideo = ({ progress }: any) => {
           <Numbers className={styles.numbers} />
           <div className={styles.title}>
             <div className={styles.titleHeader}>
-              Exploring <span>The MFC Mechabot</span>
+              WHAT IS <span>The MFC Mechabot</span>
             </div>
             <div className={styles.titleContent}>
-              Thanks to our recent successes reclaiming EGGs from the overlords,
-              we&apos;ve erradicated the bloodthirsty war mechs that haunt your
-              nightmares and created the lovable prize fighters of your dreams!
-              Here&apos;s some features you can expect:
+              Launched in the far future world of 2136, MechaFightClub has reclaimed control of unique alien superweapons to repurpose them as weapons of mass entertainment! Each mechabot has its own artificially-intelligent personality, simulated genome, 5 bionics, a color and a complexion. Each will be ranked based on competition performance, popularity, genetic prowess and aesthetic rarity.
             </div>
           </div>
         </div>

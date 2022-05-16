@@ -3,6 +3,7 @@ import styles from './projectTeam.module.scss'
 import linkedIn from '../../../../public/images/linkedin-icon.svg'
 import instagram from '../../../../public/images/instagram-icon.svg'
 import twitter from '../../../../public/images/twitter-icon.svg'
+import imdb from '../../../../public/images/imdb-icon.svg'
 
 const TeamCard = ({ card }: any) => {
   return (
@@ -35,6 +36,11 @@ const SocialMedia = ({ card }: any) => {
       {card.twitter ? (
         <a href={card.twitter} target='_blank' rel="noreferrer">
           <img className={styles.smImg} src={twitter.src} alt='twitter' />
+        </a>
+      ) : null}
+      {card.imdb ? (
+        <a href={card.imdb} target='_blank' rel="noreferrer">
+          <img className={styles.smImg} src={imdb.src} alt='imdb' />
         </a>
       ) : null}
     </div>
