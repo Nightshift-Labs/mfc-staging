@@ -314,7 +314,13 @@ const Mint: NextPage = () => {
         window.open(`https://etherscan.io/tx/${transactionTxId}`);
         break;
       case PurchaseType.Solana:
-        window.open(`https://explorer.solana.com/tx/${transactionTxId}`);
+        if (process.env.NODE_ENV === "development") {
+          window.open(
+            `https://explorer.solana.com/tx/${transactionTxId}?cluster=devnet`
+          );
+        } else {
+          window.open(`https://explorer.solana.com/tx/${transactionTxId}`);
+        }
         break;
     }
   };
