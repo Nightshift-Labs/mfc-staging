@@ -38,7 +38,9 @@ const SocialMediaLink = ({ link, site, linkedin = false }: any) => {
       target='_blank'
       rel='noreferrer'
       referrerPolicy='no-referrer'
-      className={`${styles.icon} ${styles[site]} ${linkedin ? styles.linkedin : ''}`}
+      className={`${styles.icon} ${styles[site]} ${
+        linkedin ? styles.linkedin : ''
+      }`}
     />
   )
 }

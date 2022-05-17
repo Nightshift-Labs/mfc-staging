@@ -1,6 +1,6 @@
-import { MintingProps } from "../../interfaces/MintingProps";
+import { MintingProps } from '../../interfaces/MintingProps'
 
-import styles from "../../styles/components/minting.module.scss";
+import styles from '../../styles/components/minting.module.scss'
 
 const MintingMobileBlocker = ({
   pending,
@@ -8,14 +8,14 @@ const MintingMobileBlocker = ({
   mintedTotal,
   priceInSol,
   priceInUsd,
-  hideMinted,
+  hideMinted
 }: MintingProps) => {
   return (
     <div className={styles.mobileContent}>
       <div className={styles.mobileFlair} />
       <div className={styles.logo}>
         <video autoPlay playsInline loop muted={true}>
-          <source type="video/mp4" src="images/mint.mp4" />
+          <source type='video/mp4' src='images/mint.mp4' />
         </video>
       </div>
       <div className={styles.layout}>
@@ -29,8 +29,8 @@ const MintingMobileBlocker = ({
             <div className={styles.amountGroup}>
               <div className={styles.amountTitle}>Minted</div>
               <div className={styles.amountContent}>
-                {mintedAmount?.toLocaleString()} /{" "}
-                {mintedTotal?.toLocaleString()}{" "}
+                {mintedAmount?.toLocaleString()} /{' '}
+                {mintedTotal?.toLocaleString()}{' '}
               </div>
               <div>({pending} pending)</div>
             </div>
@@ -52,7 +52,7 @@ const MintingMobileBlocker = ({
         <div className={styles.disabled} />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default MintingMobileBlocker;
+export default MintingMobileBlocker

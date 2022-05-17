@@ -1,11 +1,10 @@
-import styles from './scene.module.scss';
-import { Player } from '@lottiefiles/react-lottie-player';
-import anim from '../../public/animations/Anim-Loading.json';
+import styles from './scene.module.scss'
+import { Player } from '@lottiefiles/react-lottie-player'
+import anim from '../../public/animations/Anim-Loading.json'
 
 const loader = ({ loading }: any) => {
-  if (!loading)
-    return null;
-    
+  if (!loading) return null
+
   return (
     <div className={`${styles.loader} ${!!loading && styles.loaderActive}`}>
       <Player
@@ -13,7 +12,7 @@ const loader = ({ loading }: any) => {
         autoplay
         src={anim}
         style={{ height: '100vh', width: '100vw' }}
-        />
+      />
     </div>
   )
 }

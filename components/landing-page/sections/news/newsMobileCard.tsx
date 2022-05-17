@@ -1,6 +1,4 @@
-import ScrollBar from '../../generic/flair/scroll'
 import styles from './news.module.scss'
-import NewsCardLine from './newsCardLine'
 import NewsDate from './newsDate'
 
 const NewsMobileCard = ({ news }: any) => {

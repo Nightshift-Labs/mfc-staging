@@ -49,13 +49,6 @@ const MediaDesktop = ({ progress, mediaCards }: any) => {
           </div>
           <div className={styles.mediaContainer}>
             <Carousel
-              // className={styles.carousel}
-              // centerMode={true}
-              // arrows={false}
-              // swipe={false}
-              // centerPadding={250}
-              // ref={sliderRef}
-              // beforeChange={onChange}
               showArrows={false}
               showStatus={false}
               showIndicators={false}

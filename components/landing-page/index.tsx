@@ -32,10 +32,6 @@ const LandingPage = () => {
   const [pageLoading, setPageLoading] = useState(true)
   const [sidebarValue, setSidebarValue] = useState(0)
 
-  const onStateChange = () => {
-    setPageLoading(document.readyState !== 'complete')
-  }
-
   const updateSidebar = (initial: number, progress: number) => {
     setSidebarValue(initial + progress)
   }

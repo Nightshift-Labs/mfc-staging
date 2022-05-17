@@ -23,9 +23,6 @@ const NewsContent = ({ news, progress }: any) => {
           <NewsCard key={i} news={n} state={index - i} />
         ))}
       </div>
-      {/* <div className={styles.progress}>
-          <ScrollBar pos={progress} horz />
-        </div> */}
     </div>
   )
 }

@@ -1,9 +1,6 @@
 import ScrollFader from '../../generic/scrollFader'
 import styles from './details.module.scss'
 
-import plus from '../../../../public/images/landingpage/details/plus.svg'
-import plusFlair from '../../../../public/images/landingpage/details/plus-flair.svg'
-import progFlair from '../../../../public/images/landingpage/details/prog-flair.svg'
 import Numbers from '../../generic/flair/numbers'
 import ProgressFlair from '../../generic/flair/progress'
 

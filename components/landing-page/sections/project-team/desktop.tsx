@@ -5,7 +5,7 @@ import TeamCard from './teamCard'
 
 const ProjectTeamDesktop = ({ projectTeam, progress, toggle }: any) => {
   useEffect(() => {
-    const isDesktop = window.innerWidth > 1200;
+    const isDesktop = window.innerWidth > 1200
     toggle(!isDesktop || !(progress > 0 && progress < 1))
   }, [progress])
 

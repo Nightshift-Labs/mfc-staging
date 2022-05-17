@@ -1,9 +1,5 @@
 import styles from './mecha.module.scss'
-
-import scrolling from '../../../../public/images/flair/continue-scrolling.svg'
 import swiping from '../../../../public/images/flair/continue-swiping.svg'
-import background from '../../../../public/images/landingpage/mecha/background.svg'
-
 import ScrollFader from '../../generic/scrollFader'
 import ScrollCanvas from '../../generic/scrollCanvas'
 import Cursor from './cursor'

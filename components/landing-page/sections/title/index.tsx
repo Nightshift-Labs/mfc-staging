@@ -9,7 +9,6 @@ import Button from '../../../shared/button'
 import { useContext } from 'react'
 import { MagicLinkModalContext } from '../../../../contexts/magic-link-modal-context'
 
-
 const TitleSection = ({ progress }: any) => {
   const { openModal } = useContext(MagicLinkModalContext)
 
@@ -23,7 +22,6 @@ const TitleSection = ({ progress }: any) => {
         scrollFadeDistance={0}
         scaleIn={0.975}
       >
-        
         <img src={Title.src} alt='title' className={styles.logo} />
         <img src={TitleMobile.src} alt='title' className={styles.logoMobile} />
       </ScrollFader>
@@ -53,7 +51,14 @@ const TitleSection = ({ progress }: any) => {
                 link=''
               />
               <Button
-                click={() => window?.open("https://discord.com/invite/mechafightclub", '_blank')?.focus()}
+                click={() =>
+                  window
+                    ?.open(
+                      'https://discord.com/invite/mechafightclub',
+                      '_blank'
+                    )
+                    ?.focus()
+                }
                 text='Join Our Discord'
                 type='secondary'
                 icon={false}
