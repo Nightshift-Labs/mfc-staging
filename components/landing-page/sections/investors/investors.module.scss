@@ -57,7 +57,7 @@
 }
 
 .investorsMobile {
-    height: 90vh;
+    height: calc(100vh - 100px);
     width: 95vw;
     object-fit: contain;
     display: block;
